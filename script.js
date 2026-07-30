@@ -1,653 +1,250 @@
 /*
 ========================================
-
-SHNEEEV
-Main JavaScript
-
+SHNEEEV — Premium interactions
 ========================================
 */
 
-/*======================================
-    CONFIG
-======================================*/
-
-
-
-// Number of videos displayed
 const MAX_RESULTS = 3;
-
-/*======================================
-    PAGE READY
-======================================*/
+const NEW_WINDOW_DAYS = 7;
 
 document.addEventListener("DOMContentLoaded", () => {
-
     fadeInPage();
-
     setupNavbar();
-
     setupScrollReveal();
-
     setupHeroParallax();
-
     setupCardTilt();
-
     setupMouseGlow();
-
+    setupButtonRipples();
+    createParticles();
+    setupEmailGlow();
     loadYouTubeVideos();
-
 });
 
-
-/*======================================
-    PAGE FADE
-======================================*/
-
-function fadeInPage(){
-
-    document.body.style.opacity = "0";
-
-    document.body.style.transition = "opacity .8s ease";
-
-    requestAnimationFrame(()=>{
-
-        document.body.style.opacity = "1";
-
-    });
-
+function fadeInPage() {
+    document.body.classList.add("page-loading");
+    requestAnimationFrame(() => document.body.classList.add("page-ready"));
 }
 
-
-/*======================================
-    NAVBAR
-======================================*/
-
-function setupNavbar(){
-
+function setupNavbar() {
     const header = document.querySelector("header");
-
     let lastScroll = 0;
-
-    window.addEventListener("scroll",()=>{
-
+    window.addEventListener("scroll", () => {
         const current = window.scrollY;
-
-        if(current > lastScroll && current > 120){
-
-            header.style.transform =
-            "translateY(-120%)";
-
-        }
-
-        else{
-
-            header.style.transform =
-            "translateY(0)";
-
-        }
-
+        header.style.transform =
+            current > lastScroll && current > 120 ? "translateY(-120%)" : "translateY(0)";
         lastScroll = current;
-
-    });
-
+    }, { passive: true });
 }
 
-
-/*======================================
-    SCROLL REVEAL
-======================================*/
-
-function setupScrollReveal(){
-
-    const elements = document.querySelectorAll(
-
-        ".about,.setupCard,.reviewCard,.business"
-
-    );
-
-    elements.forEach(el=>{
-
-        el.classList.add("reveal");
-
-    });
-
-    const observer = new IntersectionObserver(
-
-        entries=>{
-
-            entries.forEach(entry=>{
-
-                if(entry.isIntersecting){
-
-                    entry.target.classList.add(
-
-                        "visible"
-
-                    );
-
-                }
-
-            });
-
-        },
-
-        {
-
-            threshold:.15
-
-        }
-
-    );
-
-    elements.forEach(el=>{
-
-        observer.observe(el);
-
-    });
-
-}
-
-
-/*======================================
-    HERO PARALLAX
-======================================*/
-
-function setupHeroParallax(){}
-
-/*======================================
-    CARD TILT
-======================================*/
-
-function setupCardTilt(){
-
-    const cards = document.querySelectorAll(
-
-        ".setupCard,.reviewCard"
-
-    );
-
-    cards.forEach(card=>{
-
-        card.addEventListener(
-
-            "mousemove",
-
-            e=>{
-
-                const rect =
-
-                card.getBoundingClientRect();
-
-                const x =
-
-                e.clientX-rect.left;
-
-                const y =
-
-                e.clientY-rect.top;
-
-                const rotateY =
-
-                ((x/rect.width)-0.5)*10;
-
-                const rotateX =
-
-                ((y/rect.height)-0.5)*-10;
-
-                card.style.transform =
-
-                `perspective(1000px)
-                rotateX(${rotateX}deg)
-                rotateY(${rotateY}deg)
-                translateY(-10px)`;
-
+function setupScrollReveal() {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
             }
+        });
+    }, { threshold: 0.12 });
 
-        );
-
-        card.addEventListener(
-
-            "mouseleave",
-
-            ()=>{
-
-                card.style.transform = "";
-
-            }
-
-        );
-
+    document.querySelectorAll(".about,.setupCard,.business,.sectionHeader").forEach((element, index) => {
+        element.classList.add("reveal");
+        element.style.setProperty("--reveal-delay", `${Math.min(index % 4, 3) * 80}ms`);
+        observer.observe(element);
     });
-
 }
 
+function setupHeroParallax() {
+    const heroImage = document.querySelector(".heroImage img");
+    if (!heroImage || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-/*======================================
-    MOUSE GLOW
-======================================*/
+    window.addEventListener("pointermove", event => {
+        const x = (event.clientX / window.innerWidth - 0.5) * 8;
+        const y = (event.clientY / window.innerHeight - 0.5) * 8;
+        heroImage.style.setProperty("--parallax-x", `${x}px`);
+        heroImage.style.setProperty("--parallax-y", `${y}px`);
+    }, { passive: true });
+}
 
-function setupMouseGlow(){
+function setupCardTilt(root = document) {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
 
+    root.querySelectorAll(".setupCard,.reviewCard").forEach(card => {
+        if (card.dataset.tiltReady) return;
+        card.dataset.tiltReady = "true";
+
+        card.addEventListener("pointermove", event => {
+            const rect = card.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            card.style.setProperty("--pointer-x", `${(x / rect.width) * 100}%`);
+            card.style.setProperty("--pointer-y", `${(y / rect.height) * 100}%`);
+            card.style.setProperty("--rotate-y", `${((x / rect.width) - 0.5) * 4}deg`);
+            card.style.setProperty("--rotate-x", `${((y / rect.height) - 0.5) * -4}deg`);
+        });
+
+        card.addEventListener("pointerleave", () => {
+            card.style.removeProperty("--rotate-x");
+            card.style.removeProperty("--rotate-y");
+        });
+    });
+}
+
+function setupMouseGlow() {
+    if (window.matchMedia("(pointer: coarse), (prefers-reduced-motion: reduce)").matches) return;
     const glow = document.createElement("div");
-
     glow.className = "mouseGlow";
-
-    glow.style.position = "fixed";
-
-    glow.style.width = "500px";
-
-    glow.style.height = "500px";
-
-    glow.style.borderRadius = "50%";
-
-    glow.style.pointerEvents = "none";
-
-    glow.style.filter = "blur(90px)";
-
-    glow.style.background =
-
-    "radial-gradient(circle, rgba(79,166,108,.12), transparent 70%)";
-
-    glow.style.zIndex = "-10";
-
     document.body.appendChild(glow);
 
-    window.addEventListener(
+    window.addEventListener("pointermove", event => {
+        glow.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+    }, { passive: true });
+}
 
-        "mousemove",
+function renderSkeletons(container) {
+    container.innerHTML = Array.from({ length: MAX_RESULTS }, (_, index) => `
+        <div class="reviewCard skeletonCard" aria-hidden="true" style="--card-index:${index}">
+            <div class="skeleton skeletonThumbnail"></div>
+            <div class="reviewInfo">
+                <div class="skeleton skeletonTitle"></div>
+                <div class="skeleton skeletonCopy"></div>
+                <div class="skeleton skeletonDate"></div>
+            </div>
+        </div>
+    `).join("");
+}
 
-        e=>{
+function isNew(published) {
+    const age = Date.now() - new Date(published).getTime();
+    return age >= 0 && age <= NEW_WINDOW_DAYS * 24 * 60 * 60 * 1000;
+}
 
-            glow.style.left =
+function formatDate(published) {
+    return new Intl.DateTimeFormat("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+    }).format(new Date(published));
+}
 
-            (e.clientX-250)+"px";
+function escapeHtml(value = "") {
+    const node = document.createElement("div");
+    node.textContent = value;
+    return node.innerHTML;
+}
 
-            glow.style.top =
+function splitTitle(title) {
+    const parts = title.split(/\s[-–—]\s/, 2);
+    return {
+        title: parts[0].trim(),
+        summary: parts[1]?.trim() || "Thoughts, testing, and an honest verdict."
+    };
+}
 
-            (e.clientY-250)+"px";
+function createReviewCard(video, index) {
+    const card = document.createElement("article");
+    const copy = splitTitle(video.title);
+    card.className = "reviewCard";
+    card.style.setProperty("--card-index", index);
 
-        }
+    card.innerHTML = `
+        <a class="reviewCardLink" href="${escapeHtml(video.url)}" target="_blank" rel="noopener"
+           aria-label="Watch ${escapeHtml(video.title)} on YouTube">
+            <div class="reviewThumbnail">
+                <img src="${escapeHtml(video.thumbnail)}" alt="" loading="${index === 0 ? "eager" : "lazy"}">
+                <div class="thumbnailShade"></div>
+                <div class="badgeRow">
+                    ${isNew(video.published) ? '<span class="newBadge">NEW</span>' : "<span></span>"}
+                    ${video.duration ? `<span class="durationBadge">${escapeHtml(video.duration)}</span>` : ""}
+                </div>
+                <span class="watchOverlay">Watch on YouTube <b>→</b></span>
+            </div>
+            <div class="reviewInfo">
+                <h3>${escapeHtml(copy.title)}</h3>
+                <p class="reviewSummary">${escapeHtml(copy.summary)}</p>
+                <div class="reviewMeta">
+                    <time datetime="${escapeHtml(video.published)}">${formatDate(video.published)}</time>
+                    <span class="watchText">Watch on YouTube <b>→</b></span>
+                </div>
+            </div>
+        </a>
+    `;
 
-    );
-
+    return card;
 }
 
 async function loadYouTubeVideos() {
-
-    const container =
-        document.getElementById("youtubeVideos");
-
+    const container = document.getElementById("youtubeVideos");
     if (!container) return;
 
-    container.innerHTML = "";
+    renderSkeletons(container);
 
     try {
+        const response = await fetch("./videos.json", { cache: "no-store" });
+        if (!response.ok) throw new Error(`Video request failed: ${response.status}`);
+        const videos = await response.json();
 
-        const response =
-            await fetch("./videos.json")
+        await Promise.all(
+            videos.slice(0, MAX_RESULTS).map(video => new Promise(resolve => {
+                const image = new Image();
+                image.onload = image.onerror = resolve;
+                image.src = video.thumbnail;
+            }))
+        );
 
-        const videos =
-            await response.json();
+        container.classList.add("is-swapping");
+        await new Promise(resolve => setTimeout(resolve, 180));
+        container.innerHTML = "";
+        container.classList.remove("is-swapping");
 
-        videos.forEach(video => {
-
-            const card =
-                document.createElement("a");
-
-            card.className =
-                "reviewCard";
-
-            card.href =
-                video.url;
-
-            card.target =
-                "_blank";
-
-            card.innerHTML = `
-
-                <div class="reviewThumbnail">
-
-                    <img
-                        src="${video.thumbnail}"
-                        alt="${video.title}"
-                        loading="lazy">
-
-                </div>
-
-                <div class="reviewInfo">
-
-                    <h3>${video.title}</h3>
-
-                    <p>${new Date(video.published).toLocaleDateString()}</p>
-
-                </div>
-
-            `;
-
+        videos.slice(0, MAX_RESULTS).forEach((video, index) => {
+            const card = createReviewCard(video, index);
             container.appendChild(card);
-
+            requestAnimationFrame(() => card.classList.add("card-visible"));
         });
-
-    }
-
-    catch (err) {
-
-        console.error(err);
-
+        setupCardTilt(container);
+    } catch (error) {
+        console.error(error);
         container.innerHTML = `
-
-            <div class="reviewCard">
-
-                <div class="reviewInfo">
-
-                    <h3>Unable to load videos</h3>
-
-                    <p>Please try again later.</p>
-
-                </div>
-
+            <div class="reviewError" role="status">
+                <span>Videos are taking a little longer than expected.</span>
+                <button type="button" onclick="loadYouTubeVideos()">Try again</button>
             </div>
-
         `;
-
     }
-
 }
 
-/*======================================
-    HERO FLOAT
-======================================*/
-
-/*======================================
-    BUTTON RIPPLE
-======================================*/
-
-document.querySelectorAll(
-
-".primary,.secondary,.youtubeButton"
-
-).forEach(button=>{
-
-    button.addEventListener("click",e=>{
-
-        const ripple = document.createElement("span");
-
-        const rect = button.getBoundingClientRect();
-
-        const size = Math.max(rect.width,rect.height);
-
-        ripple.style.position = "absolute";
-
-        ripple.style.width = size + "px";
-
-        ripple.style.height = size + "px";
-
-        ripple.style.left =
-
-        (e.clientX-rect.left-size/2)+"px";
-
-        ripple.style.top =
-
-        (e.clientY-rect.top-size/2)+"px";
-
-        ripple.style.borderRadius = "50%";
-
-        ripple.style.pointerEvents = "none";
-
-        ripple.style.background =
-
-        "rgba(255,255,255,.35)";
-
-        ripple.style.transform = "scale(0)";
-
-        ripple.style.transition =
-
-        "transform .6s ease,opacity .6s ease";
-
-        button.style.position = "relative";
-
-        button.style.overflow = "hidden";
-
-        button.appendChild(ripple);
-
-        requestAnimationFrame(()=>{
-
-            ripple.style.transform = "scale(4)";
-
-            ripple.style.opacity = "0";
-
+function setupButtonRipples() {
+    document.querySelectorAll(".primary,.secondary,.youtubeButton").forEach(button => {
+        button.addEventListener("click", event => {
+            const ripple = document.createElement("span");
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            ripple.className = "buttonRipple";
+            ripple.style.width = ripple.style.height = `${size}px`;
+            ripple.style.left = `${event.clientX - rect.left - size / 2}px`;
+            ripple.style.top = `${event.clientY - rect.top - size / 2}px`;
+            button.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 650);
         });
-
-        setTimeout(()=>{
-
-            ripple.remove();
-
-        },600);
-
     });
+}
 
-});
-
-
-/*======================================
-    FLOATING PARTICLES
-======================================*/
-
-function createParticles(){
-
-    const background = document.querySelector(".background");
-
-    if(!background) return;
-
-    for(let i=0;i<30;i++){
-
-        const particle = document.createElement("div");
-
-        particle.style.position = "absolute";
-
-        particle.style.width =
-
-        (Math.random()*4+2)+"px";
-
-        particle.style.height =
-
-        particle.style.width;
-
-        particle.style.borderRadius = "50%";
-
-        particle.style.background =
-
-        "rgba(131,231,162,.55)";
-
-        particle.style.left =
-
-        Math.random()*100+"%";
-
-        particle.style.top =
-
-        Math.random()*100+"%";
-
-        particle.style.opacity =
-
-        Math.random()*.5+.2;
-
-        particle.style.transition =
-
-        "transform 12s linear";
-
+function createParticles() {
+    const background = document.querySelector(".particles");
+    if (!background || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    for (let index = 0; index < 20; index++) {
+        const particle = document.createElement("i");
+        particle.style.setProperty("--x", `${Math.random() * 100}%`);
+        particle.style.setProperty("--y", `${Math.random() * 100}%`);
+        particle.style.setProperty("--size", `${Math.random() * 3 + 1}px`);
+        particle.style.setProperty("--duration", `${14 + Math.random() * 18}s`);
+        particle.style.setProperty("--delay", `${Math.random() * -20}s`);
         background.appendChild(particle);
-
-        animateParticle(particle);
-
     }
-
 }
 
-function animateParticle(particle){
-
-    function move(){
-
-        particle.animate([
-
-            {
-
-                transform:"translate(0px,0px)"
-
-            },
-
-            {
-
-                transform:
-
-                `translate(
-
-                ${(Math.random()*120)-60}px,
-
-                ${(Math.random()*120)-60}px
-
-                )`
-
-            }
-
-        ],{
-
-            duration:
-
-            12000+Math.random()*10000,
-
-            fill:"forwards"
-
-        }).onfinish=move;
-
-    }
-
-    move();
-
+function setupEmailGlow() {
+    const email = document.querySelector(".email");
+    if (!email) return;
+    email.classList.add("emailGlow");
 }
-
-createParticles();
-
-
-/*======================================
-    EMAIL GLOW
-======================================*/
-
-const email =
-
-document.querySelector(".email");
-
-if(email){
-
-setInterval(()=>{
-
-email.animate([
-
-{
-
-textShadow:
-
-"0 0 0 rgba(79,166,108,0)"
-
-},
-
-{
-
-textShadow:
-
-"0 0 35px rgba(79,166,108,.65)"
-
-},
-
-{
-
-textShadow:
-
-"0 0 0 rgba(79,166,108,0)"
-
-}
-
-],{
-
-duration:2500
-
-});
-
-},5000);
-
-}
-
-
-/*======================================
-    REVIEW IMAGE HOVER
-======================================*/
-
-document.querySelectorAll(
-
-".reviewThumbnail img"
-
-).forEach(img=>{
-
-img.style.transition="transform .6s ease";
-
-img.parentElement.style.overflow="hidden";
-
-img.parentElement.addEventListener(
-
-"mouseenter",
-
-()=>{
-
-img.style.transform="scale(1.08)";
-
-});
-
-img.parentElement.addEventListener(
-
-"mouseleave",
-
-()=>{
-
-img.style.transform="scale(1)";
-
-});
-
-});
-
-
-/*======================================
-    CONSOLE MESSAGE
-======================================*/
-
-console.clear();
-
-console.log(
-
-"%cSHNEEEV",
-
-"font-size:30px;font-weight:bold;color:#83E7A2;"
-
-);
-
-console.log(
-
-"%cTechnology. Naturally.",
-
-"font-size:16px;color:white;"
-
-);
-
-console.log(
-
-"%cBusiness: business@shneeev.com",
-
-"font-size:14px;color:#83E7A2;"
-
-);
-
-console.log(
-
-"%cThanks for checking out the source code.",
-
-"font-size:14px;color:#9BA59E;"
-
-);
