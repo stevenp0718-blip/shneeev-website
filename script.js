@@ -284,7 +284,7 @@ async function loadYouTubeVideos() {
     try {
 
         const response =
-            await fetch("https://tiny-moon-0007.stevenp0718.workers.dev/api/videos")
+            await fetch("./videos.json")
 
         const videos =
             await response.json();
