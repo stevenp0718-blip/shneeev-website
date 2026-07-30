@@ -844,39 +844,21 @@ opacity:.7;
    Apple Style Layout
 ======================================= */
 
-.setupCard:nth-child(1){
+.setupCard--half{
 
     grid-column:span 6;
 
 }
 
-.setupCard:nth-child(2){
-
-    grid-column:span 3;
-
-}
-
-.setupCard:nth-child(3){
-
-    grid-column:span 3;
-
-}
-
-.setupCard:nth-child(4){
+.setupCard--third{
 
     grid-column:span 4;
 
 }
 
-.setupCard:nth-child(5){
+.setupCard--wide{
 
-    grid-column:span 4;
-
-}
-
-.setupCard:nth-child(6){
-
-    grid-column:span 4;
+    grid-column:span 8;
 
 }
 
