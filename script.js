@@ -120,6 +120,18 @@ function escapeHtml(value = "") {
     return node.innerHTML;
 }
 
+function safeExternalUrl(value, allowedHosts) {
+    try {
+        const url = new URL(value);
+        const hostAllowed = allowedHosts.some(host =>
+            url.hostname === host || url.hostname.endsWith(`.${host}`)
+        );
+        return url.protocol === "https:" && hostAllowed ? url.href : "#";
+    } catch {
+        return "#";
+    }
+}
+
 function splitTitle(title) {
     const parts = title.split(/\s[-–—]\s/, 2);
     return {
@@ -131,14 +143,16 @@ function splitTitle(title) {
 function createReviewCard(video, index) {
     const card = document.createElement("article");
     const copy = splitTitle(video.title);
+    const videoUrl = safeExternalUrl(video.url, ["youtube.com", "youtu.be"]);
+    const thumbnailUrl = safeExternalUrl(video.thumbnail, ["ytimg.com"]);
     card.className = "reviewCard";
     card.style.setProperty("--card-index", index);
 
     card.innerHTML = `
-        <a class="reviewCardLink" href="${escapeHtml(video.url)}" target="_blank" rel="noopener"
+        <a class="reviewCardLink" href="${escapeHtml(videoUrl)}" target="_blank" rel="noopener noreferrer"
            aria-label="Watch ${escapeHtml(video.title)} on YouTube">
             <div class="reviewThumbnail">
-                <img src="${escapeHtml(video.thumbnail)}" alt="" loading="${index === 0 ? "eager" : "lazy"}">
+                <img src="${escapeHtml(thumbnailUrl)}" alt="" loading="${index === 0 ? "eager" : "lazy"}">
                 <div class="thumbnailShade"></div>
                 <div class="badgeRow">
                     ${isNew(video.published) ? '<span class="newBadge">NEW</span>' : "<span></span>"}
@@ -174,7 +188,7 @@ async function loadYouTubeVideos() {
             videos.slice(0, MAX_RESULTS).map(video => new Promise(resolve => {
                 const image = new Image();
                 image.onload = image.onerror = resolve;
-                image.src = video.thumbnail;
+                image.src = safeExternalUrl(video.thumbnail, ["ytimg.com"]);
             }))
         );
 

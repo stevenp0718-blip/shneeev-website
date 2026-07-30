@@ -1,0 +1,16 @@
+# Dependencies and local tooling
+node_modules/
+.npm/
+*.log
+
+# Secrets and environment files
+.env
+.env.*
+!.env.example
+
+# Editor and operating-system files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
