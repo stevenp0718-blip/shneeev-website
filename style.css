@@ -936,6 +936,57 @@ opacity:.7;
 
 }
 
+.setupCard li a{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:18px;
+
+    color:inherit;
+
+    text-decoration:none;
+
+}
+
+.setupCard li a::after{
+
+    content:"↗";
+
+    color:var(--green);
+
+    font-size:.9em;
+
+    opacity:.45;
+
+    transform:translate(-4px,4px);
+
+    transition:opacity .25s,transform .25s;
+
+}
+
+.setupCard li a:hover::after,
+.setupCard li a:focus-visible::after{
+
+    opacity:1;
+
+    transform:none;
+
+}
+
+.setupCard li a:focus-visible{
+
+    outline:2px solid var(--green);
+
+    outline-offset:6px;
+
+    border-radius:4px;
+
+}
+
 /* =======================================
    Fancy Mouse Shine
 ======================================= */
@@ -1427,6 +1478,8 @@ justify-content:space-between;
 
 align-items:center;
 
+flex-wrap:wrap;
+
 border-top:
 
 1px solid rgba(255,255,255,.05);
@@ -1709,6 +1762,30 @@ body.page-ready{
 .particles{
     position:absolute;
     inset:0;
+}
+
+.affiliateDisclosure{
+
+flex:0 0 100%;
+
+margin-top:34px;
+
+padding-top:26px;
+
+border-top:1px solid rgba(255,255,255,.05);
+
+color:var(--muted);
+
+font-size:.9rem;
+
+line-height:1.7;
+
+}
+
+.affiliateDisclosure strong{
+
+color:white;
+
 }
 
 .page-hidden *,

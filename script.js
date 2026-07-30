@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupButtonRipples();
     createParticles();
     setupEmailGlow();
+    setupShoppingLinks();
     loadYouTubeVideos();
     setupVisibilityPause();
 });
@@ -280,4 +281,21 @@ function setupEmailGlow() {
     const email = document.querySelector(".email");
     if (!email) return;
     email.classList.add("emailGlow");
+}
+
+function setupShoppingLinks() {
+    document.querySelectorAll(".setupCard li").forEach(item => {
+        if (item.querySelector("a")) return;
+
+        const productName = item.textContent.trim();
+        const link = document.createElement("a");
+        link.href = `https://www.google.com/search?tbm=shop&q=${encodeURIComponent(productName)}`;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.setAttribute("aria-label", `Find buying options for ${productName}`);
+        link.textContent = productName;
+
+        item.textContent = "";
+        item.appendChild(link);
+    });
 }
