@@ -77,6 +77,15 @@ z-index:2;
 
 }
 
+.about,
+.reviews,
+.setup,
+.business,
+footer{
+content-visibility:auto;
+contain-intrinsic-size:auto 800px;
+}
+
 /* =======================================
    Animated Background
 ======================================= */
@@ -1719,6 +1728,12 @@ body.page-ready{
     inset:0;
 }
 
+.page-hidden *,
+.page-hidden *::before,
+.page-hidden *::after{
+    animation-play-state:paused !important;
+}
+
 .particles i{
     position:absolute;
     left:var(--x);
@@ -2118,6 +2133,45 @@ body.page-ready{
         opacity:1;
         transform:none;
     }
+}
+
+.low-power .gradient,
+.low-power .fog,
+.low-power .particles,
+.low-power .noise{
+    display:none;
+}
+
+.low-power .background{
+    background:
+        radial-gradient(circle at 15% 15%,rgba(20,54,31,.48),transparent 42%),
+        radial-gradient(circle at 85% 35%,rgba(27,74,42,.3),transparent 40%),
+        linear-gradient(180deg,#020402 0%,#040805 45%,#020402 100%);
+}
+
+.low-power nav,
+.low-power .setupCard,
+.low-power .reviewCard,
+.low-power .watchOverlay,
+.low-power .newBadge,
+.low-power .durationBadge{
+    backdrop-filter:none;
+}
+
+.low-power .setupCard,
+.low-power .heroImage img,
+.low-power .imageGlow,
+.low-power .emailGlow{
+    animation:none;
+}
+
+.low-power .setupCard{
+    transform:none;
+}
+
+.low-power .imageGlow{
+    filter:blur(24px);
+    opacity:.65;
 }
 
 /* Specificity guards for the original thumbnail pill styles. */

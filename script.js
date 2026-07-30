@@ -6,6 +6,29 @@ SHNEEEV — Premium interactions
 
 const MAX_RESULTS = 3;
 const NEW_WINDOW_DAYS = 7;
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+const lowPowerDevice =
+    prefersReducedMotion ||
+    connection?.saveData === true ||
+    (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
+    (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+    !hasAcceleratedGraphics();
+
+document.documentElement.classList.toggle("low-power", lowPowerDevice);
+
+function hasAcceleratedGraphics() {
+    try {
+        const canvas = document.createElement("canvas");
+        const context =
+            canvas.getContext("webgl2", { failIfMajorPerformanceCaveat: true }) ||
+            canvas.getContext("webgl", { failIfMajorPerformanceCaveat: true });
+        context?.getExtension("WEBGL_lose_context")?.loseContext();
+        return Boolean(context);
+    } catch {
+        return false;
+    }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     fadeInPage();
@@ -17,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     createParticles();
     setupEmailGlow();
     loadYouTubeVideos();
+    setupVisibilityPause();
 });
 
 function fadeInPage() {
@@ -54,7 +78,7 @@ function setupScrollReveal() {
 
 function setupHeroParallax() {
     const heroImage = document.querySelector(".heroImage img");
-    if (!heroImage || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!heroImage || lowPowerDevice) return;
 
     window.addEventListener("pointermove", event => {
         const x = (event.clientX / window.innerWidth - 0.5) * 8;
@@ -65,7 +89,7 @@ function setupHeroParallax() {
 }
 
 function setupCardTilt(root = document) {
-    if (window.matchMedia("(pointer: coarse)").matches) return;
+    if (lowPowerDevice || window.matchMedia("(pointer: coarse)").matches) return;
 
     root.querySelectorAll(".setupCard,.reviewCard").forEach(card => {
         if (card.dataset.tiltReady) return;
@@ -232,7 +256,7 @@ function setupButtonRipples() {
 
 function createParticles() {
     const background = document.querySelector(".particles");
-    if (!background || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!background || lowPowerDevice) return;
     for (let index = 0; index < 20; index++) {
         const particle = document.createElement("i");
         particle.style.setProperty("--x", `${Math.random() * 100}%`);
@@ -242,6 +266,14 @@ function createParticles() {
         particle.style.setProperty("--delay", `${Math.random() * -20}s`);
         background.appendChild(particle);
     }
+}
+
+function setupVisibilityPause() {
+    const updateVisibility = () => {
+        document.documentElement.classList.toggle("page-hidden", document.hidden);
+    };
+    document.addEventListener("visibilitychange", updateVisibility, { passive: true });
+    updateVisibility();
 }
 
 function setupEmailGlow() {
