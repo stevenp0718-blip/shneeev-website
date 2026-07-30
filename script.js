@@ -8,25 +8,30 @@ const MAX_RESULTS = 3;
 const NEW_WINDOW_DAYS = 7;
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-const lowPowerDevice =
+let lowPowerDevice =
     prefersReducedMotion ||
     connection?.saveData === true ||
     (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
-    (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
-    !hasAcceleratedGraphics();
+    (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
 
 document.documentElement.classList.toggle("low-power", lowPowerDevice);
 
-function hasAcceleratedGraphics() {
+function detectGraphicsMode() {
+    if (lowPowerDevice) return;
+
     try {
         const canvas = document.createElement("canvas");
         const context =
             canvas.getContext("webgl2", { failIfMajorPerformanceCaveat: true }) ||
             canvas.getContext("webgl", { failIfMajorPerformanceCaveat: true });
         context?.getExtension("WEBGL_lose_context")?.loseContext();
-        return Boolean(context);
+        if (!context) {
+            lowPowerDevice = true;
+            document.documentElement.classList.add("low-power");
+        }
     } catch {
-        return false;
+        lowPowerDevice = true;
+        document.documentElement.classList.add("low-power");
     }
 }
 
@@ -37,12 +42,41 @@ document.addEventListener("DOMContentLoaded", () => {
     setupHeroParallax();
     setupCardTilt();
     setupButtonRipples();
-    createParticles();
+    scheduleIdleWork();
     setupEmailGlow();
     setupShoppingLinks();
-    loadYouTubeVideos();
+    scheduleVideoLoad();
     setupVisibilityPause();
 });
+
+function scheduleIdleWork() {
+    const run = () => {
+        detectGraphicsMode();
+        createParticles();
+    };
+
+    if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(run, { timeout: 1800 });
+    } else {
+        window.setTimeout(run, 900);
+    }
+}
+
+function scheduleVideoLoad() {
+    const reviews = document.querySelector("#reviews");
+    if (!reviews || !("IntersectionObserver" in window)) {
+        loadYouTubeVideos();
+        return;
+    }
+
+    const observer = new IntersectionObserver(entries => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+        observer.disconnect();
+        loadYouTubeVideos();
+    }, { rootMargin: "600px 0px" });
+
+    observer.observe(reviews);
+}
 
 function fadeInPage() {
     document.body.classList.add("page-loading");
@@ -55,6 +89,8 @@ function setupNavbar() {
     const header = document.querySelector("header");
     let lastScroll = 0;
     window.addEventListener("scroll", () => {
+        if (lowPowerDevice) return;
+
         const current = window.scrollY;
         header.style.transform =
             current > lastScroll && current > 120 ? "translateY(-120%)" : "translateY(0)";
@@ -86,6 +122,8 @@ function setupHeroParallax() {
     if (!heroImage || lowPowerDevice) return;
 
     window.addEventListener("pointermove", event => {
+        if (lowPowerDevice) return;
+
         const x = (event.clientX / window.innerWidth - 0.5) * 8;
         const y = (event.clientY / window.innerHeight - 0.5) * 8;
         heroImage.style.setProperty("--parallax-x", `${x}px`);
@@ -101,6 +139,8 @@ function setupCardTilt(root = document) {
         card.dataset.tiltReady = "true";
 
         card.addEventListener("pointermove", event => {
+            if (lowPowerDevice) return;
+
             const rect = card.getBoundingClientRect();
             const x = event.clientX - rect.left;
             const y = event.clientY - rect.top;
@@ -248,6 +288,8 @@ function setupButtonRipples() {
 
     document.querySelectorAll(".primary,.secondary,.youtubeButton").forEach(button => {
         button.addEventListener("click", event => {
+            if (lowPowerDevice) return;
+
             const ripple = document.createElement("span");
             const rect = button.getBoundingClientRect();
             const size = Math.max(rect.width, rect.height);
@@ -264,7 +306,7 @@ function setupButtonRipples() {
 function createParticles() {
     const background = document.querySelector(".particles");
     if (!background || lowPowerDevice) return;
-    for (let index = 0; index < 20; index++) {
+    for (let index = 0; index < 10; index++) {
         const particle = document.createElement("i");
         particle.style.setProperty("--x", `${Math.random() * 100}%`);
         particle.style.setProperty("--y", `${Math.random() * 100}%`);

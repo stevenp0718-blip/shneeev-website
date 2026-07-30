@@ -37,7 +37,7 @@ scroll-behavior:smooth;
 
 body{
 
-font-family:"Inter",sans-serif;
+font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 
 background:var(--bg);
 
@@ -982,16 +982,16 @@ opacity:.7;
 
     box-shadow:0 0 16px rgba(87,220,127,.18);
 
-    transform:translate(-2px,2px);
+    line-height:1;
 
-    transition:background .25s,border-color .25s,box-shadow .25s,transform .25s;
+    padding-bottom:2px;
+
+    transition:background .25s,border-color .25s,box-shadow .25s;
 
 }
 
 .setupCard li a:hover::after,
 .setupCard li a:focus-visible::after{
-
-    transform:none;
 
     background:rgba(87,220,127,.28);
 
