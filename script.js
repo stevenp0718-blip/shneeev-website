@@ -50,6 +50,8 @@ function fadeInPage() {
 }
 
 function setupNavbar() {
+    if (lowPowerDevice) return;
+
     const header = document.querySelector("header");
     let lastScroll = 0;
     window.addEventListener("scroll", () => {
@@ -61,6 +63,8 @@ function setupNavbar() {
 }
 
 function setupScrollReveal() {
+    if (lowPowerDevice) return;
+
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -240,6 +244,8 @@ async function loadYouTubeVideos() {
 }
 
 function setupButtonRipples() {
+    if (lowPowerDevice) return;
+
     document.querySelectorAll(".primary,.secondary,.youtubeButton").forEach(button => {
         button.addEventListener("click", event => {
             const ripple = document.createElement("span");
