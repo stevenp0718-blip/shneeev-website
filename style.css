@@ -794,6 +794,87 @@ opacity:.7;
 
 }
 
+.navActions{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+.effectsToggle{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:9px;
+
+min-height:42px;
+
+padding:10px 15px;
+
+border:1px solid rgba(124,255,164,.24);
+
+border-radius:999px;
+
+background:rgba(7,18,10,.72);
+
+color:var(--muted);
+
+font:inherit;
+
+font-size:.78rem;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:color .25s,border-color .25s,background .25s;
+
+}
+
+.effectsToggle:hover,
+.effectsToggle[aria-pressed="true"]{
+
+color:white;
+
+border-color:rgba(124,255,164,.55);
+
+background:rgba(25,73,40,.72);
+
+}
+
+.effectsToggle:disabled{
+
+cursor:not-allowed;
+
+opacity:.6;
+
+}
+
+.effectsDot{
+
+width:8px;
+
+height:8px;
+
+border-radius:50%;
+
+background:#59665d;
+
+}
+
+.effectsToggle[aria-pressed="true"] .effectsDot{
+
+background:#7dffa4;
+
+box-shadow:0 0 12px rgba(125,255,164,.7);
+
+}
+
 /* subtle green light */
 
 .setupCard::before{
@@ -1650,6 +1731,30 @@ padding:18px;
 
 }
 
+.effectsToggle{
+
+width:42px;
+
+min-width:42px;
+
+padding:0;
+
+justify-content:center;
+
+}
+
+.effectsLabel{
+
+display:none;
+
+}
+
+.youtubeButton{
+
+padding:11px 18px;
+
+}
+
 nav ul{
 
 display:none;
@@ -2209,7 +2314,9 @@ color:white;
 }
 
 .low-power .background{
-    background:#040805;
+    background:
+        radial-gradient(circle at 18% 22%,rgba(29,103,54,.5),transparent 46%),
+        linear-gradient(135deg,#07140b 0%,#041008 48%,#020503 100%);
 }
 
 .low-power body.page-loading,

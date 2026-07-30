@@ -8,52 +8,24 @@ const MAX_RESULTS = 3;
 const NEW_WINDOW_DAYS = 7;
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-let lowPowerDevice =
-    prefersReducedMotion ||
-    connection?.saveData === true ||
-    (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
-    (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
+const effectsStorageKey = "shneeev-visual-effects";
+const accessibilityLowPower = prefersReducedMotion || connection?.saveData === true;
+let enhancedEffects = readEffectsPreference() === "enhanced" && !accessibilityLowPower;
+let lowPowerDevice = !enhancedEffects;
 
 document.documentElement.classList.toggle("low-power", lowPowerDevice);
 
-function detectGraphicsMode() {
-    if (lowPowerDevice) return;
-
+function readEffectsPreference() {
     try {
-        const canvas = document.createElement("canvas");
-        const context =
-            canvas.getContext("webgl2", { failIfMajorPerformanceCaveat: true }) ||
-            canvas.getContext("webgl", { failIfMajorPerformanceCaveat: true });
-
-        if (!context) {
-            lowPowerDevice = true;
-            document.documentElement.classList.add("low-power");
-            return;
-        }
-
-        const rendererInfo = context.getExtension("WEBGL_debug_renderer_info");
-        const renderer = String(
-            rendererInfo
-                ? context.getParameter(rendererInfo.UNMASKED_RENDERER_WEBGL)
-                : context.getParameter(context.RENDERER)
-        ).toLowerCase();
-        const softwareRenderer =
-            /swiftshader|llvmpipe|lavapipe|software raster|microsoft basic render|\bwarp\b/.test(renderer);
-
-        context.getExtension("WEBGL_lose_context")?.loseContext();
-
-        if (softwareRenderer) {
-            lowPowerDevice = true;
-            document.documentElement.classList.add("low-power");
-        }
+        return window.localStorage.getItem(effectsStorageKey);
     } catch {
-        lowPowerDevice = true;
-        document.documentElement.classList.add("low-power");
+        return null;
     }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     fadeInPage();
+    setupEffectsToggle();
     setupNavbar();
     setupScrollReveal();
     setupHeroParallax();
@@ -67,16 +39,43 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function scheduleIdleWork() {
-    const run = () => {
-        detectGraphicsMode();
-        createParticles();
-    };
+    const run = () => createParticles();
 
     if ("requestIdleCallback" in window) {
         window.requestIdleCallback(run, { timeout: 700 });
     } else {
         window.setTimeout(run, 400);
     }
+}
+
+function setupEffectsToggle() {
+    const toggle = document.querySelector(".effectsToggle");
+    const label = toggle?.querySelector(".effectsLabel");
+    if (!toggle || !label) return;
+
+    const updateLabel = () => {
+        toggle.setAttribute("aria-pressed", String(enhancedEffects));
+        label.textContent = `Enhanced: ${enhancedEffects ? "On" : "Off"}`;
+        toggle.title = accessibilityLowPower
+            ? "Enhanced visuals are unavailable while reduced motion or data saver is enabled."
+            : "Toggle enhanced visual effects";
+        toggle.disabled = accessibilityLowPower;
+    };
+
+    toggle.addEventListener("click", () => {
+        enhancedEffects = !enhancedEffects;
+        try {
+            window.localStorage.setItem(
+                effectsStorageKey,
+                enhancedEffects ? "enhanced" : "standard"
+            );
+        } catch {
+            // The visual mode still applies for this page when storage is unavailable.
+        }
+        window.location.reload();
+    });
+
+    updateLabel();
 }
 
 function scheduleVideoLoad() {
