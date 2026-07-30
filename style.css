@@ -786,6 +786,12 @@ opacity:.7;
 
     box-shadow .45s;
 
+    contain:layout paint;
+
+    content-visibility:auto;
+
+    contain-intrinsic-size:auto 360px;
+
 }
 
 /* subtle green light */
@@ -1061,38 +1067,6 @@ opacity:.7;
    Floating Animation
 ======================================= */
 
-.setupCard{
-
-    animation:
-
-    floatCard 7s ease-in-out infinite;
-
-}
-
-.setupCard:nth-child(even){
-
-    animation-delay:2s;
-
-}
-
-.setupCard:nth-child(3){
-
-    animation-delay:4s;
-
-}
-
-@keyframes floatCard{
-
-    50%{
-
-        transform:
-
-        translateY(-5px);
-
-    }
-
-}
-
 /* =======================================
    Responsive
 ======================================= */
@@ -1182,6 +1156,12 @@ padding:90px 24px;
     transform .45s,
     box-shadow .45s,
     border-color .45s;
+
+    contain:layout paint;
+
+    content-visibility:auto;
+
+    contain-intrinsic-size:auto 520px;
 
 }
 
@@ -2236,6 +2216,10 @@ color:white;
 .low-power body.page-ready{
     opacity:1;
     transition:none;
+}
+
+.low-power{
+    scroll-behavior:auto;
 }
 
 .low-power nav,

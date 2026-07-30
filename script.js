@@ -24,8 +24,25 @@ function detectGraphicsMode() {
         const context =
             canvas.getContext("webgl2", { failIfMajorPerformanceCaveat: true }) ||
             canvas.getContext("webgl", { failIfMajorPerformanceCaveat: true });
-        context?.getExtension("WEBGL_lose_context")?.loseContext();
+
         if (!context) {
+            lowPowerDevice = true;
+            document.documentElement.classList.add("low-power");
+            return;
+        }
+
+        const rendererInfo = context.getExtension("WEBGL_debug_renderer_info");
+        const renderer = String(
+            rendererInfo
+                ? context.getParameter(rendererInfo.UNMASKED_RENDERER_WEBGL)
+                : context.getParameter(context.RENDERER)
+        ).toLowerCase();
+        const softwareRenderer =
+            /swiftshader|llvmpipe|lavapipe|software raster|microsoft basic render|\bwarp\b/.test(renderer);
+
+        context.getExtension("WEBGL_lose_context")?.loseContext();
+
+        if (softwareRenderer) {
             lowPowerDevice = true;
             document.documentElement.classList.add("low-power");
         }
@@ -56,9 +73,9 @@ function scheduleIdleWork() {
     };
 
     if ("requestIdleCallback" in window) {
-        window.requestIdleCallback(run, { timeout: 1800 });
+        window.requestIdleCallback(run, { timeout: 700 });
     } else {
-        window.setTimeout(run, 900);
+        window.setTimeout(run, 400);
     }
 }
 
