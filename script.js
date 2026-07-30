@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setupScrollReveal();
     setupHeroParallax();
     setupCardTilt();
-    setupMouseGlow();
     setupButtonRipples();
     createParticles();
     setupEmailGlow();
@@ -89,17 +88,6 @@ function setupCardTilt(root = document) {
     });
 }
 
-function setupMouseGlow() {
-    if (window.matchMedia("(pointer: coarse), (prefers-reduced-motion: reduce)").matches) return;
-    const glow = document.createElement("div");
-    glow.className = "mouseGlow";
-    document.body.appendChild(glow);
-
-    window.addEventListener("pointermove", event => {
-        glow.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
-    }, { passive: true });
-}
-
 function renderSkeletons(container) {
     container.innerHTML = Array.from({ length: MAX_RESULTS }, (_, index) => `
         <div class="reviewCard skeletonCard" aria-hidden="true" style="--card-index:${index}">
@@ -163,7 +151,6 @@ function createReviewCard(video, index) {
                 <p class="reviewSummary">${escapeHtml(copy.summary)}</p>
                 <div class="reviewMeta">
                     <time datetime="${escapeHtml(video.published)}">${formatDate(video.published)}</time>
-                    <span class="watchText">Watch on YouTube <b>→</b></span>
                 </div>
             </div>
         </a>

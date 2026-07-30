@@ -1,4 +1,4 @@
-/* =======================================
+﻿/* =======================================
    SHNEEEV
    Apple x Forest Theme
 ======================================= */
@@ -1293,6 +1293,8 @@ padding:70px;
 
 text-align:center;
 
+scroll-margin-top:140px;
+
 }
 
 .businessLabel{
@@ -1733,21 +1735,6 @@ body.page-ready{
     to{transform:translate3d(35px,-65px,0);opacity:.2}
 }
 
-.mouseGlow{
-    position:fixed;
-    left:-300px;
-    top:-300px;
-    width:600px;
-    height:600px;
-    border-radius:50%;
-    pointer-events:none;
-    filter:blur(80px);
-    background:radial-gradient(circle,rgba(79,166,108,.13),transparent 68%);
-    z-index:1;
-    will-change:transform;
-    transition:opacity .3s ease;
-}
-
 .primary,.secondary,.youtubeButton{
     position:relative;
     isolation:isolate;
@@ -1982,10 +1969,6 @@ body.page-ready{
 }
 
 .reviewMeta{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:16px;
     margin-top:auto;
     padding-top:20px;
     border-top:1px solid rgba(255,255,255,.055);
@@ -2121,9 +2104,6 @@ body.page-ready{
         flex-direction:column;
     }
 
-    .mouseGlow{
-        display:none;
-    }
 }
 
 @media(prefers-reduced-motion:reduce){
