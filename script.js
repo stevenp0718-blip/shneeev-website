@@ -217,6 +217,12 @@ function safeExternalUrl(value, allowedHosts) {
     }
 }
 
+function safeReviewPath(value) {
+    return typeof value === "string" && /^reviews\/[a-z0-9-]+\/$/.test(value)
+        ? value
+        : "";
+}
+
 function splitTitle(title) {
     const parts = title.split(/\s[-–—]\s/, 2);
     return {
@@ -229,13 +235,19 @@ function createReviewCard(video, index) {
     const card = document.createElement("article");
     const copy = splitTitle(video.title);
     const videoUrl = safeExternalUrl(video.url, ["youtube.com", "youtu.be"]);
+    const reviewPath = safeReviewPath(video.reviewPath);
+    const cardUrl = reviewPath || videoUrl;
+    const externalAttributes = reviewPath ? "" : ' target="_blank" rel="noopener noreferrer"';
+    const cardLabel = reviewPath
+        ? `Read the ${video.title} review`
+        : `Watch ${video.title} on YouTube`;
     const thumbnailUrl = safeExternalUrl(video.thumbnail, ["ytimg.com"]);
     card.className = "reviewCard";
     card.style.setProperty("--card-index", index);
 
     card.innerHTML = `
-        <a class="reviewCardLink" href="${escapeHtml(videoUrl)}" target="_blank" rel="noopener noreferrer"
-           aria-label="Watch ${escapeHtml(video.title)} on YouTube">
+        <a class="reviewCardLink" href="${escapeHtml(cardUrl)}"${externalAttributes}
+           aria-label="${escapeHtml(cardLabel)}">
             <div class="reviewThumbnail">
                 <img src="${escapeHtml(thumbnailUrl)}" alt="" loading="${index === 0 ? "eager" : "lazy"}">
                 <div class="thumbnailShade"></div>
