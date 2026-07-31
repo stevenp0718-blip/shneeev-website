@@ -100,13 +100,9 @@ function fadeInPage() {
 }
 
 function setupNavbar() {
-    if (lowPowerDevice) return;
-
     const header = document.querySelector("header");
     let lastScroll = 0;
     window.addEventListener("scroll", () => {
-        if (lowPowerDevice) return;
-
         const current = window.scrollY;
         header.style.transform =
             current > lastScroll && current > 120 ? "translateY(-120%)" : "translateY(0)";
