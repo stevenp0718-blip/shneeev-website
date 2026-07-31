@@ -48,17 +48,35 @@ async function updateVideos() {
         ])
     );
 
-    const videos = searchResults.map(video => ({
+    const existingVideos = fs.existsSync("videos.json")
+        ? JSON.parse(fs.readFileSync("videos.json", "utf8"))
+        : [];
+    const reviewPaths = new Map(
+        existingVideos
+            .filter(video => video.reviewPath)
+            .map(video => [
+                new URL(video.url).searchParams.get("v"),
+                video.reviewPath
+            ])
+    );
+
+    const videos = searchResults.map(video => {
+        const videoId = video.id.videoId;
+        const reviewPath = reviewPaths.get(videoId);
+
+        return {
             title: video.snippet.title,
-            url: `https://www.youtube.com/watch?v=${video.id.videoId}`,
+            url: `https://www.youtube.com/watch?v=${videoId}`,
+            ...(reviewPath ? { reviewPath } : {}),
             thumbnail:
                 video.snippet.thumbnails.maxres?.url ||
                 video.snippet.thumbnails.high?.url ||
                 video.snippet.thumbnails.medium?.url ||
                 video.snippet.thumbnails.default?.url,
             published: video.snippet.publishedAt,
-            duration: durations.get(video.id.videoId)
-        }));
+            duration: durations.get(videoId)
+        };
+    });
 
     fs.writeFileSync(
         "videos.json",
