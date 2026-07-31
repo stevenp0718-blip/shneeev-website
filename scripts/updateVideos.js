@@ -51,23 +51,27 @@ async function updateVideos() {
     const existingVideos = fs.existsSync("videos.json")
         ? JSON.parse(fs.readFileSync("videos.json", "utf8"))
         : [];
-    const reviewPaths = new Map(
+    const reviewMetadata = new Map(
         existingVideos
             .filter(video => video.reviewPath)
             .map(video => [
                 new URL(video.url).searchParams.get("v"),
-                video.reviewPath
+                {
+                    reviewPath: video.reviewPath,
+                    verdict: video.verdict
+                }
             ])
     );
 
     const videos = searchResults.map(video => {
         const videoId = video.id.videoId;
-        const reviewPath = reviewPaths.get(videoId);
+        const metadata = reviewMetadata.get(videoId);
 
         return {
             title: video.snippet.title,
             url: `https://www.youtube.com/watch?v=${videoId}`,
-            ...(reviewPath ? { reviewPath } : {}),
+            ...(metadata?.reviewPath ? { reviewPath: metadata.reviewPath } : {}),
+            ...(metadata?.verdict ? { verdict: metadata.verdict } : {}),
             thumbnail:
                 video.snippet.thumbnails.maxres?.url ||
                 video.snippet.thumbnails.high?.url ||
