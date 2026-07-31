@@ -10,6 +10,7 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
 const effectsStorageKey = "shneeev-visual-effects";
 const accessibilityLowPower = prefersReducedMotion || connection?.saveData === true;
+let reviewCatalogPromise;
 let enhancedEffects = readEffectsPreference() === "enhanced" && !accessibilityLowPower;
 let lowPowerDevice = !enhancedEffects;
 
@@ -35,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupEmailGlow();
     setupShoppingLinks();
     setupNewsletterForm();
+    setupReviewSearch();
     scheduleVideoLoad();
     setupVisibilityPause();
 });
@@ -48,6 +50,102 @@ function setupNewsletterForm() {
         note.textContent = "Almost there—check your inbox and confirm your subscription.";
         note.classList.add("is-submitted");
     });
+}
+
+function getReviewCatalog() {
+    if (!reviewCatalogPromise) {
+        reviewCatalogPromise = fetch("./videos.json", { cache: "no-store" })
+            .then(response => {
+                if (!response.ok) throw new Error(`Review request failed: ${response.status}`);
+                return response.json();
+            });
+    }
+    return reviewCatalogPromise;
+}
+
+function setupReviewSearch() {
+    const form = document.querySelector(".reviewSearch");
+    const input = form?.querySelector("input");
+    const submitButton = form?.querySelector('button[type="submit"]');
+    const dialog = document.querySelector(".searchDialog");
+    const closeButton = dialog?.querySelector(".searchDialogClose");
+    if (!form || !input || !submitButton || !dialog || !closeButton) return;
+
+    const runSearch = async () => {
+        const query = input.value.trim().toLowerCase();
+        if (!query) {
+            input.focus();
+            return;
+        }
+
+        try {
+            const reviews = (await getReviewCatalog()).filter(review => review.reviewPath);
+            const terms = query.split(/\s+/).filter(Boolean);
+            const match = reviews.find(review => {
+                const title = review.title.toLowerCase();
+                return title.includes(query) || terms.every(term => title.includes(term));
+            });
+
+            if (match) {
+                window.location.href = safeReviewPath(match.reviewPath);
+                return;
+            }
+
+            showSearchSuggestions(dialog, reviews.slice(0, 3));
+        } catch (error) {
+            console.error(error);
+            showSearchSuggestions(dialog, []);
+        }
+    };
+
+    form.addEventListener("submit", event => {
+        event.preventDefault();
+        runSearch();
+    });
+    submitButton.addEventListener("click", event => {
+        event.preventDefault();
+        runSearch();
+    });
+    input.addEventListener("keydown", event => {
+        if (event.key !== "Enter") return;
+        event.preventDefault();
+        runSearch();
+    });
+
+    const closeDialog = () => {
+        dialog.classList.remove("is-open");
+        document.body.classList.remove("search-open");
+    };
+
+    closeButton.addEventListener("click", closeDialog);
+    dialog.addEventListener("click", event => {
+        if (event.target === dialog) closeDialog();
+    });
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && dialog.classList.contains("is-open")) closeDialog();
+    });
+}
+
+function showSearchSuggestions(dialog, reviews) {
+    const suggestions = dialog.querySelector(".searchSuggestions");
+    suggestions.innerHTML = reviews.length
+        ? reviews.map(review => {
+            const title = splitTitle(review.title).title;
+            const verdict = review.verdict === "pass"
+                ? '<span class="searchVerdict searchVerdict--pass" aria-label="Pass">✓</span>'
+                : review.verdict === "fail"
+                    ? '<span class="searchVerdict searchVerdict--fail" aria-label="Fail">×</span>'
+                    : "";
+            return `
+                <a href="${escapeHtml(safeReviewPath(review.reviewPath))}">
+                    <span>${escapeHtml(title)}</span>
+                    ${verdict}
+                </a>
+            `;
+        }).join("")
+        : "<p>Published reviews are temporarily unavailable. Please try again shortly.</p>";
+    dialog.classList.add("is-open");
+    document.body.classList.add("search-open");
 }
 
 function scheduleIdleWork() {
@@ -260,10 +358,13 @@ function createReviewCard(video, index) {
                 <img src="${escapeHtml(thumbnailUrl)}" alt="" loading="${index === 0 ? "eager" : "lazy"}">
                 <div class="thumbnailShade"></div>
                 <div class="badgeRow">
-                    ${isNew(video.published) ? '<span class="newBadge">NEW</span>' : "<span></span>"}
+                    <div class="badgeGroup">
+                        ${isNew(video.published) ? '<span class="newBadge">NEW</span>' : ""}
+                        ${video.verdict === "pass" ? '<span class="verdictBadge verdictBadge--pass" aria-label="SHNEEEV Scale: Pass">✓</span>' : ""}
+                        ${video.verdict === "fail" ? '<span class="verdictBadge verdictBadge--fail" aria-label="SHNEEEV Scale: Fail">×</span>' : ""}
+                    </div>
                     ${video.duration ? `<span class="durationBadge">${escapeHtml(video.duration)}</span>` : ""}
                 </div>
-                <span class="watchOverlay">Watch on YouTube <b>→</b></span>
             </div>
             <div class="reviewInfo">
                 <h3>${escapeHtml(copy.title)}</h3>
@@ -285,9 +386,7 @@ async function loadYouTubeVideos() {
     renderSkeletons(container);
 
     try {
-        const response = await fetch("./videos.json", { cache: "no-store" });
-        if (!response.ok) throw new Error(`Video request failed: ${response.status}`);
-        const videos = await response.json();
+        const videos = await getReviewCatalog();
 
         await Promise.all(
             videos.slice(0, MAX_RESULTS).map(video => new Promise(resolve => {

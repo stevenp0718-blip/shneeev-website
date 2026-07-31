@@ -3,16 +3,18 @@
     "title": "Dysphoria Rin - Speedy but good.",
     "url": "https://www.youtube.com/watch?v=pp2qIFPY_ho",
     "reviewPath": "reviews/dysphoria-rin/",
+    "verdict": "pass",
     "thumbnail": "https://i.ytimg.com/vi/pp2qIFPY_ho/hqdefault.jpg",
     "published": "2026-07-28T07:10:53Z",
-    "duration": "11:42"
+    "duration": "11:41"
   },
   {
     "title": "Kyomi Ryo Thoughts and Opinions",
     "url": "https://www.youtube.com/watch?v=JNu7Ee_9RMA",
     "reviewPath": "reviews/kyomi-ryo/",
+    "verdict": "fail",
     "thumbnail": "https://i.ytimg.com/vi/JNu7Ee_9RMA/hqdefault.jpg",
     "published": "2026-07-22T22:00:37Z",
-    "duration": "10:32"
+    "duration": "10:31"
   }
 ]
