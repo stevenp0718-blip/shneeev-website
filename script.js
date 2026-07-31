@@ -34,9 +34,21 @@ document.addEventListener("DOMContentLoaded", () => {
     scheduleIdleWork();
     setupEmailGlow();
     setupShoppingLinks();
+    setupNewsletterForm();
     scheduleVideoLoad();
     setupVisibilityPause();
 });
+
+function setupNewsletterForm() {
+    const form = document.querySelector(".newsletterForm");
+    const note = document.querySelector(".newsletterNote");
+    if (!form || !note) return;
+
+    form.addEventListener("submit", () => {
+        note.textContent = "Almost there—check your inbox and confirm your subscription.";
+        note.classList.add("is-submitted");
+    });
+}
 
 function scheduleIdleWork() {
     const run = () => createParticles();

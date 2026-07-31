@@ -1893,6 +1893,132 @@ color:white;
 
 }
 
+.newsletter{
+    width:min(1420px,calc(100% - 80px));
+    margin:110px auto;
+    padding:54px 58px;
+    display:grid;
+    grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr);
+    align-items:center;
+    gap:70px;
+    border:1px solid rgba(115,236,151,.18);
+    border-radius:32px;
+    background:linear-gradient(120deg,rgba(26,75,40,.24),rgba(5,12,7,.94));
+    box-shadow:0 26px 80px rgba(0,0,0,.22);
+    contain:layout paint;
+}
+
+.newsletterLabel{
+    margin-bottom:18px;
+    color:var(--green);
+    font-size:.8rem;
+    font-weight:800;
+    letter-spacing:.32em;
+}
+
+.newsletter h2{
+    margin-bottom:14px;
+    color:#f6faf7;
+    font-size:clamp(2.7rem,4.5vw,5.2rem);
+    line-height:.98;
+    letter-spacing:-.055em;
+}
+
+.newsletterCopy>p:last-child{
+    max-width:650px;
+    color:var(--muted);
+    font-size:1.05rem;
+    line-height:1.75;
+}
+
+.newsletterForm{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:12px;
+}
+
+.newsletterForm input[type="email"]{
+    min-width:0;
+    padding:16px 19px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:999px;
+    outline:none;
+    background:rgba(3,9,5,.78);
+    color:#fff;
+    font:inherit;
+    transition:border-color .2s ease,box-shadow .2s ease;
+}
+
+.newsletterForm input[type="email"]::placeholder{
+    color:#7f8b82;
+}
+
+.newsletterForm input[type="email"]:focus{
+    border-color:var(--green);
+    box-shadow:0 0 0 4px rgba(91,216,127,.12);
+}
+
+.newsletterForm .primary{
+    border:0;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.newsletterNote{
+    min-height:1.4em;
+    margin:13px 8px 0;
+    color:#87958b;
+    font-size:.78rem;
+    line-height:1.5;
+}
+
+.newsletterNote.is-submitted{
+    color:#9cf0b4;
+}
+
+.srOnly{
+    position:absolute;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;
+    border:0;
+}
+
+.low-power .newsletter{
+    box-shadow:none;
+    background:#09150d;
+}
+
+@media(max-width:900px){
+    .newsletter{
+        width:min(100% - 40px,700px);
+        grid-template-columns:1fr;
+        gap:34px;
+        margin:80px auto;
+        padding:42px 34px;
+    }
+}
+
+@media(max-width:560px){
+    .newsletter{
+        width:calc(100% - 28px);
+        padding:34px 22px;
+        border-radius:24px;
+    }
+
+    .newsletterForm{
+        grid-template-columns:1fr;
+    }
+
+    .newsletterForm .primary{
+        width:100%;
+    }
+}
+
 .page-hidden *,
 .page-hidden *::before,
 .page-hidden *::after{
