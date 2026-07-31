@@ -2880,6 +2880,37 @@ color:white;
     font-weight:800;
 }
 
+.reviewPrice{
+    display:grid;
+    gap:4px;
+    margin:18px 0;
+    padding:18px 20px;
+    border:1px solid rgba(116,232,151,.25);
+    border-radius:16px;
+    background:linear-gradient(135deg,rgba(116,232,151,.12),rgba(116,232,151,.035));
+}
+
+.reviewPrice>span{
+    color:var(--green);
+    font-size:.68rem;
+    font-weight:800;
+    letter-spacing:.2em;
+}
+
+.reviewPrice strong{
+    color:#f5fff8;
+    font-size:clamp(1.8rem,3vw,2.45rem);
+    line-height:1;
+    letter-spacing:-.04em;
+}
+
+.reviewPrice strong small{
+    display:inline;
+    color:var(--muted);
+    font-size:.72rem;
+    letter-spacing:.08em;
+}
+
 .reviewSideCard small{
     display:block;
     font-size:.78rem;
