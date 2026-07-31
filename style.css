@@ -3124,6 +3124,33 @@ body.search-open::after{
     color:var(--muted);
 }
 
+.searchSuggestionEmail{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+    width:100%;
+    margin:4px 0 22px;
+    padding:15px 18px;
+    border:1px solid rgba(116,232,151,.42);
+    border-radius:15px;
+    background:rgba(116,232,151,.12);
+    color:#d9ffe4;
+    font-weight:800;
+    transition:border-color .2s ease,background .2s ease,transform .2s ease;
+}
+
+.searchSuggestionEmail:hover{
+    border-color:rgba(116,232,151,.78);
+    background:rgba(116,232,151,.2);
+    transform:translateY(-1px);
+}
+
+.searchSuggestionEmail span:last-child{
+    color:#74e897;
+    font-size:1.15rem;
+}
+
 .searchSuggestions{
     display:grid;
     gap:10px;

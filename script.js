@@ -119,7 +119,8 @@ function setupReviewSearch() {
     if (!form || !input || !submitButton || !dialog || !closeButton) return;
 
     const runSearch = async () => {
-        const query = input.value.trim().toLowerCase();
+        const searchedProduct = input.value.trim();
+        const query = searchedProduct.toLowerCase();
         if (!query) {
             input.focus();
             return;
@@ -138,10 +139,10 @@ function setupReviewSearch() {
                 return;
             }
 
-            showSearchSuggestions(dialog, reviews.slice(0, 3));
+            showSearchSuggestions(dialog, reviews.slice(0, 3), searchedProduct);
         } catch (error) {
             console.error(error);
-            showSearchSuggestions(dialog, []);
+            showSearchSuggestions(dialog, [], searchedProduct);
         }
     };
 
@@ -173,8 +174,19 @@ function setupReviewSearch() {
     });
 }
 
-function showSearchSuggestions(dialog, reviews) {
+function showSearchSuggestions(dialog, reviews, searchedProduct = "") {
     const suggestions = dialog.querySelector(".searchSuggestions");
+    const suggestionEmail = dialog.querySelector(".searchSuggestionEmail");
+    const productName = searchedProduct || "a product";
+    const subject = `Review suggestion: ${productName}`;
+    const body = `Hi SHNEEEV,\n\nI'd like to suggest ${productName} for a future review.\n\nThanks!`;
+
+    if (suggestionEmail) {
+        suggestionEmail.href =
+            `mailto:business@shneeev.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        suggestionEmail.setAttribute("aria-label", `Email SHNEEEV to suggest ${productName} for review`);
+    }
+
     suggestions.innerHTML = reviews.length
         ? reviews.map(review => {
             const title = splitTitle(review.title).title;
