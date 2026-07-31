@@ -2498,12 +2498,21 @@ color:white;
 }
 
 .reviewHeroMedia{
+    display:block;
     position:relative;
     overflow:hidden;
     border:1px solid rgba(255,255,255,.08);
     border-radius:34px;
     background:#071009;
     box-shadow:0 35px 90px rgba(0,0,0,.42);
+    cursor:pointer;
+    transition:border-color .25s ease,transform .25s ease;
+}
+
+.reviewHeroMedia:hover,
+.reviewHeroMedia:focus-visible{
+    border-color:rgba(129,255,166,.36);
+    transform:translateY(-3px);
 }
 
 .reviewHeroMedia img{
