@@ -169,6 +169,11 @@ function setupReviewSearch() {
     dialog.addEventListener("click", event => {
         if (event.target === dialog) closeDialog();
     });
+    document.addEventListener("click", event => {
+        if (!dialog.classList.contains("is-open")) return;
+        if (event.target.closest(".searchDialog") || event.target.closest(".reviewSearch")) return;
+        closeDialog();
+    });
     document.addEventListener("keydown", event => {
         if (event.key === "Escape" && dialog.classList.contains("is-open")) closeDialog();
     });
