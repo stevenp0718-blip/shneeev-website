@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupEmailGlow();
     setupShoppingLinks();
     setupNewsletterForm();
+    setupNewsletterTypingPrompt();
     setupReviewSearch();
     scheduleVideoLoad();
     setupVisibilityPause();
@@ -50,6 +51,52 @@ function setupNewsletterForm() {
         note.textContent = "Almost there—check your inbox and confirm your subscription.";
         note.classList.add("is-submitted");
     });
+}
+
+function setupNewsletterTypingPrompt() {
+    const input = document.querySelector("#newsletter-email");
+    if (!input) return;
+
+    const examples = [
+        "alex@example.com",
+        "reviewfan@example.com",
+        "yourname@example.com"
+    ];
+
+    if (prefersReducedMotion) {
+        input.placeholder = examples[0];
+        return;
+    }
+
+    let exampleIndex = 0;
+    let characterIndex = 0;
+    let deleting = false;
+
+    const animate = () => {
+        if (document.hidden || document.activeElement === input || input.value) {
+            window.setTimeout(animate, 500);
+            return;
+        }
+
+        const example = examples[exampleIndex];
+        characterIndex += deleting ? -1 : 1;
+        input.placeholder = example.slice(0, Math.max(0, characterIndex));
+
+        let delay = deleting ? 38 : 74;
+        if (!deleting && characterIndex >= example.length) {
+            deleting = true;
+            delay = 1500;
+        } else if (deleting && characterIndex <= 0) {
+            deleting = false;
+            exampleIndex = (exampleIndex + 1) % examples.length;
+            delay = 350;
+        }
+
+        window.setTimeout(animate, delay);
+    };
+
+    input.placeholder = "";
+    window.setTimeout(animate, 550);
 }
 
 function getReviewCatalog() {
