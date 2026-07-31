@@ -267,7 +267,7 @@ any product link on this site. The links are provided only to help you find the 
     class="newsletterForm"
     action="https://assets.mailerlite.com/jsonp/2547345/forms/194495096039670928/subscribe"
     method="post"
-    target="_blank">
+    target="newsletter-submit-frame">
 <label class="srOnly" for="newsletter-email">Email address</label>
 <input
     id="newsletter-email"
@@ -282,6 +282,10 @@ any product link on this site. The links are provided only to help you find the 
 <input name="anticsrf" type="hidden" value="true">
 <button class="primary" type="submit">Notify Me</button>
 </form>
+<iframe
+    name="newsletter-submit-frame"
+    title="Newsletter signup response"
+    hidden></iframe>
 <p class="newsletterNote" id="newsletter-note" role="status">Free updates. Confirm through the email we send you. Unsubscribe anytime.</p>
 </div>
 </section>
