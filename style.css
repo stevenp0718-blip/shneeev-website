@@ -684,9 +684,9 @@ opacity:.7;
 
     display:grid;
 
-    grid-template-columns:420px 1fr;
+    grid-template-columns:minmax(440px,.82fr) minmax(0,1.18fr);
 
-    gap:80px;
+    column-gap:clamp(70px,7vw,120px);
 
     align-items:start;
 
@@ -723,6 +723,8 @@ opacity:.7;
     line-height:2;
 
     max-width:700px;
+
+    padding-top:43px;
 
 }
 
@@ -1161,6 +1163,14 @@ grid-column:span 1 !important;
 .about{
 
 grid-template-columns:1fr;
+
+gap:38px;
+
+}
+
+.aboutText{
+
+padding-top:0;
 
 }
 
@@ -1692,6 +1702,12 @@ margin-top:60px;
 .about{
 
 text-align:center;
+
+}
+
+.aboutText{
+
+margin-inline:auto;
 
 }
 
