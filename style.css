@@ -3188,6 +3188,35 @@ body.search-open::after{
     box-shadow:0 0 18px rgba(224,71,79,.35);
 }
 
+.reviewScaleResult{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.reviewScaleIcon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    color:#fff;
+    font-size:1.05rem;
+    font-weight:900;
+    line-height:1;
+}
+
+.reviewScaleIcon--pass{
+    background:#28b95a;
+    box-shadow:0 0 20px rgba(40,185,90,.4);
+}
+
+.reviewScaleIcon--fail{
+    background:#e0474f;
+    box-shadow:0 0 20px rgba(224,71,79,.38);
+}
+
 @media(max-width:1100px){
     .brand span{
         display:none;

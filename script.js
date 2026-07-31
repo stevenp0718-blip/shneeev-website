@@ -101,7 +101,7 @@ function setupNewsletterTypingPrompt() {
 
 function getReviewCatalog() {
     if (!reviewCatalogPromise) {
-        reviewCatalogPromise = fetch("./videos.json", { cache: "no-store" })
+        reviewCatalogPromise = fetch("/videos.json", { cache: "no-store" })
             .then(response => {
                 if (!response.ok) throw new Error(`Review request failed: ${response.status}`);
                 return response.json();
@@ -178,15 +178,10 @@ function showSearchSuggestions(dialog, reviews) {
     suggestions.innerHTML = reviews.length
         ? reviews.map(review => {
             const title = splitTitle(review.title).title;
-            const verdict = review.verdict === "pass"
-                ? '<span class="searchVerdict searchVerdict--pass" aria-label="Pass">✓</span>'
-                : review.verdict === "fail"
-                    ? '<span class="searchVerdict searchVerdict--fail" aria-label="Fail">×</span>'
-                    : "";
             return `
                 <a href="${escapeHtml(safeReviewPath(review.reviewPath))}">
                     <span>${escapeHtml(title)}</span>
-                    ${verdict}
+                    <span aria-hidden="true">→</span>
                 </a>
             `;
         }).join("")
@@ -372,7 +367,7 @@ function safeExternalUrl(value, allowedHosts) {
 
 function safeReviewPath(value) {
     return typeof value === "string" && /^reviews\/[a-z0-9-]+\/$/.test(value)
-        ? value
+        ? `/${value}`
         : "";
 }
 
@@ -405,11 +400,7 @@ function createReviewCard(video, index) {
                 <img src="${escapeHtml(thumbnailUrl)}" alt="" loading="${index === 0 ? "eager" : "lazy"}">
                 <div class="thumbnailShade"></div>
                 <div class="badgeRow">
-                    <div class="badgeGroup">
-                        ${isNew(video.published) ? '<span class="newBadge">NEW</span>' : ""}
-                        ${video.verdict === "pass" ? '<span class="verdictBadge verdictBadge--pass" aria-label="SHNEEEV Scale: Pass">✓</span>' : ""}
-                        ${video.verdict === "fail" ? '<span class="verdictBadge verdictBadge--fail" aria-label="SHNEEEV Scale: Fail">×</span>' : ""}
-                    </div>
+                    ${isNew(video.published) ? '<span class="newBadge">NEW</span>' : "<span></span>"}
                     ${video.duration ? `<span class="durationBadge">${escapeHtml(video.duration)}</span>` : ""}
                 </div>
             </div>
