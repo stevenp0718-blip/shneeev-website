@@ -8,6 +8,7 @@ const {
 const API_KEY = process.env.YOUTUBE_API_KEY;
 const CHANNEL_ID = "UCJuA9lf14Cg8sxqkx-a4n8g";
 const MAX_RESULTS = 3;
+const SHORTS_MAX_SECONDS = 180;
 
 async function updateVideos() {
     if (!API_KEY) {
@@ -27,22 +28,21 @@ async function updateVideos() {
         type: ["video"]
     });
 
-    const searchResults = response.data.items
-        .filter(video => {
-            const title = video.snippet.title.toLowerCase();
+    const candidates = response.data.items.filter(video => {
+        const title = video.snippet.title.toLowerCase();
 
-            return (
-                !title.includes("#shorts") &&
-                !title.includes("shorts") &&
-                !title.includes("live") &&
-                !title.includes("stream")
-            );
-        })
-        .slice(0, MAX_RESULTS);
+        return (
+            video.snippet.liveBroadcastContent === "none" &&
+            !title.includes("#shorts") &&
+            !title.includes("shorts") &&
+            !title.includes("live") &&
+            !title.includes("stream")
+        );
+    });
 
     const detailsResponse = await youtube.videos.list({
         part: ["contentDetails", "snippet"],
-        id: searchResults.map(video => video.id.videoId)
+        id: candidates.map(video => video.id.videoId)
     });
 
     const videoDetails = new Map(
@@ -51,6 +51,13 @@ async function updateVideos() {
             video
         ])
     );
+
+    const searchResults = candidates
+        .filter(video => {
+            const details = videoDetails.get(video.id.videoId);
+            return durationInSeconds(details?.contentDetails?.duration) > SHORTS_MAX_SECONDS;
+        })
+        .slice(0, MAX_RESULTS);
 
     const existingVideos = fs.existsSync("videos.json")
         ? JSON.parse(fs.readFileSync("videos.json", "utf8"))
@@ -114,6 +121,15 @@ function formatDuration(isoDuration) {
     const seconds = Number(match?.[3] || 0);
     const totalMinutes = hours * 60 + minutes;
     return `${totalMinutes}:${String(seconds).padStart(2, "0")}`;
+}
+
+function durationInSeconds(isoDuration) {
+    if (!isoDuration) return 0;
+    const match = isoDuration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+    const hours = Number(match?.[1] || 0);
+    const minutes = Number(match?.[2] || 0);
+    const seconds = Number(match?.[3] || 0);
+    return hours * 3600 + minutes * 60 + seconds;
 }
 
 updateVideos().catch(error => {
