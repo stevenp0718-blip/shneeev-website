@@ -286,30 +286,29 @@ any product link on this site. The links are provided only to help you find the 
 <div class="newsletterSignup">
 <form
     class="newsletterForm"
-    action="https://assets.mailerlite.com/jsonp/2547345/forms/194495096039670928/subscribe"
-    method="post"
-    target="newsletter-submit-frame">
+    action="/api/subscribe"
+    method="post">
 <label class="srOnly" for="newsletter-email">Email address</label>
 <input
     id="newsletter-email"
-    name="fields[email]"
+    name="email"
     type="email"
     inputmode="email"
     autocomplete="email"
     placeholder="you@example.com"
     aria-describedby="newsletter-note"
     required>
-<input name="ml-submit" type="hidden" value="1">
-<input name="anticsrf" type="hidden" value="true">
+<div
+    class="cf-turnstile"
+    data-sitekey="0x4AAAAAAEDlpaCnwPHTfoFA"
+    data-theme="dark"
+    data-size="flexible"></div>
 <button class="primary" type="submit">Notify Me</button>
 </form>
-<iframe
-    name="newsletter-submit-frame"
-    title="Newsletter signup response"
-    hidden></iframe>
 <p class="newsletterNote" id="newsletter-note" role="status">Free updates. Confirm through the email we send you. Unsubscribe anytime.</p>
 </div>
 </section>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <!-- ========================================= -->
 <!-- Business -->
 <!-- ========================================= -->
