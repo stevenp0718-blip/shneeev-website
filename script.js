@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     scheduleIdleWork();
     setupEmailGlow();
     setupShoppingLinks();
-    setupNewsletterForm();
     setupNewsletterTypingPrompt();
     setupReviewSearch();
     scheduleVideoLoad();
