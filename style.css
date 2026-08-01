@@ -1964,6 +1964,17 @@ color:white;
     white-space:nowrap;
 }
 
+.newsletterForm .cf-turnstile{
+    grid-column:1 / -1;
+    min-height:65px;
+    width:100%;
+}
+
+.newsletterForm button:disabled{
+    cursor:wait;
+    opacity:.72;
+}
+
 .newsletterNote{
     min-height:1.4em;
     margin:13px 8px 0;
