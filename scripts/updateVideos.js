@@ -1,5 +1,9 @@
 const fs = require("fs");
 const { google } = require("googleapis");
+const {
+    createOrUpdateReviewPage,
+    parseReviewDescription
+} = require("./reviewPageGenerator");
 
 const API_KEY = process.env.YOUTUBE_API_KEY;
 const CHANNEL_ID = "UCJuA9lf14Cg8sxqkx-a4n8g";
@@ -37,14 +41,14 @@ async function updateVideos() {
         .slice(0, MAX_RESULTS);
 
     const detailsResponse = await youtube.videos.list({
-        part: ["contentDetails"],
+        part: ["contentDetails", "snippet"],
         id: searchResults.map(video => video.id.videoId)
     });
 
-    const durations = new Map(
+    const videoDetails = new Map(
         detailsResponse.data.items.map(video => [
             video.id,
-            formatDuration(video.contentDetails.duration)
+            video
         ])
     );
 
@@ -66,19 +70,31 @@ async function updateVideos() {
     const videos = searchResults.map(video => {
         const videoId = video.id.videoId;
         const metadata = reviewMetadata.get(videoId);
-
-        return {
+        const details = videoDetails.get(videoId);
+        const reviewData = parseReviewDescription(details?.snippet?.description);
+        const videoRecord = {
             title: video.snippet.title,
             url: `https://www.youtube.com/watch?v=${videoId}`,
-            ...(metadata?.reviewPath ? { reviewPath: metadata.reviewPath } : {}),
-            ...(metadata?.verdict ? { verdict: metadata.verdict } : {}),
             thumbnail:
                 video.snippet.thumbnails.maxres?.url ||
                 video.snippet.thumbnails.high?.url ||
                 video.snippet.thumbnails.medium?.url ||
                 video.snippet.thumbnails.default?.url,
             published: video.snippet.publishedAt,
-            duration: durations.get(videoId)
+            duration: formatDuration(details?.contentDetails?.duration)
+        };
+        const generatedReviewPath = reviewData
+            ? createOrUpdateReviewPage(videoRecord, reviewData)
+            : null;
+
+        return {
+            ...videoRecord,
+            ...((generatedReviewPath || metadata?.reviewPath)
+                ? { reviewPath: generatedReviewPath || metadata.reviewPath }
+                : {}),
+            ...((reviewData?.verdict || metadata?.verdict)
+                ? { verdict: reviewData?.verdict || metadata.verdict }
+                : {})
         };
     });
 
@@ -91,6 +107,7 @@ async function updateVideos() {
 }
 
 function formatDuration(isoDuration) {
+    if (!isoDuration) return "0:00";
     const match = isoDuration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
     const hours = Number(match?.[1] || 0);
     const minutes = Number(match?.[2] || 0);
