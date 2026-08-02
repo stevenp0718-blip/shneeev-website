@@ -20,6 +20,9 @@
 /videos.json
   Cache-Control: no-store, max-age=0
 
+/reviews.json
+  Cache-Control: no-store, max-age=0
+
 /style.css
   Cache-Control: no-cache, must-revalidate
 
