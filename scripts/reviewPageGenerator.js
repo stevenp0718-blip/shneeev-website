@@ -259,7 +259,7 @@ Product information:
 </button>
 </div>
 </footer>
-<script src="../../script.js?v=20260731-8"></script>
+<script src="../../script.js?v=20260802-review-archive"></script>
 </body>
 </html>
 `;
