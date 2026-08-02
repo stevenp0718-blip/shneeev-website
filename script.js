@@ -11,6 +11,7 @@ const connection = navigator.connection || navigator.mozConnection || navigator.
 const effectsStorageKey = "shneeev-visual-effects";
 const accessibilityLowPower = prefersReducedMotion || connection?.saveData === true;
 let reviewCatalogPromise;
+let videoFeedPromise;
 let enhancedEffects = readEffectsPreference() === "enhanced" && !accessibilityLowPower;
 let lowPowerDevice = !enhancedEffects;
 
@@ -147,13 +148,24 @@ function setupNewsletterTypingPrompt() {
 
 function getReviewCatalog() {
     if (!reviewCatalogPromise) {
-        reviewCatalogPromise = fetch("/videos.json", { cache: "no-store" })
+        reviewCatalogPromise = fetch("/reviews.json", { cache: "no-store" })
             .then(response => {
                 if (!response.ok) throw new Error(`Review request failed: ${response.status}`);
                 return response.json();
             });
     }
     return reviewCatalogPromise;
+}
+
+function getVideoFeed() {
+    if (!videoFeedPromise) {
+        videoFeedPromise = fetch("/videos.json", { cache: "no-store" })
+            .then(response => {
+                if (!response.ok) throw new Error(`Video request failed: ${response.status}`);
+                return response.json();
+            });
+    }
+    return videoFeedPromise;
 }
 
 function setupReviewSearch() {
@@ -487,7 +499,7 @@ async function loadYouTubeVideos() {
     renderSkeletons(container);
 
     try {
-        const videos = await getReviewCatalog();
+        const videos = await getVideoFeed();
 
         await Promise.all(
             videos.slice(0, MAX_RESULTS).map(video => new Promise(resolve => {
