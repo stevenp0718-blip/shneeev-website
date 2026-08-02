@@ -62,8 +62,11 @@ async function updateVideos() {
     const existingVideos = fs.existsSync("videos.json")
         ? JSON.parse(fs.readFileSync("videos.json", "utf8"))
         : [];
+    const existingReviews = fs.existsSync("reviews.json")
+        ? JSON.parse(fs.readFileSync("reviews.json", "utf8"))
+        : existingVideos.filter(video => video.reviewPath);
     const reviewMetadata = new Map(
-        existingVideos
+        [...existingReviews, ...existingVideos]
             .filter(video => video.reviewPath)
             .map(video => [
                 new URL(video.url).searchParams.get("v"),
@@ -105,12 +108,33 @@ async function updateVideos() {
         };
     });
 
+    const reviewCatalog = new Map(
+        existingReviews
+            .filter(video => video.reviewPath)
+            .map(video => [
+                new URL(video.url).searchParams.get("v"),
+                video
+            ])
+    );
+    for (const video of videos.filter(video => video.reviewPath)) {
+        reviewCatalog.set(
+            new URL(video.url).searchParams.get("v"),
+            video
+        );
+    }
+    const reviews = [...reviewCatalog.values()]
+        .sort((a, b) => new Date(b.published) - new Date(a.published));
+
     fs.writeFileSync(
         "videos.json",
         JSON.stringify(videos, null, 2)
     );
+    fs.writeFileSync(
+        "reviews.json",
+        JSON.stringify(reviews, null, 2)
+    );
 
-    console.log(`Updated ${videos.length} videos.`);
+    console.log(`Updated ${videos.length} homepage videos and ${reviews.length} searchable reviews.`);
 }
 
 function formatDuration(isoDuration) {
