@@ -11,6 +11,7 @@ function parseReviewDescription(description = "") {
     if (!block) return null;
 
     const fields = {};
+    fields.specs = [];
     const aliases = {
         product: "productUrl",
         "product link": "productUrl",
@@ -26,6 +27,15 @@ function parseReviewDescription(description = "") {
     };
 
     for (const line of block[1].split(/\r?\n/)) {
+        const specMatch = line.match(/^\s*Spec\s+([^:]+):\s*(.+?)\s*$/i);
+        if (specMatch) {
+            fields.specs.push({
+                label: specMatch[1].trim(),
+                value: specMatch[2].trim()
+            });
+            continue;
+        }
+
         const match = line.match(/^\s*([^:]+):\s*(.+?)\s*$/);
         if (!match) continue;
 
@@ -92,6 +102,11 @@ function renderReviewPage(video, data, productName, reviewPath) {
     const priceMarkup = data.price
         ? `<strong>${escapeHtml(data.price)}</strong>`
         : "<strong>CHECK RETAILER</strong>";
+    const specificationRows = data.specs.length
+        ? data.specs.map(spec =>
+            `<div><dt>${escapeHtml(spec.label)}</dt><dd>${escapeHtml(spec.value)}</dd></div>`
+        ).join("\n")
+        : "<div><dt>Official specifications</dt><dd>See the manufacturer&rsquo;s current product page</dd></div>";
 
     return `${AUTO_MARKER}
 <!DOCTYPE html>
@@ -216,8 +231,8 @@ allowfullscreen></iframe>
 <p class="reviewSectionLabel">PRODUCT INFORMATION</p>
 <h2>What comes with the ${escapeHtml(productName)}.</h2>
 <dl>
+${specificationRows}
 <div><dt>Included extras</dt><dd>${escapeHtml(data.included)}</dd></div>
-<div><dt>Official specifications</dt><dd>See the manufacturer&rsquo;s current product page</dd></div>
 </dl>
 <p class="reviewSource">
 Product information:
