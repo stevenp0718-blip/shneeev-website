@@ -148,10 +148,9 @@ function setupNewsletterTypingPrompt() {
 
 function getReviewCatalog() {
     if (!reviewCatalogPromise) {
-        reviewCatalogPromise = fetch(
-            `https://raw.githubusercontent.com/stevenp0718-blip/shneeev-website/main/reviews.json?v=${Date.now()}`,
-            { cache: "no-store" }
-        )
+        reviewCatalogPromise = fetch(`/api/feed?type=reviews&v=${Date.now()}`, {
+            cache: "no-store"
+        })
             .then(response => {
                 if (!response.ok) throw new Error(`Review request failed: ${response.status}`);
                 return response.json();
@@ -162,10 +161,9 @@ function getReviewCatalog() {
 
 function getVideoFeed() {
     if (!videoFeedPromise) {
-        videoFeedPromise = fetch(
-            `https://raw.githubusercontent.com/stevenp0718-blip/shneeev-website/main/videos.json?v=${Date.now()}`,
-            { cache: "no-store" }
-        )
+        videoFeedPromise = fetch(`/api/feed?type=videos&v=${Date.now()}`, {
+            cache: "no-store"
+        })
             .then(response => {
                 if (!response.ok) throw new Error(`Video request failed: ${response.status}`);
                 return response.json();
