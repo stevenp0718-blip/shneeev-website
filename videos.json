@@ -1,5 +1,14 @@
 [
   {
+    "title": "Vaxee NP-01s V3 - An Icon Upgraded",
+    "url": "https://www.youtube.com/watch?v=N-PH2nmQLHM",
+    "thumbnail": "https://i.ytimg.com/vi/N-PH2nmQLHM/hqdefault.jpg",
+    "published": "2026-08-06T13:04:57Z",
+    "duration": "9:19",
+    "reviewPath": "reviews/vaxee-np-01s-v3/",
+    "verdict": "pass"
+  },
+  {
     "title": "G-Wolves Fenrir Pro 8K - Best fingertip mouse?",
     "url": "https://www.youtube.com/watch?v=RtPHsiKFp3M",
     "thumbnail": "https://i.ytimg.com/vi/RtPHsiKFp3M/hqdefault.jpg",
@@ -16,14 +25,5 @@
     "duration": "11:42",
     "reviewPath": "reviews/dysphoria-rin/",
     "verdict": "pass"
-  },
-  {
-    "title": "Kyomi Ryo Thoughts and Opinions",
-    "url": "https://www.youtube.com/watch?v=JNu7Ee_9RMA",
-    "thumbnail": "https://i.ytimg.com/vi/JNu7Ee_9RMA/hqdefault.jpg",
-    "published": "2026-07-22T22:00:37Z",
-    "duration": "10:32",
-    "reviewPath": "reviews/kyomi-ryo/",
-    "verdict": "fail"
   }
 ]
