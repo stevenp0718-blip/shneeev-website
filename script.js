@@ -148,7 +148,7 @@ function setupNewsletterTypingPrompt() {
 
 function getReviewCatalog() {
     if (!reviewCatalogPromise) {
-        reviewCatalogPromise = fetch("/reviews.json", { cache: "no-store" })
+        reviewCatalogPromise = fetch(`/reviews.json?v=${Date.now()}`, { cache: "no-store" })
             .then(response => {
                 if (!response.ok) throw new Error(`Review request failed: ${response.status}`);
                 return response.json();
@@ -159,7 +159,7 @@ function getReviewCatalog() {
 
 function getVideoFeed() {
     if (!videoFeedPromise) {
-        videoFeedPromise = fetch("/videos.json", { cache: "no-store" })
+        videoFeedPromise = fetch(`/videos.json?v=${Date.now()}`, { cache: "no-store" })
             .then(response => {
                 if (!response.ok) throw new Error(`Video request failed: ${response.status}`);
                 return response.json();
