@@ -259,7 +259,7 @@ Product information:
 </button>
 </div>
 </footer>
-<script src="../../script.js?v=20260806-github-feeds"></script>
+<script src="../../script.js?v=20260806-api-feeds"></script>
 </body>
 </html>
 `;
