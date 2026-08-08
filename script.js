@@ -175,70 +175,10 @@ function getVideoFeed() {
 function setupReviewSearch() {
     const form = document.querySelector(".reviewSearch");
     const input = form?.querySelector("input");
-    const submitButton = form?.querySelector('button[type="submit"]');
-    const dialog = document.querySelector(".searchDialog");
-    const closeButton = dialog?.querySelector(".searchDialogClose");
-    if (!form || !input || !submitButton || !dialog || !closeButton) return;
-
-    const runSearch = async () => {
-        const searchedProduct = input.value.trim();
-        const query = searchedProduct.toLowerCase();
-        if (!query) {
-            input.focus();
-            return;
-        }
-
-        try {
-            const reviews = (await getReviewCatalog()).filter(review => review.reviewPath);
-            const terms = query.split(/\s+/).filter(Boolean);
-            const match = reviews.find(review => {
-                const title = review.title.toLowerCase();
-                return title.includes(query) || terms.every(term => title.includes(term));
-            });
-
-            if (match) {
-                window.location.href = safeReviewPath(match.reviewPath);
-                return;
-            }
-
-            showSearchSuggestions(dialog, reviews.slice(0, 3), searchedProduct);
-        } catch (error) {
-            console.error(error);
-            showSearchSuggestions(dialog, [], searchedProduct);
-        }
-    };
-
-    form.addEventListener("submit", event => {
-        event.preventDefault();
-        runSearch();
-    });
-    submitButton.addEventListener("click", event => {
-        event.preventDefault();
-        runSearch();
-    });
-    input.addEventListener("keydown", event => {
-        if (event.key !== "Enter") return;
-        event.preventDefault();
-        runSearch();
-    });
-
-    const closeDialog = () => {
-        dialog.classList.remove("is-open");
-        document.body.classList.remove("search-open");
-    };
-
-    closeButton.addEventListener("click", closeDialog);
-    dialog.addEventListener("click", event => {
-        if (event.target === dialog) closeDialog();
-    });
-    document.addEventListener("click", event => {
-        if (!dialog.classList.contains("is-open")) return;
-        if (event.target.closest(".searchDialog") || event.target.closest(".reviewSearch")) return;
-        closeDialog();
-    });
-    document.addEventListener("keydown", event => {
-        if (event.key === "Escape" && dialog.classList.contains("is-open")) closeDialog();
-    });
+    if (!form || !input) return;
+    form.action = "/search/";
+    form.method = "get";
+    input.name = "q";
 }
 
 function showSearchSuggestions(dialog, reviews, searchedProduct = "") {

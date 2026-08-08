@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html class="low-power" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Search Reviews | SHNEEEV</title>
+<meta name="description" content="Browse and search every SHNEEEV hardware and gaming peripheral review.">
+<link rel="stylesheet" href="../style.css?v=20260807-search">
+<link rel="stylesheet" href="search.css?v=20260807-1">
+<link rel="icon" href="../favicon.webp" type="image/webp">
+<link rel="canonical" href="https://shneeev.com/search/">
+<meta name="theme-color" content="#08150c">
+</head>
+<body class="searchPageBody">
+<div class="background" aria-hidden="true">
+<div class="forest"></div><div class="fog fog1"></div><div class="fog fog2"></div>
+<div class="fog fog3"></div><div class="gradient gradient1"></div>
+<div class="gradient gradient2"></div><div class="gradient gradient3"></div>
+<div class="noise"></div>
+</div>
+<header>
+<nav>
+<a class="brand" href="../">
+<img alt="SHNEEEV" decoding="async" height="720" src="../assets/profile-480.webp" width="480">
+<div><h3>SHNEEEV</h3><span>Equipment Reviews</span></div>
+</a>
+<ul>
+<li><a href="../#setup">Setup</a></li>
+<li><a href="../#reviews">Reviews</a></li>
+<li><a href="../#contact">Contact</a></li>
+</ul>
+<form class="reviewSearch searchPageNavSearch" role="search">
+<label class="srOnly" for="review-search">Search published reviews</label>
+<button class="reviewSearchIcon" type="submit" aria-label="Search reviews">&#8981;</button>
+<input id="review-search" name="q" type="search" placeholder="Search reviews" autocomplete="off" enterkeyhint="search">
+</form>
+<a class="youtubeButton" href="https://youtube.com/@shneeev" target="_blank" rel="noopener noreferrer">YouTube</a>
+</nav>
+</header>
+<main class="searchPage">
+<section class="searchHero">
+<p class="searchEyebrow">REVIEW LIBRARY</p>
+<h1>Find your next piece of gear.</h1>
+<p>Search the complete SHNEEEV review catalog. The closest match is always shown first.</p>
+<form class="searchHeroForm" role="search">
+<label for="catalog-search">What are you looking for?</label>
+<div>
+<input id="catalog-search" name="q" type="search" placeholder="Try “VAXEE” or “mousepad”" autocomplete="off">
+<button type="submit">Search Reviews</button>
+</div>
+</form>
+</section>
+<section class="searchResultsSection" aria-labelledby="search-results-title">
+<div class="searchResultsHeading">
+<div>
+<p class="searchEyebrow">ALL PUBLISHED REVIEWS</p>
+<h2 id="search-results-title">Every review.</h2>
+</div>
+<p class="searchCount" id="search-count" aria-live="polite">Loading reviews…</p>
+</div>
+<div class="searchResultsGrid" id="search-results" aria-live="polite"></div>
+</section>
+<section class="reviewSuggestion" aria-labelledby="suggestion-title">
+<div>
+<p class="searchEyebrow">DON’T SEE IT?</p>
+<h2 id="suggestion-title">Suggest a review.</h2>
+<p>Tell me what product you want tested next and your email app will prepare the message.</p>
+</div>
+<form class="suggestionForm">
+<label for="suggestion-product">Product name</label>
+<div>
+<input id="suggestion-product" type="text" placeholder="Product you want reviewed" required>
+<button type="submit">Email My Suggestion <span aria-hidden="true">&#8599;</span></button>
+</div>
+</form>
+</section>
+</main>
+<footer class="searchFooter">
+<p>© 2026 SHNEEEV. Honest testing. No hype.</p>
+<a href="../">Back to homepage</a>
+</footer>
+<script src="search.js?v=20260807-1"></script>
+</body>
+</html>

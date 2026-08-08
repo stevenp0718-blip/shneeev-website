@@ -3049,7 +3049,12 @@ color:white;
     transform:translateY(-52%);
     color:var(--greenBright);
     font-size:1.25rem;
-    pointer-events:none;
+    display:grid;
+    place-items:center;
+    padding:0;
+    border:0;
+    background:transparent;
+    cursor:pointer;
 }
 
 .reviewSearch input{

@@ -29,6 +29,9 @@
 /script.js
   Cache-Control: no-cache, must-revalidate
 
+/search/*
+  Cache-Control: no-cache, must-revalidate
+
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
