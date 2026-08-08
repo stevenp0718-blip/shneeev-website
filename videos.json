@@ -1,5 +1,12 @@
 [
   {
+    "title": "Top 5 Most Anticipated Mice of 2026",
+    "url": "https://www.youtube.com/watch?v=Hnkallba820",
+    "thumbnail": "https://i.ytimg.com/vi/Hnkallba820/hqdefault.jpg",
+    "published": "2026-08-08T16:00:15Z",
+    "duration": "8:40"
+  },
+  {
     "title": "VAXEE NP-01S V3 Review | Worth the Upgrade?",
     "url": "https://www.youtube.com/watch?v=N-PH2nmQLHM",
     "thumbnail": "https://i.ytimg.com/vi/N-PH2nmQLHM/hqdefault.jpg",
@@ -15,15 +22,6 @@
     "published": "2026-08-01T08:35:19Z",
     "duration": "9:07",
     "reviewPath": "reviews/g-wolves-fenrir-pro-8k/",
-    "verdict": "pass"
-  },
-  {
-    "title": "Dysphoria Rin - Speedy but good.",
-    "url": "https://www.youtube.com/watch?v=pp2qIFPY_ho",
-    "thumbnail": "https://i.ytimg.com/vi/pp2qIFPY_ho/hqdefault.jpg",
-    "published": "2026-07-28T07:10:53Z",
-    "duration": "11:42",
-    "reviewPath": "reviews/dysphoria-rin/",
     "verdict": "pass"
   }
 ]
