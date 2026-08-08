@@ -9,6 +9,8 @@ const API_KEY = process.env.YOUTUBE_API_KEY;
 const CHANNEL_ID = "UCJuA9lf14Cg8sxqkx-a4n8g";
 const MAX_RESULTS = 3;
 const SHORTS_MAX_SECONDS = 180;
+const SEARCH_PAGE_SIZE = 50;
+const MAX_SEARCH_PAGES = 5;
 
 async function updateVideos() {
     if (!API_KEY) {
@@ -20,44 +22,7 @@ async function updateVideos() {
         auth: API_KEY
     });
 
-    const response = await youtube.search.list({
-        part: ["snippet"],
-        channelId: CHANNEL_ID,
-        order: "date",
-        maxResults: 10,
-        type: ["video"]
-    });
-
-    const candidates = response.data.items.filter(video => {
-        const title = video.snippet.title.toLowerCase();
-
-        return (
-            video.snippet.liveBroadcastContent === "none" &&
-            !title.includes("#shorts") &&
-            !title.includes("shorts") &&
-            !title.includes("live") &&
-            !title.includes("stream")
-        );
-    });
-
-    const detailsResponse = await youtube.videos.list({
-        part: ["contentDetails", "snippet"],
-        id: candidates.map(video => video.id.videoId)
-    });
-
-    const videoDetails = new Map(
-        detailsResponse.data.items.map(video => [
-            video.id,
-            video
-        ])
-    );
-
-    const searchResults = candidates
-        .filter(video => {
-            const details = videoDetails.get(video.id.videoId);
-            return durationInSeconds(details?.contentDetails?.duration) > SHORTS_MAX_SECONDS;
-        })
-        .slice(0, MAX_RESULTS);
+    const { searchResults, videoDetails } = await findLatestLongFormVideos(youtube);
 
     const existingVideos = fs.existsSync("videos.json")
         ? JSON.parse(fs.readFileSync("videos.json", "utf8"))
@@ -135,6 +100,58 @@ async function updateVideos() {
     );
 
     console.log(`Updated ${videos.length} homepage videos and ${reviews.length} searchable reviews.`);
+}
+
+async function findLatestLongFormVideos(youtube) {
+    const searchResults = [];
+    const videoDetails = new Map();
+    const seenIds = new Set();
+    let pageToken;
+
+    for (let page = 0; page < MAX_SEARCH_PAGES && searchResults.length < MAX_RESULTS; page += 1) {
+        const response = await youtube.search.list({
+            part: ["snippet"],
+            channelId: CHANNEL_ID,
+            order: "date",
+            maxResults: SEARCH_PAGE_SIZE,
+            pageToken,
+            type: ["video"]
+        });
+
+        const candidates = (response.data.items || []).filter(video => {
+            const videoId = video.id?.videoId;
+            if (!videoId || seenIds.has(videoId)) return false;
+            seenIds.add(videoId);
+            return video.snippet?.liveBroadcastContent === "none";
+        });
+
+        if (candidates.length) {
+            const detailsResponse = await youtube.videos.list({
+                part: ["contentDetails", "snippet"],
+                id: candidates.map(video => video.id.videoId)
+            });
+
+            for (const details of detailsResponse.data.items || []) {
+                videoDetails.set(details.id, details);
+            }
+
+            for (const video of candidates) {
+                const details = videoDetails.get(video.id.videoId);
+                if (durationInSeconds(details?.contentDetails?.duration) <= SHORTS_MAX_SECONDS) continue;
+                searchResults.push(video);
+                if (searchResults.length === MAX_RESULTS) break;
+            }
+        }
+
+        pageToken = response.data.nextPageToken;
+        if (!pageToken) break;
+    }
+
+    if (searchResults.length < MAX_RESULTS) {
+        console.warn(`Only found ${searchResults.length} long-form videos after searching ${MAX_SEARCH_PAGES} pages.`);
+    }
+
+    return { searchResults, videoDetails };
 }
 
 function formatDuration(isoDuration) {

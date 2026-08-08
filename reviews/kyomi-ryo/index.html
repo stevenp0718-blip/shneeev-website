@@ -67,11 +67,10 @@
 <li><a href="../../#reviews">Reviews</a></li>
 <li><a href="../../#contact">Contact</a></li>
 </ul>
-<form class="reviewSearch" role="search">
+<form class="reviewSearch" role="search" action="/search/" method="get">
 <label class="srOnly" for="review-search">Search published reviews</label>
-<span class="reviewSearchIcon" aria-hidden="true">⌕</span>
-<input id="review-search" type="search" placeholder="Search reviews" autocomplete="off" enterkeyhint="search">
-<button class="srOnly" type="submit">Search</button>
+<button class="reviewSearchIcon" type="submit" aria-label="Search reviews">⌕</button>
+<input id="review-search" name="q" type="search" placeholder="Search reviews" autocomplete="off" enterkeyhint="search">
 </form>
 <a class="youtubeButton" href="https://youtube.com/@shneeev" target="_blank" rel="noopener noreferrer">YouTube</a>
 </nav>
@@ -246,6 +245,6 @@ going back to 2019 and close to 100 different mouse shapes tried.
 </button>
 </div>
 </footer>
-<script src="../../script.js?v=20260806-api-feeds"></script>
+<script src="../../script.js?v=20260807-search-page-2"></script>
 </body>
 </html>
