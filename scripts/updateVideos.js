@@ -4,6 +4,10 @@ const {
     createOrUpdateReviewPage,
     parseReviewDescription
 } = require("./reviewPageGenerator");
+const {
+    createOrUpdateListPage,
+    parseListDescription
+} = require("./listPageGenerator");
 
 const API_KEY = process.env.YOUTUBE_API_KEY;
 const CHANNEL_ID = "UCJuA9lf14Cg8sxqkx-a4n8g";
@@ -37,7 +41,8 @@ async function updateVideos() {
                 new URL(video.url).searchParams.get("v"),
                 {
                     reviewPath: video.reviewPath,
-                    verdict: video.verdict
+                    verdict: video.verdict,
+                    contentType: video.contentType
                 }
             ])
     );
@@ -47,6 +52,7 @@ async function updateVideos() {
         const metadata = reviewMetadata.get(videoId);
         const details = videoDetails.get(videoId);
         const reviewData = parseReviewDescription(details?.snippet?.description);
+        const listData = parseListDescription(details?.snippet?.description);
         const videoRecord = {
             title: video.snippet.title,
             url: `https://www.youtube.com/watch?v=${videoId}`,
@@ -61,15 +67,25 @@ async function updateVideos() {
         const generatedReviewPath = reviewData
             ? createOrUpdateReviewPage(videoRecord, reviewData)
             : null;
+        const generatedListPath = !reviewData && listData
+            ? createOrUpdateListPage(videoRecord, listData)
+            : null;
+        const generatedPagePath = generatedReviewPath || generatedListPath;
+        const contentType = generatedReviewPath
+            ? "review"
+            : generatedListPath
+                ? "ranked-list"
+                : metadata?.contentType;
 
         return {
             ...videoRecord,
-            ...((generatedReviewPath || metadata?.reviewPath)
-                ? { reviewPath: generatedReviewPath || metadata.reviewPath }
+            ...((generatedPagePath || metadata?.reviewPath)
+                ? { reviewPath: generatedPagePath || metadata.reviewPath }
                 : {}),
             ...((reviewData?.verdict || metadata?.verdict)
                 ? { verdict: reviewData?.verdict || metadata.verdict }
-                : {})
+                : {}),
+            ...(contentType ? { contentType } : {})
         };
     });
 

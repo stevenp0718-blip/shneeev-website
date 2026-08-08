@@ -1,0 +1,22 @@
+.rankedPage{position:relative;z-index:2;width:min(1220px,calc(100% - 48px));margin:0 auto;padding:170px 0 90px}
+.rankedHero{display:grid;grid-template-columns:1fr .9fr;gap:70px;align-items:center;min-height:680px}
+.rankedHero h1{margin:18px 0 24px;font-size:clamp(3.6rem,7vw,7.2rem);line-height:.9;letter-spacing:-.065em}
+.rankedHero .reviewDeck{max-width:680px;color:#b4c0b7;font-size:1.18rem;line-height:1.7}
+.rankedIntro{max-width:780px;padding:95px 0 42px}
+.rankedIntro h2{margin:12px 0 18px;font-size:clamp(2.5rem,5vw,5rem);letter-spacing:-.05em}
+.rankedIntro>p:last-child{color:#9ca9a0;font-size:1.08rem;line-height:1.7}
+.rankedList{display:grid;gap:18px}
+.rankedItem{display:grid;grid-template-columns:120px 1fr;gap:28px;align-items:center;padding:34px;border:1px solid rgba(255,255,255,.08);border-radius:24px;background:rgba(4,15,8,.88);transition:transform .25s ease,border-color .25s ease}
+.rankedItem:hover{transform:translateY(-3px);border-color:rgba(116,232,151,.35)}
+.rankedNumber{display:grid;place-items:center;width:94px;height:94px;border:1px solid rgba(116,232,151,.34);border-radius:22px;background:linear-gradient(145deg,rgba(116,232,151,.16),rgba(2,9,4,.5));color:#84efa4;font-size:3.4rem;font-weight:900;line-height:1}
+.rankedItemHeading{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.rankedItem h2{margin:0;font-size:clamp(1.7rem,3vw,3rem);letter-spacing:-.04em}
+.rankedItem p{max-width:790px;margin:13px 0 20px;color:#a4b0a7;line-height:1.65}
+.rankedPrice{flex:0 0 auto;padding:8px 12px;border-radius:999px;background:rgba(116,232,151,.1);color:#bff8cf;font-size:.82rem;font-weight:850}
+.rankedBuyLink,.rankedUnavailable{display:inline-flex;align-items:center;gap:10px;font-weight:850}
+.rankedBuyLink{color:#92f0ad}.rankedBuyLink span{font-size:1.1rem}.rankedUnavailable{color:#78857c}
+.rankedVideo{margin-top:90px}.rankedVideo .reviewVideoFrame{margin-top:25px}
+.rankedDisclosure{margin-top:45px;padding:28px 32px;border:1px solid rgba(116,232,151,.18);border-radius:20px;background:rgba(10,37,18,.35)}
+.rankedDisclosure strong{color:#79e999;font-size:.75rem;letter-spacing:.18em}.rankedDisclosure p{margin:10px 0 0;color:#99a69d;line-height:1.6}
+@media(max-width:900px){.rankedPage{padding-top:130px}.rankedHero{grid-template-columns:1fr;gap:42px;min-height:auto;padding-top:65px}.reviewHeroMedia{max-width:700px}.rankedItem{grid-template-columns:86px 1fr}.rankedNumber{width:72px;height:72px;font-size:2.5rem}}
+@media(max-width:620px){.rankedPage{width:min(100% - 28px,1220px)}.rankedHero h1{font-size:clamp(3rem,15vw,4.7rem)}.rankedItem{grid-template-columns:1fr;padding:25px}.rankedNumber{width:58px;height:58px;border-radius:16px;font-size:2rem}.rankedItemHeading{align-items:flex-start;flex-direction:column;gap:12px}.rankedIntro{padding-top:70px}}

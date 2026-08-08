@@ -385,7 +385,7 @@ function safeExternalUrl(value, allowedHosts) {
 }
 
 function safeReviewPath(value) {
-    return typeof value === "string" && /^reviews\/[a-z0-9-]+\/$/.test(value)
+    return typeof value === "string" && /^(?:reviews|lists)\/[a-z0-9-]+\/$/.test(value)
         ? `/${value}`
         : "";
 }
