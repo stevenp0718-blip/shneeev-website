@@ -59,8 +59,8 @@ suggestionForm.addEventListener("submit", event => {
 function renderReviews(reviews) {
     const published = reviews.filter(review => review.reviewPath);
     const ranked = rankReviews(published, initialQuery);
-    title.textContent = initialQuery ? `Results for “${initialQuery}”.` : "Every review.";
-    count.textContent = `${ranked.length} published review${ranked.length === 1 ? "" : "s"}`;
+    title.textContent = initialQuery ? `Results for “${initialQuery}”.` : "Every review and guide.";
+    count.textContent = `${ranked.length} published page${ranked.length === 1 ? "" : "s"}`;
 
     results.innerHTML = ranked.map((review, index) => {
         const copy = splitTitle(review.title);
@@ -75,7 +75,7 @@ function renderReviews(reviews) {
                     <div class="searchResultCopy">
                         <div class="searchResultMeta">
                             <time datetime="${escapeHtml(review.published)}">${formatDate(review.published)}</time>
-                            ${review.verdict ? `<span class="searchVerdict searchVerdict--${escapeHtml(review.verdict)}">${escapeHtml(review.verdict.toUpperCase())}</span>` : ""}
+                            ${review.verdict ? `<span class="searchVerdict searchVerdict--${escapeHtml(review.verdict)}">${escapeHtml(review.verdict.toUpperCase())}</span>` : review.contentType === "ranked-list" ? '<span class="searchVerdict searchVerdict--guide">RANKED GUIDE</span>' : ""}
                         </div>
                         <h3>${escapeHtml(copy.title)}</h3>
                         <p>${escapeHtml(copy.summary || "Read the full SHNEEEV review and verdict.")}</p>
