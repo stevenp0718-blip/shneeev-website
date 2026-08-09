@@ -163,7 +163,7 @@ ${link}
 <aside class="rankedDisclosure"><strong>LINK DISCLOSURE</strong><p>These are not affiliate links. I currently receive no commission or payment if you purchase through a link on this page.</p></aside>
 </main>
 <footer><div class="footerLeft"><h3>SHNEEEV</h3><p>Honest opinions. No hype.</p></div><div class="footerRight"><a href="../../">Home</a><a href="../../#reviews">Reviews</a><a href="../../#contact">Contact</a></div></footer>
-<script src="../../script.js?v=20260807-search-page-2"></script>
+<script src="../../script.js?v=20260809-ranked-guides"></script>
 </body></html>`;
 }
 
