@@ -1,6 +1,9 @@
 {
   "name": "shneeev-website",
   "private": true,
+  "scripts": {
+    "test": "node scripts/listPageGenerator.test.js"
+  },
   "dependencies": {
     "googleapis": "^144.0.0"
   }
