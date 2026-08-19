@@ -1,5 +1,12 @@
 [
   {
+    "title": "Fix Button Wobble On Any Mice!",
+    "url": "https://www.youtube.com/watch?v=-zBohKdvMoY",
+    "thumbnail": "https://i.ytimg.com/vi/-zBohKdvMoY/hqdefault.jpg",
+    "published": "2026-08-19T09:10:48Z",
+    "duration": "4:31"
+  },
+  {
     "title": "G-Wolves Lycan 8K Review | 29g Done Right",
     "url": "https://www.youtube.com/watch?v=BYfBjkP-lzs",
     "thumbnail": "https://i.ytimg.com/vi/BYfBjkP-lzs/hqdefault.jpg",
@@ -17,15 +24,5 @@
     "duration": "8:40",
     "reviewPath": "lists/top-5-most-anticipated-mice-of-2026/",
     "contentType": "ranked-list"
-  },
-  {
-    "title": "VAXEE NP-01S V3 Review | Worth the Upgrade?",
-    "url": "https://www.youtube.com/watch?v=N-PH2nmQLHM",
-    "thumbnail": "https://i.ytimg.com/vi/N-PH2nmQLHM/hqdefault.jpg",
-    "published": "2026-08-06T13:04:57Z",
-    "duration": "9:19",
-    "reviewPath": "reviews/vaxee-np-01s-v3/",
-    "verdict": "pass",
-    "contentType": "review"
   }
 ]
