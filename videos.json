@@ -1,5 +1,15 @@
 [
   {
+    "title": "VAXEE NP-01 Ergo Review | This Shape Surprised Me",
+    "url": "https://www.youtube.com/watch?v=0dNm6WrhAdI",
+    "thumbnail": "https://i.ytimg.com/vi/0dNm6WrhAdI/hqdefault.jpg",
+    "published": "2026-08-24T10:59:13Z",
+    "duration": "9:41",
+    "reviewPath": "reviews/vaxee-np-01-ergo/",
+    "verdict": "pass",
+    "contentType": "review"
+  },
+  {
     "title": "Fix Button Wobble On Any Mouse!",
     "url": "https://www.youtube.com/watch?v=-zBohKdvMoY",
     "thumbnail": "https://i.ytimg.com/vi/-zBohKdvMoY/hqdefault.jpg",
@@ -15,14 +25,5 @@
     "reviewPath": "reviews/g-wolves-lycan-8k/",
     "verdict": "pass",
     "contentType": "review"
-  },
-  {
-    "title": "Top 5 Most Anticipated Mice of 2026",
-    "url": "https://www.youtube.com/watch?v=Hnkallba820",
-    "thumbnail": "https://i.ytimg.com/vi/Hnkallba820/hqdefault.jpg",
-    "published": "2026-08-08T16:00:15Z",
-    "duration": "8:40",
-    "reviewPath": "lists/top-5-most-anticipated-mice-of-2026/",
-    "contentType": "ranked-list"
   }
 ]
