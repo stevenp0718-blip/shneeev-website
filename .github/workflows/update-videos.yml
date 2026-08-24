@@ -4,8 +4,13 @@ on:
   workflow_dispatch:
 
   schedule:
-    # Stagger away from the top of the hour, when GitHub's scheduler is busiest.
-    - cron: "7,22,37,52 * * * *"
+    # GitHub schedules can be delayed during busy periods. Checking every five
+    # minutes gives the updater more chances to run soon after an upload.
+    - cron: "*/5 * * * *"
+
+concurrency:
+  group: update-youtube-videos
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -17,20 +22,34 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 24
+          cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Generate videos.json
+      - name: Generate videos.json with retries
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-        run: node scripts/updateVideos.js
+        run: |
+          for attempt in 1 2 3; do
+            if node scripts/updateVideos.js; then
+              exit 0
+            fi
+
+            if [ "$attempt" -eq 3 ]; then
+              echo "YouTube update failed after 3 attempts."
+              exit 1
+            fi
+
+            echo "YouTube API attempt $attempt failed; retrying in 20 seconds..."
+            sleep 20
+          done
 
       - name: Announce new full-length videos in Discord
         env:
@@ -52,7 +71,8 @@ jobs:
 
           git add videos.json reviews.json reviews lists notified-videos.json discord-notified-videos.json
 
-          git diff --cached --quiet || (
+          if ! git diff --cached --quiet; then
             git commit -m "Auto update latest videos"
-            git push
-          )
+            git pull --rebase origin main
+            git push origin main
+          fi
