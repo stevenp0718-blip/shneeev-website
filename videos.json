@@ -1,5 +1,12 @@
 [
   {
+    "title": "Tekkusai Apex | New Fastest Glasspad",
+    "url": "https://www.youtube.com/watch?v=R_UYJF2eEkI",
+    "thumbnail": "https://i.ytimg.com/vi/R_UYJF2eEkI/hqdefault.jpg",
+    "published": "2026-09-01T06:57:08Z",
+    "duration": "7:46"
+  },
+  {
     "title": "VAXEE NP-01 Ergo Review | This Shape Surprised Me",
     "url": "https://www.youtube.com/watch?v=0dNm6WrhAdI",
     "thumbnail": "https://i.ytimg.com/vi/0dNm6WrhAdI/hqdefault.jpg",
@@ -15,15 +22,5 @@
     "thumbnail": "https://i.ytimg.com/vi/-zBohKdvMoY/hqdefault.jpg",
     "published": "2026-08-19T09:10:48Z",
     "duration": "4:31"
-  },
-  {
-    "title": "G-Wolves Lycan 8K Review | 29g Done Right",
-    "url": "https://www.youtube.com/watch?v=BYfBjkP-lzs",
-    "thumbnail": "https://i.ytimg.com/vi/BYfBjkP-lzs/hqdefault.jpg",
-    "published": "2026-08-13T16:00:27Z",
-    "duration": "10:32",
-    "reviewPath": "reviews/g-wolves-lycan-8k/",
-    "verdict": "pass",
-    "contentType": "review"
   }
 ]
