@@ -4,7 +4,10 @@
     "url": "https://www.youtube.com/watch?v=R_UYJF2eEkI",
     "thumbnail": "https://i.ytimg.com/vi/R_UYJF2eEkI/hqdefault.jpg",
     "published": "2026-09-01T06:57:08Z",
-    "duration": "7:46"
+    "duration": "7:46",
+    "reviewPath": "reviews/tekkusai-apex/",
+    "verdict": "pass",
+    "contentType": "review"
   },
   {
     "title": "VAXEE NP-01 Ergo Review | This Shape Surprised Me",
