@@ -4,9 +4,13 @@ const path = require("path");
 const AUTO_MARKER = "<!-- AUTO-GENERATED REVIEW PAGE -->";
 
 function parseReviewDescription(description = "") {
-    const block = description.match(
+    const standardBlock = description.match(
         /SHNEEEV\s+REVIEW\s*([\s\S]*?)(?:END\s+SHNEEEV\s+REVIEW|$)/i
     );
+    const websiteAutomationBlock = description.match(
+        /THIS\s+IS\s+USED\s+FOR\s+PAGE\s+AUTOMATION\s+ON\s+MY\s+WEBSITE[^\r\n]*\r?\n([\s\S]*?)$/i
+    );
+    const block = standardBlock || websiteAutomationBlock;
 
     if (!block) return null;
 
@@ -17,13 +21,29 @@ function parseReviewDescription(description = "") {
         "product link": "productUrl",
         "official product link": "productUrl",
         verdict: "verdict",
+        "shneeev scale": "verdict",
         included: "included",
         extras: "included",
         "included extras": "included",
         "short verdict": "shortVerdict",
         summary: "shortVerdict",
         price: "price",
-        category: "category"
+        category: "category",
+        "review type": "category"
+    };
+    const specificationLabels = {
+        material: "Material",
+        "surface type": "Surface type",
+        size: "Size",
+        thickness: "Thickness",
+        base: "Base",
+        "edge stitching": "Edge stitching",
+        speed: "Speed",
+        "static friction": "Static friction",
+        "dynamic friction": "Dynamic friction",
+        comfort: "Comfort",
+        "humidity resistance": "Humidity resistance",
+        "arm sleeve compatibility": "Arm sleeve compatibility"
     };
 
     for (const line of block[1].split(/\r?\n/)) {
@@ -39,8 +59,20 @@ function parseReviewDescription(description = "") {
         const match = line.match(/^\s*([^:]+):\s*(.+?)\s*$/);
         if (!match) continue;
 
-        const key = aliases[match[1].trim().toLowerCase()];
-        if (key) fields[key] = match[2].trim();
+        const normalizedLabel = match[1].trim().toLowerCase();
+        const key = aliases[normalizedLabel];
+        if (key) {
+            fields[key] = match[2].trim();
+            continue;
+        }
+
+        const specificationLabel = specificationLabels[normalizedLabel];
+        if (specificationLabel) {
+            fields.specs.push({
+                label: specificationLabel,
+                value: match[2].trim()
+            });
+        }
     }
 
     const missing = ["productUrl", "verdict", "included", "shortVerdict"]
