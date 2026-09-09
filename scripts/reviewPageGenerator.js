@@ -152,7 +152,7 @@ function renderReviewPage(video, data, productName, reviewPath) {
 <link rel="stylesheet" href="../../style.css?v=20260814-review-discord">
 <link rel="icon" href="../../favicon.webp" type="image/webp">
 <link rel="canonical" href="https://shneeev.com/${reviewPath}">
-<meta name="theme-color" content="#08150c">
+<meta name="theme-color" content="#080808">
 <meta property="og:type" content="article">
 <meta property="og:title" content="${escapeHtml(productName)} Review | SHNEEEV">
 <meta property="og:description" content="${escapeHtml(data.shortVerdict)}">

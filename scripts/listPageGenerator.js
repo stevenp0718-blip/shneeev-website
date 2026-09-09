@@ -116,7 +116,7 @@ ${link}
 <link rel="stylesheet" href="../list.css?v=20260808-1">
 <link rel="icon" href="../../favicon.webp" type="image/webp">
 <link rel="canonical" href="https://shneeev.com/${pagePath}">
-<meta name="theme-color" content="#08150c">
+<meta name="theme-color" content="#080808">
 <meta property="og:type" content="article">
 <meta property="og:title" content="${escapeHtml(pageTitle)} | SHNEEEV">
 <meta property="og:description" content="${escapeHtml(intro)}">
