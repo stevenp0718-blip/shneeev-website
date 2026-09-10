@@ -511,7 +511,7 @@ margin-bottom:20px;
 
 .hero h1{
 
-font-size:clamp(4.5rem,8vw,7.5rem);
+font-size:clamp(3.5rem,4.4vw,4.5rem);
 
 line-height:.92;
 
@@ -1805,7 +1805,7 @@ padding:120px 24px 70px;
 
 .hero h1{
 
-font-size:3.7rem;
+font-size:2.65rem;
 
 letter-spacing:-2px;
 
