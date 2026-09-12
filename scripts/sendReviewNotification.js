@@ -43,7 +43,9 @@ async function send(video) {
             segment_id: segmentId,
             from: "SHNEEEV <updates@updates.shneeev.com>",
             reply_to: "business@shneeev.com",
-            name: `New review: ${video.title}`,
+            // Resend limits broadcast names to 70 characters. Keep the full
+            // title in the subject while using a safely shortened internal name.
+            name: `New review: ${video.title}`.slice(0, 70),
             subject: `New SHNEEEV review: ${video.title}`,
             send: true,
             html: `<!doctype html><html><body style="margin:0;background:#07110b;color:#f5f8f6;font-family:Arial,sans-serif"><div style="max-width:620px;margin:auto;padding:42px 22px"><p style="color:#6fe39a;font-weight:800;letter-spacing:.18em">NEW REVIEW</p><a href="${reviewUrl}"><img src="${escapeHtml(video.thumbnail)}" alt="" width="620" style="display:block;width:100%;border-radius:18px"></a><h1 style="font-size:34px;line-height:1.1">${title}</h1><p style="color:#9cab9f;font-size:18px">SHNEEEV Scale: <strong style="color:#f5f8f6">${verdict}</strong></p><p style="margin:30px 0"><a href="${reviewUrl}" style="display:inline-block;background:#65d88f;color:#07110b;padding:15px 22px;border-radius:999px;font-weight:700;text-decoration:none">Read the Full Review</a></p><p style="color:#78877d;font-size:13px;line-height:1.6">You received this because you confirmed review alerts at shneeev.com. <a href="{{{RESEND_UNSUBSCRIBE_URL}}}" style="color:#9ee6b7">Unsubscribe</a></p></div></body></html>`
