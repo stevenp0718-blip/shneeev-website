@@ -10,7 +10,9 @@ on:
 
 concurrency:
   group: update-youtube-videos
-  cancel-in-progress: true
+  # Never cancel an active update when the next five-minute check begins.
+  # Cancelling here could leave the website, email, and Discord steps unfinished.
+  cancel-in-progress: false
 
 permissions:
   contents: write

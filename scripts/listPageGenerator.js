@@ -82,7 +82,7 @@ function renderListPage(video, data, pageTitle, pagePath) {
     const publishedDate = new Date(video.published);
     const machineDate = publishedDate.toISOString().slice(0, 10);
     const displayDate = new Intl.DateTimeFormat("en-US", {
-        year: "numeric", month: "long", day: "numeric", timeZone: "UTC"
+        year: "numeric", month: "long", day: "numeric", timeZone: "America/Los_Angeles"
     }).format(publishedDate);
     const thumbnail = `https://i.ytimg.com/vi/${encodeURIComponent(videoId)}/maxresdefault.jpg`;
     const intro = data.intro || `My ${data.items.length} most anticipated products, ranked with the reasons each one made the list.`;

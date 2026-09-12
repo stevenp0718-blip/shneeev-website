@@ -125,7 +125,7 @@ function renderReviewPage(video, data, productName, reviewPath) {
         year: "numeric",
         month: "long",
         day: "numeric",
-        timeZone: "UTC"
+        timeZone: "America/Los_Angeles"
     }).format(publishedDate);
     const category = data.category || inferCategory(`${video.title} ${data.shortVerdict}`);
     const categoryLabel = category.toUpperCase();
