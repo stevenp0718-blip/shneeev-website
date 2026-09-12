@@ -112,7 +112,7 @@ ${link}
 <title>${escapeHtml(pageTitle)} | SHNEEEV</title>
 <meta name="description" content="${escapeHtml(intro)}">
 <link rel="preload" as="image" href="${thumbnail}">
-<link rel="stylesheet" href="../../style.css?v=20260814-review-discord">
+<link rel="stylesheet" href="../../style.css?v=20260912-editorial">
 <link rel="stylesheet" href="../list.css?v=20260808-1">
 <link rel="icon" href="../../favicon.webp" type="image/webp">
 <link rel="canonical" href="https://shneeev.com/${pagePath}">

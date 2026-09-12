@@ -149,7 +149,7 @@ function renderReviewPage(video, data, productName, reviewPath) {
 <title>${escapeHtml(productName)} Review | SHNEEEV</title>
 <meta name="description" content="${escapeHtml(data.shortVerdict)} A hands-on SHNEEEV review with verdict, video, included extras, and official buying information.">
 <link rel="preload" as="image" href="${thumbnail}">
-<link rel="stylesheet" href="../../style.css?v=20260814-review-discord">
+<link rel="stylesheet" href="../../style.css?v=20260912-editorial">
 <link rel="icon" href="../../favicon.webp" type="image/webp">
 <link rel="canonical" href="https://shneeev.com/${reviewPath}">
 <meta name="theme-color" content="#080808">
@@ -212,8 +212,8 @@ function renderReviewPage(video, data, productName, reviewPath) {
 <h1>${escapeHtml(productName)}.</h1>
 <p class="reviewDeck">${escapeHtml(data.shortVerdict)}</p>
 <p class="reviewIntro">
-This page collects my SHNEEEV Scale verdict, complete hands-on video review,
-included extras, and the official product link in one place.
+Here’s my full review, final verdict, specifications, included extras,
+and the official product link.
 </p>
 <div class="reviewByline">
 <span>Reviewed by SHNEEEV</span>
