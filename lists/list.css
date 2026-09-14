@@ -20,3 +20,15 @@
 .rankedDisclosure strong{color:#79e999;font-size:.75rem;letter-spacing:.18em}.rankedDisclosure p{margin:10px 0 0;color:#99a69d;line-height:1.6}
 @media(max-width:900px){.rankedPage{padding-top:130px}.rankedHero{grid-template-columns:1fr;gap:42px;min-height:auto;padding-top:65px}.reviewHeroMedia{max-width:700px}.rankedItem{grid-template-columns:86px 1fr}.rankedNumber{width:72px;height:72px;font-size:2.5rem}}
 @media(max-width:620px){.rankedPage{width:min(100% - 28px,1220px)}.rankedHero h1{font-size:clamp(3rem,15vw,4.7rem)}.rankedItem{grid-template-columns:1fr;padding:25px}.rankedNumber{width:58px;height:58px;border-radius:16px;font-size:2rem}.rankedItemHeading{align-items:flex-start;flex-direction:column;gap:12px}.rankedIntro{padding-top:70px}}
+
+/* Ranked guides use the same restrained, creator-led visual language. */
+.rankedHero h1{font-size:clamp(3rem,5.4vw,5.6rem);font-weight:720;line-height:.98;letter-spacing:-.045em}
+.rankedIntro h2{font-size:clamp(2.2rem,4vw,4rem);font-weight:700;letter-spacing:-.035em}
+.rankedList{gap:1px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.14)}
+.rankedItem{border:0;border-radius:0;background:#080808}
+.rankedItem:hover{transform:none;background:#0b0b0b}
+.rankedNumber{width:auto;height:auto;border:0;border-radius:0;background:none;color:#f4f4f1;font-size:2.4rem;font-weight:650}
+.rankedPrice{border-radius:2px;background:#111;color:#ddd}
+.rankedBuyLink{color:#f4f4f1}
+.rankedDisclosure{border-radius:2px;border-color:rgba(255,255,255,.14);background:#080808}
+.rankedDisclosure strong{color:#f4f4f1;letter-spacing:.02em;text-transform:none}

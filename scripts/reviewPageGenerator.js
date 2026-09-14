@@ -208,12 +208,11 @@ function renderReviewPage(video, data, productName, reviewPath) {
 <section class="reviewHero">
 <div class="reviewHeroCopy">
 <a class="reviewBack" href="../../#reviews">&larr; All reviews</a>
-<p class="reviewEyebrow">${escapeHtml(categoryLabel)} REVIEW</p>
-<h1>${escapeHtml(productName)}.</h1>
+<p class="reviewEyebrow">${escapeHtml(categoryLabel)} review</p>
+<h1>${escapeHtml(productName)}</h1>
 <p class="reviewDeck">${escapeHtml(data.shortVerdict)}</p>
 <p class="reviewIntro">
-Here’s my full review, final verdict, specifications, included extras,
-and the official product link.
+My testing notes, the full video, what comes in the box, and whether I’d buy it.
 </p>
 <div class="reviewByline">
 <span>Reviewed by SHNEEEV</span>
@@ -238,20 +237,19 @@ and the official product link.
 </section>
 <section class="reviewContent">
 <article class="reviewMain">
-<p class="reviewSectionLabel">THE SHORT VERSION</p>
+<p class="reviewSectionLabel">The short version</p>
 <h2>${escapeHtml(data.shortVerdict)}</h2>
 <p>
-Watch the complete review below for my testing, experience, comparisons, and
-the context behind the final verdict.
+The video below has the testing and the details behind my verdict.
 </p>
 <div class="reviewCallout">
-<span>SHNEEEV SCALE</span>
+<span>SHNEEEV Scale</span>
 <strong class="reviewScaleResult">${verdict}</strong>
 <p>${escapeHtml(data.shortVerdict)}</p>
 </div>
 <div id="video-review" class="reviewVideo">
 <div class="reviewVideoHeading">
-<div><p class="reviewSectionLabel">FULL VIDEO REVIEW</p><h2>See the testing and verdict.</h2></div>
+<div><p class="reviewSectionLabel">Full video</p><h2>Watch the review</h2></div>
 <a href="${escapeAttribute(video.url)}" target="_blank" rel="noopener noreferrer">Open on YouTube &nearr;</a>
 </div>
 <div class="reviewVideoFrame">
@@ -262,8 +260,8 @@ allowfullscreen></iframe>
 </div>
 </div>
 <div class="reviewSpecs">
-<p class="reviewSectionLabel">PRODUCT INFORMATION</p>
-<h2>What comes with the ${escapeHtml(productName)}.</h2>
+<p class="reviewSectionLabel">Product information</p>
+<h2>Specs and box contents</h2>
 <dl>
 ${specificationRows}
 <div><dt>Included extras</dt><dd>${escapeHtml(data.included)}</dd></div>
@@ -276,7 +274,7 @@ Product information:
 </article>
 <aside class="reviewSidebar">
 <div class="reviewSideCard">
-<p class="reviewSectionLabel">REVIEW AT A GLANCE</p>
+<p class="reviewSectionLabel">At a glance</p>
 <ul>
 <li>${verdict} on the SHNEEEV Scale</li>
 <li>${escapeHtml(category)} review</li>
@@ -285,15 +283,15 @@ Product information:
 </ul>
 </div>
 <div class="reviewSideCard">
-<p class="reviewSectionLabel">BUYING INFORMATION</p>
+<p class="reviewSectionLabel">Price and availability</p>
 <div class="reviewPrice"><span>${data.price ? "LISTED PRICE" : "CURRENT PRICE"}</span>${priceMarkup}</div>
 <p>Availability and pricing can change. Check the manufacturer for the current status.</p>
 <a class="reviewBuyLink" href="${escapeAttribute(data.productUrl)}" target="_blank" rel="noopener noreferrer">View official product page &nearr;</a>
 <small>No affiliate link. I receive no commission or payment if you purchase through this link.</small>
 </div>
 <div class="reviewSideCard">
-<p class="reviewSectionLabel">REVIEW EXPERIENCE</p>
-<p>My review journey began July 22, 2026, backed by hands-on peripheral experience going back to 2019 and close to 100 different mouse shapes tried.</p>
+<p class="reviewSectionLabel">About my testing</p>
+<p>I’ve been trying gaming peripherals since 2019 and have used close to 100 different mouse shapes. I started publishing reviews in July 2026.</p>
 </div>
 </aside>
 </section>

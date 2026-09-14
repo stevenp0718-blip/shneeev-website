@@ -43,3 +43,19 @@
 .searchEmpty{grid-column:1/-1;padding:50px;border:1px solid rgba(255,255,255,.08);border-radius:22px;color:#a5b1a8;text-align:center}
 @media(max-width:900px){.searchPage{padding-top:135px}.searchResultsGrid{grid-template-columns:1fr}.reviewSuggestion{grid-template-columns:1fr;gap:34px}.searchPageNavSearch{display:none}}
 @media(max-width:620px){.searchPage,.searchFooter{width:min(100% - 28px,1280px)}.searchHero{padding:48px 0 58px}.searchHeroForm>div,.suggestionForm>div{flex-direction:column}.searchResultCard>a{grid-template-columns:1fr}.searchResultMedia{min-height:220px}.reviewSuggestion{padding:30px 22px}.searchResultsHeading,.searchFooter{align-items:flex-start;flex-direction:column}}
+
+/* Keep search visually consistent with the quieter editorial site. */
+.searchPageBody{color:#f4f4f1;background:#050505}
+.searchEyebrow{color:#8d8d89;font-size:.9rem;letter-spacing:.02em;text-transform:none}
+.searchHero h1{font-size:clamp(3rem,5.4vw,5.5rem);font-weight:720;line-height:.98;letter-spacing:-.045em}
+.searchHeroForm label,.suggestionForm label{letter-spacing:.02em;text-transform:none}
+.searchHeroForm input,.suggestionForm input,.searchHeroForm button,.suggestionForm button{border-radius:2px}
+.searchHeroForm input,.suggestionForm input{background:#080808}
+.searchHeroForm button,.suggestionForm button{background:#f2f2ef;color:#080808}
+.searchHeroForm button:hover,.suggestionForm button:hover{background:#fff;transform:none}
+.searchResultCard,.reviewSuggestion,.searchEmpty{border-radius:2px;background:#080808}
+.searchResultCard:hover{transform:none;border-color:rgba(255,255,255,.28)}
+.searchResultCard--best{border-color:rgba(255,255,255,.32);box-shadow:none}
+.closestMatch,.searchDuration,.searchVerdict{border-radius:2px;letter-spacing:.02em}
+.closestMatch,.searchReadMore,.searchReadMore b{color:#f4f4f1}
+.reviewSuggestion{border-color:rgba(255,255,255,.14);background:#080808}

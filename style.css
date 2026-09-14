@@ -3346,6 +3346,156 @@ body.search-open::after{
     box-shadow:none;
 }
 
+/* Understated creator-led pass: less template styling, more readable hierarchy. */
+nav{
+    border-width:0 0 1px;
+    border-radius:0;
+    background:#050505;
+}
+
+.brand h3,
+.brand span,
+.eyebrow,
+.sectionHeader p,
+.newsletterLabel,
+.businessLabel,
+.reviewSectionLabel,
+.reviewHeroLabel,
+.reviewEyebrow,
+.searchDialogLabel{
+    letter-spacing:.02em;
+    text-transform:none;
+}
+
+.hero{
+    min-height:760px;
+}
+
+.hero h1{
+    max-width:620px;
+    font-size:clamp(3.2rem,5.25vw,5.7rem);
+    font-weight:720;
+    line-height:.98;
+    letter-spacing:-.045em;
+}
+
+.heroText>p{
+    max-width:590px;
+    font-size:1.08rem;
+    line-height:1.7;
+}
+
+.sectionHeader h2,
+.newsletter h2,
+.businessContent h2{
+    font-size:clamp(2.25rem,4vw,4.25rem);
+    font-weight:700;
+    line-height:1.02;
+    letter-spacing:-.04em;
+}
+
+.sectionHeader p,
+.newsletterLabel,
+.businessLabel,
+.reviewSectionLabel,
+.reviewEyebrow{
+    color:#8d8d89;
+    font-size:.9rem;
+    font-weight:650;
+}
+
+.setupGrid{
+    gap:1px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    border-radius:0;
+    background:var(--border);
+}
+
+.setupCard{
+    border:0;
+    border-radius:0;
+    background:#080808;
+}
+
+.setupCard h3{
+    letter-spacing:.04em;
+}
+
+.reviewCard,
+.newsletter,
+.reviewSideCard,
+.reviewCallout,
+.reviewVideoFrame,
+.relatedReview,
+.reviewPrice{
+    border-radius:2px;
+}
+
+.primary,
+.secondary,
+.youtubeButton,
+.discordButton,
+.reviewBuyLink,
+.businessButtons a{
+    border-radius:2px;
+}
+
+.reviewHero{
+    min-height:650px;
+    grid-template-columns:minmax(0,.9fr) minmax(420px,1.1fr);
+    gap:72px;
+}
+
+.reviewHero h1{
+    max-width:760px;
+    font-size:clamp(3rem,5vw,5.4rem);
+    font-weight:720;
+    line-height:.98;
+    letter-spacing:-.045em;
+}
+
+.reviewDeck{
+    max-width:720px;
+    font-size:clamp(1.18rem,1.7vw,1.55rem);
+    font-weight:560;
+    line-height:1.5;
+    letter-spacing:-.015em;
+}
+
+.reviewHeroMedia::after,
+.reviewMediaBadge{
+    display:none;
+}
+
+.reviewQuickFacts{
+    border-radius:0;
+}
+
+.reviewQuickFacts article span{
+    letter-spacing:.02em;
+    text-transform:none;
+}
+
+.reviewMain>h2,
+.reviewVideoHeading h2,
+.reviewSpecs h2{
+    font-size:clamp(2rem,3.5vw,3.5rem);
+    font-weight:700;
+    letter-spacing:-.035em;
+}
+
+@media(max-width:900px){
+    .hero{min-height:auto}
+    .reviewHero{grid-template-columns:1fr;gap:42px}
+}
+
+@media(max-width:700px){
+    nav{border-radius:0}
+    .hero h1{font-size:clamp(3rem,13vw,4.4rem)}
+    .reviewHero h1{font-size:clamp(2.8rem,13vw,4.15rem)}
+}
+
 /* =======================================
    Editorial visual system
    Flat, restrained, and consistent across
@@ -3618,4 +3768,40 @@ body.search-open::after{
     .searchDialogContent{
         padding:34px 25px 30px;
     }
+}
+
+/* Final creator-led overrides. Keep these last so generated pages match. */
+header nav{border-width:0 0 1px;border-radius:0;background:#050505}
+.brand h3,.brand span,.eyebrow,.sectionHeader p,.newsletterLabel,.businessLabel,
+.reviewSectionLabel,.reviewHeroLabel,.reviewEyebrow,.searchDialogLabel{
+    letter-spacing:.02em;text-transform:none
+}
+.hero{min-height:760px}
+.hero h1{max-width:620px;font-size:clamp(3.2rem,5.25vw,5.7rem);font-weight:720;line-height:.98;letter-spacing:-.045em}
+.heroText>p{max-width:590px;font-size:1.08rem;line-height:1.7}
+.sectionHeader h2,.newsletter h2,.businessContent h2{
+    font-size:clamp(2.25rem,4vw,4.25rem);font-weight:700;line-height:1.02;letter-spacing:-.04em
+}
+.sectionHeader p,.newsletterLabel,.businessLabel,.reviewSectionLabel,.reviewEyebrow{
+    color:#8d8d89;font-size:.9rem;font-weight:650
+}
+.setupGrid{gap:1px;overflow:hidden;border:1px solid var(--border);border-radius:0;background:var(--border)}
+.setupCard{border:0;border-radius:0;background:#080808}
+.setupCard h3{letter-spacing:.04em}
+.reviewCard,.newsletter,.reviewSideCard,.reviewCallout,.reviewVideoFrame,.relatedReview,.reviewPrice{border-radius:2px}
+.primary,.secondary,.youtubeButton,.discordButton,.reviewBuyLink,.businessButtons a{border-radius:2px}
+.reviewHero{min-height:650px;grid-template-columns:minmax(0,.9fr) minmax(420px,1.1fr);gap:72px}
+.reviewHero h1{max-width:760px;font-size:clamp(3rem,5vw,5.4rem);font-weight:720;line-height:.98;letter-spacing:-.045em}
+.reviewDeck{max-width:720px;font-size:clamp(1.18rem,1.7vw,1.55rem);font-weight:560;line-height:1.5;letter-spacing:-.015em}
+.reviewHeroMedia::after,.reviewMediaBadge{display:none}
+.reviewQuickFacts{border-radius:0}
+.reviewQuickFacts article span{letter-spacing:.02em;text-transform:none}
+.reviewMain>h2,.reviewVideoHeading h2,.reviewSpecs h2{
+    font-size:clamp(2rem,3.5vw,3.5rem);font-weight:700;letter-spacing:-.035em
+}
+@media(max-width:900px){.hero{min-height:auto}.reviewHero{grid-template-columns:1fr;gap:42px}}
+@media(max-width:700px){
+    header nav{border-radius:0}
+    .hero h1{font-size:clamp(3rem,13vw,4.4rem)}
+    .reviewHero h1{font-size:clamp(2.8rem,13vw,4.15rem)}
 }
