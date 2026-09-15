@@ -3805,3 +3805,98 @@ header nav{border-width:0 0 1px;border-radius:0;background:#050505}
     .hero h1{font-size:clamp(3rem,13vw,4.4rem)}
     .reviewHero h1{font-size:clamp(2.8rem,13vw,4.15rem)}
 }
+
+/* Personal publication layout — deliberately avoids landing-page patterns. */
+.hero{
+    width:min(1380px,calc(100% - 56px));
+    max-width:none;
+    min-height:auto;
+    grid-template-columns:minmax(0,1.18fr) minmax(380px,.82fr);
+    gap:clamp(46px,6vw,100px);
+    padding:178px 0 110px;
+    align-items:end;
+}
+.heroImage{order:-1;justify-content:flex-start}
+.heroImage img{
+    width:100%;height:clamp(520px,62vh,720px);border-radius:0;
+    object-fit:cover;object-position:center 38%;filter:grayscale(100%) contrast(1.03)
+}
+.heroText{max-width:540px;padding-bottom:18px}
+.hero h1{font-size:clamp(3.4rem,5.1vw,5.9rem);font-weight:650;line-height:.96}
+.heroText>p{font-size:1rem;line-height:1.65}
+.heroButtons{gap:24px;align-items:center}
+.heroButtons .primary,.heroButtons .secondary{
+    min-height:auto;padding:4px 0;border:0;border-bottom:1px solid currentColor;
+    background:transparent;color:#f4f4f1;font-weight:650
+}
+.about,.reviews,.setup,.business{width:min(1180px,calc(100% - 56px));max-width:none;padding:100px 0}
+.about{grid-template-columns:280px minmax(0,680px);justify-content:space-between}
+.aboutText{padding-top:0;font-size:1.08rem;line-height:1.85}
+.reviews .sectionHeader,.setup .sectionHeader{display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--border);padding-bottom:20px}
+.reviews .sectionHeader p,.setup .sectionHeader p{order:2;margin:0}
+.reviews .sectionHeader h2,.setup .sectionHeader h2{font-size:clamp(2rem,3vw,3rem)}
+.reviewGrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 24px;margin-top:34px}
+.reviewCard,.reviewCard:not(.skeletonCard),.reviewCard.card-visible{
+    border:0;background:transparent;border-radius:0;overflow:visible
+}
+.reviewCardLink{display:block}
+.reviewThumbnail,.reviewThumbnail img{border-radius:0}
+.reviewInfo{padding:17px 0 0}
+.reviewInfo h3{font-size:1.3rem;line-height:1.18;letter-spacing:-.02em}
+.reviewSummary{margin-top:8px;font-size:.92rem;line-height:1.5}
+.reviewMeta{margin-top:13px;padding-top:0;border:0;font-size:.78rem}
+.setupGrid{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:34px}
+.setupCard,.setupCard--half{grid-column:auto!important;padding:34px 38px}
+.setupCard h3{font-size:.9rem;font-weight:700;text-transform:none;letter-spacing:.02em}
+.setupCard li{padding:10px 0}
+.newsletter{
+    width:min(1180px,calc(100% - 56px));margin:40px auto 100px;padding:64px 0;
+    border-width:1px 0;border-radius:0;background:transparent
+}
+.business{grid-template-columns:minmax(320px,.7fr) minmax(0,1fr);gap:80px}
+.businessImage img{border-radius:0;filter:grayscale(100%)}
+.businessOverlay{display:none}
+
+.reviewPage{width:min(1180px,calc(100% - 56px));max-width:none;padding:170px 0 90px}
+.reviewHero{display:flex;min-height:auto;gap:54px;align-items:stretch;flex-direction:column}
+.reviewHeroCopy{max-width:900px}
+.reviewBack{margin-bottom:64px;font-weight:550}
+.reviewHero h1{max-width:900px;font-size:clamp(3.2rem,6.2vw,6.3rem);font-weight:650}
+.reviewDeck{max-width:800px;font-size:clamp(1.25rem,2vw,1.75rem);font-weight:520}
+.reviewIntro{font-size:1rem;line-height:1.7}
+.reviewActions .primary,.reviewActions .secondary{
+    padding:3px 0;border:0;border-bottom:1px solid currentColor;background:transparent;color:#f4f4f1
+}
+.reviewHeroMedia{width:100%;border-width:1px 0;border-radius:0;background:transparent}
+.reviewHeroMedia img{border-radius:0}
+.reviewQuickFacts{margin:0 0 110px;border-width:0 0 1px}
+.reviewQuickFacts article{padding:24px 4px;background:transparent}
+.reviewContent{grid-template-columns:minmax(0,1fr) 290px;gap:90px}
+.reviewCallout{padding:30px 0;border-width:1px 0;border-radius:0;background:transparent}
+.reviewSideCard{padding:26px 0;border-width:1px 0 0;border-radius:0;background:transparent}
+.reviewSideCard:first-child{border-top:0;padding-top:0}
+.reviewPrice{padding:18px 0;border-width:1px 0;border-radius:0;background:transparent}
+.reviewBuyLink{justify-content:flex-start;padding:4px 0;border-bottom:1px solid #fff;border-radius:0;background:transparent;color:#fff}
+.reviewVideoFrame{border-radius:0}
+
+@media(max-width:900px){
+    .hero{grid-template-columns:1fr;padding-top:132px}
+    .heroImage{order:0}
+    .heroImage img{height:min(115vw,650px)}
+    .heroText{max-width:680px;padding:0}
+    .about{grid-template-columns:1fr;gap:34px}
+    .reviewGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .business{grid-template-columns:1fr;gap:42px}
+    .reviewContent{grid-template-columns:1fr}
+    .reviewSidebar{position:static;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+}
+@media(max-width:620px){
+    .hero,.about,.reviews,.setup,.business,.newsletter,.reviewPage{width:min(100% - 30px,1180px)}
+    .hero{padding:116px 0 72px}
+    .heroImage img{height:118vw;max-height:590px}
+    .reviewGrid,.setupGrid{grid-template-columns:1fr}
+    .reviews .sectionHeader,.setup .sectionHeader{display:block}
+    .reviews .sectionHeader p,.setup .sectionHeader p{margin-bottom:8px}
+    .reviewSidebar{grid-template-columns:1fr}
+    .reviewQuickFacts{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
