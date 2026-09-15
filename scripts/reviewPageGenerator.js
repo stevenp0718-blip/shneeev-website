@@ -171,7 +171,7 @@ function renderReviewPage(video, data, productName, reviewPath) {
 <header>
 <nav>
 <a class="brand" href="../../">
-<img alt="SHNEEEV" decoding="async" height="720" src="../../assets/profile-480.webp" width="480">
+<img alt="SHNEEEV brand mark" decoding="async" height="256" src="../../assets/brand-mark.webp" width="256">
 <div><h3>SHNEEEV</h3><span>Equipment Reviews</span></div>
 </a>
 <ul>

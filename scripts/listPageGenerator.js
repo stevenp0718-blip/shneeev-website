@@ -132,7 +132,7 @@ ${link}
 <div class="gradient gradient2"></div><div class="gradient gradient3"></div><div class="noise"></div>
 </div>
 <header><nav>
-<a class="brand" href="../../"><img alt="SHNEEEV" decoding="async" height="720" src="../../assets/profile-480.webp" width="480"><div><h3>SHNEEEV</h3><span>Equipment Reviews</span></div></a>
+<a class="brand" href="../../"><img alt="SHNEEEV brand mark" decoding="async" height="256" src="../../assets/brand-mark.webp" width="256"><div><h3>SHNEEEV</h3><span>Equipment Reviews</span></div></a>
 <ul><li><a href="../../#setup">Setup</a></li><li><a href="../../#reviews">Reviews</a></li><li><a href="../../#contact">Contact</a></li></ul>
 <form class="reviewSearch" role="search" action="/search/" method="get">
 <label class="srOnly" for="review-search">Search published reviews and guides</label>
