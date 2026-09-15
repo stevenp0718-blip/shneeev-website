@@ -240,7 +240,6 @@ My testing notes, the full video, what comes in the box, and whether I’d buy i
 <div class="reviewCallout">
 <span>SHNEEEV Scale</span>
 <strong class="reviewScaleResult">${verdict}</strong>
-<p>${escapeHtml(data.shortVerdict)}</p>
 </div>
 <div id="video-review" class="reviewVideo">
 <div class="reviewVideoHeading">
