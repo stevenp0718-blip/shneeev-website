@@ -209,7 +209,6 @@ function renderReviewPage(video, data, productName, reviewPath) {
 <section class="reviewHero">
 <div class="reviewHeroCopy">
 <a class="reviewBack" href="../../#reviews">&larr; All reviews</a>
-<p class="reviewEyebrow">${escapeHtml(categoryLabel)} review</p>
 <h1>${escapeHtml(productName)}</h1>
 <p class="reviewDeck">${escapeHtml(data.shortVerdict)}</p>
 <p class="reviewIntro">
@@ -227,7 +226,6 @@ My testing notes, the full video, what comes in the box, and whether I’d buy i
 </div>
 <a class="reviewHeroMedia" href="${escapeAttribute(video.url)}" target="_blank" rel="noopener noreferrer" aria-label="Watch the ${escapeAttribute(productName)} review on YouTube">
 <img src="${thumbnail}" alt="${escapeAttribute(productName)} featured in the SHNEEEV review" width="1280" height="720" fetchpriority="high">
-<span class="reviewMediaBadge">HANDS-ON REVIEW</span>
 </a>
 </section>
 <section class="reviewQuickFacts" aria-label="${escapeAttribute(productName)} review facts">
@@ -238,11 +236,7 @@ My testing notes, the full video, what comes in the box, and whether I’d buy i
 </section>
 <section class="reviewContent">
 <article class="reviewMain">
-<p class="reviewSectionLabel">The short version</p>
 <h2>${escapeHtml(data.shortVerdict)}</h2>
-<p>
-The video below has the testing and the details behind my verdict.
-</p>
 <div class="reviewCallout">
 <span>SHNEEEV Scale</span>
 <strong class="reviewScaleResult">${verdict}</strong>
@@ -250,7 +244,7 @@ The video below has the testing and the details behind my verdict.
 </div>
 <div id="video-review" class="reviewVideo">
 <div class="reviewVideoHeading">
-<div><p class="reviewSectionLabel">Full video</p><h2>Watch the review</h2></div>
+<div><h2>Watch the review</h2></div>
 <a href="${escapeAttribute(video.url)}" target="_blank" rel="noopener noreferrer">Open on YouTube &nearr;</a>
 </div>
 <div class="reviewVideoFrame">
@@ -261,7 +255,6 @@ allowfullscreen></iframe>
 </div>
 </div>
 <div class="reviewSpecs">
-<p class="reviewSectionLabel">Product information</p>
 <h2>Specs and box contents</h2>
 <dl>
 ${specificationRows}
@@ -275,30 +268,15 @@ Product information:
 </article>
 <aside class="reviewSidebar">
 <div class="reviewSideCard">
-<p class="reviewSectionLabel">At a glance</p>
-<ul>
-<li>${verdict} on the SHNEEEV Scale</li>
-<li>${escapeHtml(category)} review</li>
-<li>${escapeHtml(video.duration)} hands-on video</li>
-<li>Official buying link included</li>
-</ul>
-</div>
-<div class="reviewSideCard">
-<p class="reviewSectionLabel">Price and availability</p>
 <div class="reviewPrice"><span>${data.price ? "LISTED PRICE" : "CURRENT PRICE"}</span>${priceMarkup}</div>
-<p>Availability and pricing can change. Check the manufacturer for the current status.</p>
 <a class="reviewBuyLink" href="${escapeAttribute(data.productUrl)}" target="_blank" rel="noopener noreferrer">View official product page &nearr;</a>
 <small>No affiliate link. I receive no commission or payment if you purchase through this link.</small>
-</div>
-<div class="reviewSideCard">
-<p class="reviewSectionLabel">About my testing</p>
-<p>I’ve been trying gaming peripherals since 2019 and have used close to 100 different mouse shapes. I started publishing reviews in July 2026.</p>
 </div>
 </aside>
 </section>
 </main>
 <footer>
-<div class="footerLeft"><h3>SHNEEEV</h3><p>Honest reviews.</p></div>
+<div class="footerLeft"><h3>SHNEEEV</h3></div>
 <div class="footerRight">
 <a href="../../">Home</a><a href="../../#setup">Setup</a>
 <a href="../../#reviews">Reviews</a><a href="../../#contact">Contact</a>

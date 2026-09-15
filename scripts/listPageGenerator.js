@@ -148,25 +148,23 @@ ${link}
 <section class="rankedHero">
 <div class="rankedHeroCopy">
 <a class="reviewBack" href="../../#reviews">&larr; All videos</a>
-<p class="reviewEyebrow">${escapeHtml(category.toUpperCase())}</p>
 <h1>${escapeHtml(pageTitle)}.</h1>
 <p class="reviewDeck">${escapeHtml(intro)}</p>
 <div class="reviewByline"><span>By SHNEEEV</span><time datetime="${machineDate}">${displayDate}</time><span>${escapeHtml(video.duration)} video</span></div>
 <div class="reviewActions"><a class="primary" href="#ranked-list">See the ranking</a><a class="secondary" href="#video">Watch the video</a></div>
 </div>
 <a class="reviewHeroMedia" href="${escapeHtml(video.url)}" target="_blank" rel="noopener noreferrer" aria-label="Watch ${escapeHtml(pageTitle)} on YouTube">
-<img src="${thumbnail}" alt="${escapeHtml(pageTitle)} video thumbnail" width="1280" height="720" fetchpriority="high"><span class="reviewMediaBadge">RANKED GUIDE</span>
-</a>
+<img src="${thumbnail}" alt="${escapeHtml(pageTitle)} video thumbnail" width="1280" height="720" fetchpriority="high"></a>
 </section>
-<section class="rankedIntro"><p class="reviewSectionLabel">THE LIST</p><h2>${data.items.length} products. One ranking.</h2><p>These are ordered from number one down, with direct product links wherever purchasing information is available.</p></section>
+<section class="rankedIntro"><h2>The products I’m watching.</h2><p>They’re ordered from the one I’m most interested in, with product links where available.</p></section>
 <section class="rankedList" id="ranked-list">${itemMarkup}</section>
 <section class="rankedVideo" id="video">
-<div class="reviewVideoHeading"><div><p class="reviewSectionLabel">FULL VIDEO</p><h2>Hear the complete breakdown.</h2></div><a href="${escapeHtml(video.url)}" target="_blank" rel="noopener noreferrer">Open on YouTube &nearr;</a></div>
+<div class="reviewVideoHeading"><div><h2>Watch the video</h2></div><a href="${escapeHtml(video.url)}" target="_blank" rel="noopener noreferrer">Open on YouTube &nearr;</a></div>
 <div class="reviewVideoFrame"><iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}" title="${escapeHtml(pageTitle)} by SHNEEEV" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
 </section>
 <aside class="rankedDisclosure"><strong>LINK DISCLOSURE</strong><p>These are not affiliate links. I currently receive no commission or payment if you purchase through a link on this page.</p></aside>
 </main>
-<footer><div class="footerLeft"><h3>SHNEEEV</h3><p>Honest opinions. No hype.</p></div><div class="footerRight"><a href="../../">Home</a><a href="../../#reviews">Reviews</a><a href="../../#contact">Contact</a></div></footer>
+<footer><div class="footerLeft"><h3>SHNEEEV</h3></div><div class="footerRight"><a href="../../">Home</a><a href="../../#reviews">Reviews</a><a href="../../#contact">Contact</a></div></footer>
 <script src="../../script.js?v=20260809-ranked-guides"></script>
 </body></html>`;
 }

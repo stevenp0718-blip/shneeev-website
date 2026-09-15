@@ -394,7 +394,7 @@ function splitTitle(title) {
     const parts = title.split(/\s[-–—]\s/, 2);
     return {
         title: parts[0].trim(),
-        summary: parts[1]?.trim() || "Thoughts, testing, and an honest verdict."
+        summary: parts[1]?.trim() || "Watch my full review."
     };
 }
 
