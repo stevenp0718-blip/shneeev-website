@@ -128,7 +128,9 @@ nav ul a{font-size:.82rem;font-weight:500;color:#cccac4}
 .setupCard,.setupCard--half{grid-column:auto!important;padding:34px 38px;border:0;border-right:1px solid var(--pub-rule);border-bottom:1px solid var(--pub-rule);border-radius:0;background:transparent}
 .setupCard:nth-child(even){border-right:0}
 .setupCard h3{font:600 .76rem/1.4 Consolas,"Courier New",monospace;letter-spacing:.08em}
-.setupCard li{padding:10px 0;color:#c8c6c0}
+.setupCard ul{margin:0;padding:0}
+.setupCard li{padding:10px 0 10px 26px;color:#c8c6c0}
+.setupCard li::before{left:3px;top:1.12rem;width:5px;height:5px;transform:none;background:var(--pub-muted)}
 .affiliateDisclosure{border-radius:0;background:transparent}
 
 .newsletter{
