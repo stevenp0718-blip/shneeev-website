@@ -1,5 +1,15 @@
 [
   {
+    "title": "GLSSWRKS Zofia | I Was Wrong About Control Pads",
+    "url": "https://www.youtube.com/watch?v=jgmy5ZrAERg",
+    "thumbnail": "https://i.ytimg.com/vi/jgmy5ZrAERg/maxresdefault.jpg",
+    "published": "2026-09-22T06:34:29Z",
+    "duration": "10:52",
+    "reviewPath": "reviews/glsswrks-zofia/",
+    "verdict": "pass",
+    "contentType": "review"
+  },
+  {
     "title": "G-Wolves HTS Plus Pro 8K | Are These the Future of Mouse Switches?",
     "url": "https://www.youtube.com/watch?v=qpj-4aWyn-A",
     "thumbnail": "https://i.ytimg.com/vi/qpj-4aWyn-A/maxresdefault.jpg",
@@ -17,16 +27,6 @@
     "duration": "11:34",
     "reviewPath": "reviews/kyomi-yuyo/",
     "verdict": "fail",
-    "contentType": "review"
-  },
-  {
-    "title": "Tekkusai Apex | New Fastest Glasspad",
-    "url": "https://www.youtube.com/watch?v=R_UYJF2eEkI",
-    "thumbnail": "https://i.ytimg.com/vi/R_UYJF2eEkI/maxresdefault.jpg",
-    "published": "2026-09-01T06:57:08Z",
-    "duration": "7:46",
-    "reviewPath": "reviews/tekkusai-apex/",
-    "verdict": "pass",
     "contentType": "review"
   }
 ]
