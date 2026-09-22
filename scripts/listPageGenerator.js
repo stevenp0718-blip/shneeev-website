@@ -115,7 +115,7 @@ ${link}
 <link rel="stylesheet" href="../../style.css?v=20260912-editorial">
 <link rel="stylesheet" href="../list.css?v=20260808-1">
 <link rel="stylesheet" href="../../publication.css?v=20260922-creator-polish">
-<link rel="icon" href="../../mascot-favicon.png" type="image/png">
+<link rel="icon" href="../../mascot-glow-favicon.png" type="image/png">
 <link rel="canonical" href="https://shneeev.com/${pagePath}">
 <meta name="theme-color" content="#080808">
 <meta property="og:type" content="article">
@@ -132,7 +132,7 @@ ${link}
 <div class="gradient gradient2"></div><div class="gradient gradient3"></div><div class="noise"></div>
 </div>
 <header><nav>
-<a class="brand" href="../../"><img alt="SHNEEEV mascot" decoding="async" height="256" src="../../assets/mascot-portrait.png" width="256"><div><h3>SHNEEEV</h3><span>Equipment Reviews</span></div></a>
+<a class="brand" href="../../"><img alt="SHNEEEV mascot" decoding="async" height="256" src="../../assets/mascot-glow.png" width="256"><div><h3>SHNEEEV</h3><span>Equipment Reviews</span></div></a>
 <ul><li><a href="../../#setup">Setup</a></li><li><a href="../../#reviews">Reviews</a></li><li><a href="../../#contact">Contact</a></li></ul>
 <form class="reviewSearch" role="search" action="/search/" method="get">
 <label class="srOnly" for="review-search">Search published reviews and guides</label>

@@ -151,7 +151,7 @@ function renderReviewPage(video, data, productName, reviewPath) {
 <link rel="preload" as="image" href="${thumbnail}">
 <link rel="stylesheet" href="../../style.css?v=20260912-editorial">
 <link rel="stylesheet" href="../../publication.css?v=20260922-creator-polish">
-<link rel="icon" href="../../mascot-favicon.png" type="image/png">
+<link rel="icon" href="../../mascot-glow-favicon.png" type="image/png">
 <link rel="canonical" href="https://shneeev.com/${reviewPath}">
 <meta name="theme-color" content="#080808">
 <meta property="og:type" content="article">
@@ -171,7 +171,7 @@ function renderReviewPage(video, data, productName, reviewPath) {
 <header>
 <nav>
 <a class="brand" href="../../">
-<img alt="SHNEEEV mascot" decoding="async" height="256" src="../../assets/mascot-portrait.png" width="256">
+<img alt="SHNEEEV mascot" decoding="async" height="256" src="../../assets/mascot-glow.png" width="256">
 <div><h3>SHNEEEV</h3><span>Equipment Reviews</span></div>
 </a>
 <ul>
