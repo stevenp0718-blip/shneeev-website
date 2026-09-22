@@ -136,7 +136,7 @@ nav ul a{font-size:.82rem;font-weight:500;color:#cccac4}
 .newsletter{
     width:min(1180px,calc(100% - 56px));
     margin:20px auto 110px;
-    padding:64px 0;
+    padding:64px clamp(32px,4.5vw,64px);
     display:grid;
     grid-template-columns:minmax(0,1fr) minmax(0,1fr);
     align-items:start;
@@ -149,7 +149,7 @@ nav ul a{font-size:.82rem;font-weight:500;color:#cccac4}
     overflow:visible
 }
 .newsletterCopy,.newsletterSignup{min-width:0}
-.newsletter h2{max-width:10ch;margin:0 0 22px;font-size:clamp(2.8rem,4.5vw,4.5rem);line-height:1.05}
+.newsletter h2{max-width:11ch;margin:0 0 22px;font-size:clamp(2.8rem,4vw,4.2rem);line-height:1.05}
 .newsletterCopy>p:last-child{max-width:35ch;margin:0;font-size:1rem;line-height:1.65}
 .newsletterForm{display:flex;flex-direction:column;align-items:stretch;gap:12px}
 .newsletterForm input[type=email]{width:100%;min-height:56px;border-radius:0;background:transparent}
@@ -228,7 +228,7 @@ footer{border-top:1px solid var(--pub-rule)}
     .reviewCard:first-child .reviewCardLink{grid-template-columns:1fr}
     .reviewContent{grid-template-columns:1fr}
     .reviewSidebar{position:static;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-    .newsletter{grid-template-columns:1fr;gap:32px;padding:52px 0}
+    .newsletter{grid-template-columns:1fr;gap:32px;padding:52px 32px}
     .newsletter h2{max-width:none}
 }
 
@@ -241,6 +241,6 @@ footer{border-top:1px solid var(--pub-rule)}
     .reviewSidebar{grid-template-columns:1fr}
     .reviewQuickFacts{grid-template-columns:repeat(2,minmax(0,1fr))}
     .reviewHero h1{font-size:clamp(3.6rem,18vw,5.7rem)}
-    .newsletter{margin:10px auto 80px;padding:40px 0}
+    .newsletter{margin:10px auto 80px;padding:40px 20px}
     .newsletter h2{font-size:clamp(2.7rem,11vw,4rem)}
 }
