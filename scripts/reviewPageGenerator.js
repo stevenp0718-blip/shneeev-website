@@ -150,7 +150,7 @@ function renderReviewPage(video, data, productName, reviewPath) {
 <meta name="description" content="${escapeHtml(data.shortVerdict)} A hands-on SHNEEEV review with verdict, video, included extras, and official buying information.">
 <link rel="preload" as="image" href="${thumbnail}">
 <link rel="stylesheet" href="../../style.css?v=20260912-editorial">
-<link rel="stylesheet" href="../../publication.css?v=20260915-1">
+<link rel="stylesheet" href="../../publication.css?v=20260922-creator-layout">
 <link rel="icon" href="../../favicon-mascot.png" type="image/png">
 <link rel="canonical" href="https://shneeev.com/${reviewPath}">
 <meta name="theme-color" content="#080808">

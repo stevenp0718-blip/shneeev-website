@@ -149,3 +149,21 @@ h2{
         flex-direction:column;
     }
 }
+
+/* Match the centered layout used across the rest of the site. */
+html,body{background:#181818}
+.legalNav,.legalMain,.legalFooter{
+    width:min(1040px,calc(100% - 48px));
+    max-width:none;background:#101010
+}
+.legalNav{padding:30px 72px;border-bottom:1px solid var(--border)}
+.legalMain{padding:62px 72px 85px}
+.legalFooter{padding:28px 72px;border-top:1px solid var(--border)}
+.legalHeader h1{
+    font:700 clamp(2.35rem,5vw,4rem)/1.07 Arial,Helvetica,sans-serif;
+    letter-spacing:-.05em
+}
+@media(max-width:700px){
+    .legalNav,.legalMain,.legalFooter{width:min(100% - 20px,1040px)}
+    .legalNav,.legalMain,.legalFooter{padding-left:26px;padding-right:26px}
+}
