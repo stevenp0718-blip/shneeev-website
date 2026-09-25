@@ -1,5 +1,12 @@
 [
   {
+    "title": "I Tried the Finalmouse SLX &amp; Logitech PRO X3 SUPERSTRIKE",
+    "url": "https://www.youtube.com/watch?v=N0S4I5AzfWY",
+    "thumbnail": "https://i.ytimg.com/vi/N0S4I5AzfWY/maxresdefault.jpg",
+    "published": "2026-09-25T09:39:12Z",
+    "duration": "13:46"
+  },
+  {
     "title": "GLSSWRKS Zofia | I Was Wrong About Control Pads",
     "url": "https://www.youtube.com/watch?v=jgmy5ZrAERg",
     "thumbnail": "https://i.ytimg.com/vi/jgmy5ZrAERg/maxresdefault.jpg",
@@ -17,16 +24,6 @@
     "duration": "16:20",
     "reviewPath": "reviews/g-wolves-hts-plus-pro-8k/",
     "verdict": "pass",
-    "contentType": "review"
-  },
-  {
-    "title": "Kyomi Yuyo | Overhyped?",
-    "url": "https://www.youtube.com/watch?v=7nooweDNXv0",
-    "thumbnail": "https://i.ytimg.com/vi/7nooweDNXv0/maxresdefault.jpg",
-    "published": "2026-09-08T10:38:59Z",
-    "duration": "11:34",
-    "reviewPath": "reviews/kyomi-yuyo/",
-    "verdict": "fail",
     "contentType": "review"
   }
 ]
