@@ -1,5 +1,12 @@
 [
   {
+    "title": "I tried the WALLHACK MOUSE",
+    "url": "https://www.youtube.com/watch?v=dVuJrAtQOoc",
+    "thumbnail": "https://i.ytimg.com/vi/dVuJrAtQOoc/maxresdefault.jpg",
+    "published": "2026-09-26T11:03:36Z",
+    "duration": "10:40"
+  },
+  {
     "title": "I Tried the Finalmouse SLX &amp; Logitech PRO X3 SUPERSTRIKE",
     "url": "https://www.youtube.com/watch?v=N0S4I5AzfWY",
     "thumbnail": "https://i.ytimg.com/vi/N0S4I5AzfWY/maxresdefault.jpg",
@@ -13,16 +20,6 @@
     "published": "2026-09-22T06:34:29Z",
     "duration": "10:52",
     "reviewPath": "reviews/glsswrks-zofia/",
-    "verdict": "pass",
-    "contentType": "review"
-  },
-  {
-    "title": "G-Wolves HTS Plus Pro 8K | Are These the Future of Mouse Switches?",
-    "url": "https://www.youtube.com/watch?v=qpj-4aWyn-A",
-    "thumbnail": "https://i.ytimg.com/vi/qpj-4aWyn-A/maxresdefault.jpg",
-    "published": "2026-09-12T21:41:49Z",
-    "duration": "16:20",
-    "reviewPath": "reviews/g-wolves-hts-plus-pro-8k/",
     "verdict": "pass",
     "contentType": "review"
   }
