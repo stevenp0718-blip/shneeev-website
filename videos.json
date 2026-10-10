@@ -1,5 +1,15 @@
 [
   {
+    "title": "Finalmouse SLX | What a Disappointment.",
+    "url": "https://www.youtube.com/watch?v=m3mQZxsHmRM",
+    "thumbnail": "https://i.ytimg.com/vi/m3mQZxsHmRM/maxresdefault.jpg",
+    "published": "2026-10-10T11:55:26Z",
+    "duration": "15:03",
+    "reviewPath": "reviews/finalmouse-slx/",
+    "verdict": "fail",
+    "contentType": "review"
+  },
+  {
     "title": "I tried the WALLHACK MOUSE",
     "url": "https://www.youtube.com/watch?v=dVuJrAtQOoc",
     "thumbnail": "https://i.ytimg.com/vi/dVuJrAtQOoc/maxresdefault.jpg",
@@ -12,15 +22,5 @@
     "thumbnail": "https://i.ytimg.com/vi/N0S4I5AzfWY/maxresdefault.jpg",
     "published": "2026-09-25T09:39:12Z",
     "duration": "13:46"
-  },
-  {
-    "title": "GLSSWRKS Zofia | I Was Wrong About Control Pads",
-    "url": "https://www.youtube.com/watch?v=jgmy5ZrAERg",
-    "thumbnail": "https://i.ytimg.com/vi/jgmy5ZrAERg/maxresdefault.jpg",
-    "published": "2026-09-22T06:34:29Z",
-    "duration": "10:52",
-    "reviewPath": "reviews/glsswrks-zofia/",
-    "verdict": "pass",
-    "contentType": "review"
   }
 ]
