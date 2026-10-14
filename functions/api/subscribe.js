@@ -65,12 +65,12 @@ export async function onRequestPost({ request, env }) {
                 "Idempotency-Key": `newsletter-confirm-${emailHash}-${new Date().toISOString().slice(0, 10)}`
             },
             body: JSON.stringify({
-                from: "SHNEEEV <updates@updates.shneeev.com>",
+                from: "shneeev <updates@updates.shneeev.com>",
                 reply_to: "business@shneeev.com",
                 to: [email],
-                subject: "Confirm your SHNEEEV review alerts",
+                subject: "Confirm your shneeev review alerts",
                 html: confirmationEmail(confirmUrl),
-                text: `Confirm your SHNEEEV review alerts: ${confirmUrl}\n\nThis link expires in 24 hours. If you did not request this, ignore this email.`
+                text: `Confirm your shneeev review alerts: ${confirmUrl}\n\nThis link expires in 24 hours. If you did not request this, ignore this email.`
             })
         });
 
@@ -118,5 +118,5 @@ function randomToken() {
 }
 
 function confirmationEmail(confirmUrl) {
-    return `<!doctype html><html><body style="margin:0;background:#07110b;color:#f4f8f5;font-family:Arial,sans-serif"><div style="max-width:560px;margin:auto;padding:48px 24px"><p style="color:#6fe39a;font-weight:700;letter-spacing:.18em">SHNEEEV</p><h1 style="font-size:32px;line-height:1.1">Confirm your review alerts.</h1><p style="color:#b4c0b8;line-height:1.7">Click below to confirm that you want one email whenever a new SHNEEEV upload or written review goes live.</p><p style="margin:32px 0"><a href="${confirmUrl}" style="display:inline-block;background:#65d88f;color:#07110b;padding:15px 22px;border-radius:999px;font-weight:700;text-decoration:none">Confirm My Email</a></p><p style="color:#7f8d84;font-size:13px;line-height:1.6">This link expires in 24 hours. If you did not request this, ignore this email and you will not be subscribed.</p></div></body></html>`;
+    return `<!doctype html><html><body style="margin:0;background:#07110b;color:#f4f8f5;font-family:Arial,sans-serif"><div style="max-width:560px;margin:auto;padding:48px 24px"><p style="color:#6fe39a;font-weight:700;letter-spacing:.18em">shneeev</p><h1 style="font-size:32px;line-height:1.1">Confirm your review alerts.</h1><p style="color:#b4c0b8;line-height:1.7">Click below to confirm that you want one email whenever a new shneeev upload or written review goes live.</p><p style="margin:32px 0"><a href="${confirmUrl}" style="display:inline-block;background:#65d88f;color:#07110b;padding:15px 22px;border-radius:999px;font-weight:700;text-decoration:none">Confirm My Email</a></p><p style="color:#7f8d84;font-size:13px;line-height:1.6">This link expires in 24 hours. If you did not request this, ignore this email and you will not be subscribed.</p></div></body></html>`;
 }

@@ -6,7 +6,7 @@ const AUTO_MARKER = "<!-- AUTO-GENERATED RANKED GUIDE PAGE -->";
 
 function parseListDescription(description = "") {
     const block = description.match(
-        /SHNEEEV\s+(?:RANKED\s+)?LIST\s*([\s\S]*?)(?:END\s+SHNEEEV\s+(?:RANKED\s+)?LIST|$)/i
+        /shneeev\s+(?:RANKED\s+)?LIST\s*([\s\S]*?)(?:END\s+shneeev\s+(?:RANKED\s+)?LIST|$)/i
     );
     if (!block) return null;
 
@@ -109,7 +109,7 @@ ${link}
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${escapeHtml(pageTitle)} | SHNEEEV</title>
+<title>${escapeHtml(pageTitle)} | shneeev</title>
 <meta name="description" content="${escapeHtml(intro)}">
 <link rel="preload" as="image" href="${thumbnail}">
 <link rel="stylesheet" href="../../style.css?v=20260912-editorial">
@@ -119,7 +119,7 @@ ${link}
 <link rel="canonical" href="https://shneeev.com/${pagePath}">
 <meta name="theme-color" content="#080808">
 <meta property="og:type" content="article">
-<meta property="og:title" content="${escapeHtml(pageTitle)} | SHNEEEV">
+<meta property="og:title" content="${escapeHtml(pageTitle)} | shneeev">
 <meta property="og:description" content="${escapeHtml(intro)}">
 <meta property="og:url" content="https://shneeev.com/${pagePath}">
 <meta property="og:image" content="${thumbnail}">
@@ -132,7 +132,7 @@ ${link}
 <div class="gradient gradient2"></div><div class="gradient gradient3"></div><div class="noise"></div>
 </div>
 <header><nav>
-<a class="brand" href="../../"><img alt="SHNEEEV mascot" decoding="async" height="256" src="../../assets/mascot-glow.png" width="256"><div><h3>SHNEEEV</h3><span>Equipment Reviews</span></div></a>
+<a class="brand" href="../../"><img alt="shneeev mascot" decoding="async" height="256" src="../../assets/mascot-glow.png" width="256"><div><h3>shneeev</h3><span>Equipment Reviews</span></div></a>
 <ul><li><a href="../../#setup">Setup</a></li><li><a href="../../#reviews">Reviews</a></li><li><a href="../../#contact">Contact</a></li></ul>
 <form class="reviewSearch" role="search" action="/search/" method="get">
 <label class="srOnly" for="review-search">Search published reviews and guides</label>
@@ -140,7 +140,7 @@ ${link}
 <input id="review-search" name="q" type="search" placeholder="Search reviews" autocomplete="off" enterkeyhint="search">
 </form>
 <div class="navActions">
-<a class="discordButton" href="https://discord.gg/pwGeBaGc2F" target="_blank" rel="noopener noreferrer" aria-label="Join the SHNEEEV Discord server" title="Join the SHNEEEV Discord"><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M19.54 5.34A16.65 16.65 0 0 0 15.44 4l-.5 1.02a15.36 15.36 0 0 0-5.87 0L8.56 4a16.7 16.7 0 0 0-4.11 1.35C1.85 9.17 1.14 12.9 1.5 16.58a16.8 16.8 0 0 0 5.03 2.54l1.23-1.68a10.8 10.8 0 0 1-1.93-.92l.47-.36c3.72 1.72 7.76 1.72 11.44 0l.47.36c-.62.37-1.27.68-1.94.92l1.23 1.68a16.7 16.7 0 0 0 5.03-2.54c.43-4.27-.73-7.97-2.99-11.24ZM8.84 14.34c-1.12 0-2.04-1.04-2.04-2.32s.9-2.32 2.04-2.32c1.15 0 2.06 1.05 2.04 2.32 0 1.28-.9 2.32-2.04 2.32Zm6.33 0c-1.12 0-2.04-1.04-2.04-2.32s.9-2.32 2.04-2.32c1.15 0 2.06 1.05 2.04 2.32 0 1.28-.9 2.32-2.04 2.32Z"/></svg><span>Discord</span></a>
+<a class="discordButton" href="https://discord.gg/pwGeBaGc2F" target="_blank" rel="noopener noreferrer" aria-label="Join the shneeev Discord server" title="Join the shneeev Discord"><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M19.54 5.34A16.65 16.65 0 0 0 15.44 4l-.5 1.02a15.36 15.36 0 0 0-5.87 0L8.56 4a16.7 16.7 0 0 0-4.11 1.35C1.85 9.17 1.14 12.9 1.5 16.58a16.8 16.8 0 0 0 5.03 2.54l1.23-1.68a10.8 10.8 0 0 1-1.93-.92l.47-.36c3.72 1.72 7.76 1.72 11.44 0l.47.36c-.62.37-1.27.68-1.94.92l1.23 1.68a16.7 16.7 0 0 0 5.03-2.54c.43-4.27-.73-7.97-2.99-11.24ZM8.84 14.34c-1.12 0-2.04-1.04-2.04-2.32s.9-2.32 2.04-2.32c1.15 0 2.06 1.05 2.04 2.32 0 1.28-.9 2.32-2.04 2.32Zm6.33 0c-1.12 0-2.04-1.04-2.04-2.32s.9-2.32 2.04-2.32c1.15 0 2.06 1.05 2.04 2.32 0 1.28-.9 2.32-2.04 2.32Z"/></svg><span>Discord</span></a>
 <a class="youtubeButton" href="https://youtube.com/@shneeev" target="_blank" rel="noopener noreferrer">YouTube</a>
 </div>
 </nav></header>
@@ -150,7 +150,7 @@ ${link}
 <a class="reviewBack" href="../../#reviews">&larr; All videos</a>
 <h1>${escapeHtml(pageTitle)}.</h1>
 <p class="reviewDeck">${escapeHtml(intro)}</p>
-<div class="reviewByline"><span>By SHNEEEV</span><time datetime="${machineDate}">${displayDate}</time><span>${escapeHtml(video.duration)} video</span></div>
+<div class="reviewByline"><span>By shneeev</span><time datetime="${machineDate}">${displayDate}</time><span>${escapeHtml(video.duration)} video</span></div>
 <div class="reviewActions"><a class="primary" href="#ranked-list">See the ranking</a><a class="secondary" href="#video">Watch the video</a></div>
 </div>
 <a class="reviewHeroMedia" href="${escapeHtml(video.url)}" target="_blank" rel="noopener noreferrer" aria-label="Watch ${escapeHtml(pageTitle)} on YouTube">
@@ -160,11 +160,11 @@ ${link}
 <section class="rankedList" id="ranked-list">${itemMarkup}</section>
 <section class="rankedVideo" id="video">
 <div class="reviewVideoHeading"><div><h2>Watch the video</h2></div><a href="${escapeHtml(video.url)}" target="_blank" rel="noopener noreferrer">Open on YouTube &nearr;</a></div>
-<div class="reviewVideoFrame"><iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}" title="${escapeHtml(pageTitle)} by SHNEEEV" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<div class="reviewVideoFrame"><iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}" title="${escapeHtml(pageTitle)} by shneeev" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
 </section>
 <aside class="rankedDisclosure"><strong>LINK DISCLOSURE</strong><p>These are not affiliate links. I currently receive no commission or payment if you purchase through a link on this page.</p></aside>
 </main>
-<footer><div class="footerLeft"><h3>SHNEEEV</h3></div><div class="footerRight"><a href="../../">Home</a><a href="../../#reviews">Reviews</a><a href="../../#contact">Contact</a></div></footer>
+<footer><div class="footerLeft"><h3>shneeev</h3></div><div class="footerRight"><a href="../../">Home</a><a href="../../#reviews">Reviews</a><a href="../../#contact">Contact</a></div></footer>
 <script src="../../script.js?v=20260809-ranked-guides"></script>
 </body></html>`;
 }

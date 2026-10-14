@@ -52,7 +52,7 @@ suggestionForm.addEventListener("submit", event => {
     const product = suggestionInput.value.trim();
     if (!product) return suggestionInput.focus();
     const subject = `Review suggestion: ${product}`;
-    const body = `Hi SHNEEEV,\n\nI'd like to suggest ${product} for a future review.\n\nThanks!`;
+    const body = `Hi shneeev,\n\nI'd like to suggest ${product} for a future review.\n\nThanks!`;
     window.location.href = `mailto:business@shneeev.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
 
@@ -78,7 +78,7 @@ function renderReviews(reviews) {
                             ${review.verdict ? `<span class="searchVerdict searchVerdict--${escapeHtml(review.verdict)}">${escapeHtml(review.verdict.toUpperCase())}</span>` : review.contentType === "ranked-list" ? '<span class="searchVerdict searchVerdict--guide">RANKED GUIDE</span>' : ""}
                         </div>
                         <h3>${escapeHtml(copy.title)}</h3>
-                        <p>${escapeHtml(copy.summary || "Read the full SHNEEEV review and verdict.")}</p>
+                        <p>${escapeHtml(copy.summary || "Read the full shneeev review and verdict.")}</p>
                         <span class="searchReadMore">Read Review <b aria-hidden="true">&#8594;</b></span>
                     </div>
                 </a>

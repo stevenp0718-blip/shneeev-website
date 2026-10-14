@@ -1,6 +1,6 @@
 /*
 ========================================
-SHNEEEV — Premium interactions
+shneeev — Premium interactions
 ========================================
 */
 
@@ -186,12 +186,12 @@ function showSearchSuggestions(dialog, reviews, searchedProduct = "") {
     const suggestionEmail = dialog.querySelector(".searchSuggestionEmail");
     const productName = searchedProduct || "a product";
     const subject = `Review suggestion: ${productName}`;
-    const body = `Hi SHNEEEV,\n\nI'd like to suggest ${productName} for a future review.\n\nThanks!`;
+    const body = `Hi shneeev,\n\nI'd like to suggest ${productName} for a future review.\n\nThanks!`;
 
     if (suggestionEmail) {
         suggestionEmail.href =
             `mailto:business@shneeev.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        suggestionEmail.setAttribute("aria-label", `Email SHNEEEV to suggest ${productName} for review`);
+        suggestionEmail.setAttribute("aria-label", `Email shneeev to suggest ${productName} for review`);
     }
 
     suggestions.innerHTML = reviews.length

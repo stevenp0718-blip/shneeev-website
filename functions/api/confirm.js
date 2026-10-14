@@ -43,7 +43,7 @@ export async function onRequestGet({ request, env }) {
 }
 
 function page(title, message, status = 200) {
-    const html = `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${title} | SHNEEEV</title><body style="margin:0;min-height:100vh;display:grid;place-items:center;background:#07110b;color:#f5f8f6;font-family:Arial,sans-serif"><main style="max-width:620px;padding:40px;text-align:center"><p style="color:#6fe39a;font-weight:800;letter-spacing:.2em">SHNEEEV</p><h1 style="font-size:clamp(38px,8vw,68px);margin:20px 0">${title}</h1><p style="color:#abb8af;line-height:1.7;font-size:18px">${message}</p><a href="/" style="display:inline-block;margin-top:24px;padding:14px 22px;border-radius:999px;background:#65d88f;color:#07110b;font-weight:700;text-decoration:none">Back to SHNEEEV</a></main></body></html>`;
+    const html = `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${title} | shneeev</title><body style="margin:0;min-height:100vh;display:grid;place-items:center;background:#07110b;color:#f5f8f6;font-family:Arial,sans-serif"><main style="max-width:620px;padding:40px;text-align:center"><p style="color:#6fe39a;font-weight:800;letter-spacing:.2em">shneeev</p><h1 style="font-size:clamp(38px,8vw,68px);margin:20px 0">${title}</h1><p style="color:#abb8af;line-height:1.7;font-size:18px">${message}</p><a href="/" style="display:inline-block;margin-top:24px;padding:14px 22px;border-radius:999px;background:#65d88f;color:#07110b;font-weight:700;text-decoration:none">Back to shneeev</a></main></body></html>`;
     return new Response(html, { status, headers: HEADERS });
 }
 

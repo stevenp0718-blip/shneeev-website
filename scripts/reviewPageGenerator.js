@@ -5,7 +5,7 @@ const AUTO_MARKER = "<!-- AUTO-GENERATED REVIEW PAGE -->";
 
 function parseReviewDescription(description = "") {
     const standardBlock = description.match(
-        /SHNEEEV\s+REVIEW\s*([\s\S]*?)(?:END\s+SHNEEEV\s+REVIEW|$)/i
+        /shneeev\s+REVIEW\s*([\s\S]*?)(?:END\s+shneeev\s+REVIEW|$)/i
     );
     const websiteAutomationBlock = description.match(
         /THIS\s+IS\s+USED\s+FOR\s+PAGE\s+AUTOMATION\s+ON\s+MY\s+WEBSITE[^\r\n]*\r?\n([\s\S]*?)$/i
@@ -146,8 +146,8 @@ function renderReviewPage(video, data, productName, reviewPath) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${escapeHtml(productName)} Review | SHNEEEV</title>
-<meta name="description" content="${escapeHtml(data.shortVerdict)} A hands-on SHNEEEV review with verdict, video, included extras, and official buying information.">
+<title>${escapeHtml(productName)} Review | shneeev</title>
+<meta name="description" content="${escapeHtml(data.shortVerdict)} A hands-on shneeev review with verdict, video, included extras, and official buying information.">
 <link rel="preload" as="image" href="${thumbnail}">
 <link rel="stylesheet" href="../../style.css?v=20260912-editorial">
 <link rel="stylesheet" href="../../publication.css?v=20260925-plain-type">
@@ -155,7 +155,7 @@ function renderReviewPage(video, data, productName, reviewPath) {
 <link rel="canonical" href="https://shneeev.com/${reviewPath}">
 <meta name="theme-color" content="#080808">
 <meta property="og:type" content="article">
-<meta property="og:title" content="${escapeHtml(productName)} Review | SHNEEEV">
+<meta property="og:title" content="${escapeHtml(productName)} Review | shneeev">
 <meta property="og:description" content="${escapeHtml(data.shortVerdict)}">
 <meta property="og:url" content="https://shneeev.com/${reviewPath}">
 <meta property="og:image" content="${thumbnail}">
@@ -171,8 +171,8 @@ function renderReviewPage(video, data, productName, reviewPath) {
 <header>
 <nav>
 <a class="brand" href="../../">
-<img alt="SHNEEEV mascot" decoding="async" height="256" src="../../assets/mascot-glow.png" width="256">
-<div><h3>SHNEEEV</h3><span>Equipment Reviews</span></div>
+<img alt="shneeev mascot" decoding="async" height="256" src="../../assets/mascot-glow.png" width="256">
+<div><h3>shneeev</h3><span>Equipment Reviews</span></div>
 </a>
 <ul>
 <li><a href="../../#setup">Setup</a></li>
@@ -185,7 +185,7 @@ function renderReviewPage(video, data, productName, reviewPath) {
 <input id="review-search" name="q" type="search" placeholder="Search reviews" autocomplete="off" enterkeyhint="search">
 </form>
 <div class="navActions">
-<a class="discordButton" href="https://discord.gg/pwGeBaGc2F" target="_blank" rel="noopener noreferrer" aria-label="Join the SHNEEEV Discord server" title="Join the SHNEEEV Discord"><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M19.54 5.34A16.65 16.65 0 0 0 15.44 4l-.5 1.02a15.36 15.36 0 0 0-5.87 0L8.56 4a16.7 16.7 0 0 0-4.11 1.35C1.85 9.17 1.14 12.9 1.5 16.58a16.8 16.8 0 0 0 5.03 2.54l1.23-1.68a10.8 10.8 0 0 1-1.93-.92l.47-.36c3.72 1.72 7.76 1.72 11.44 0l.47.36c-.62.37-1.27.68-1.94.92l1.23 1.68a16.7 16.7 0 0 0 5.03-2.54c.43-4.27-.73-7.97-2.99-11.24ZM8.84 14.34c-1.12 0-2.04-1.04-2.04-2.32s.9-2.32 2.04-2.32c1.15 0 2.06 1.05 2.04 2.32 0 1.28-.9 2.32-2.04 2.32Zm6.33 0c-1.12 0-2.04-1.04-2.04-2.32s.9-2.32 2.04-2.32c1.15 0 2.06 1.05 2.04 2.32 0 1.28-.9 2.32-2.04 2.32Z"/></svg><span>Discord</span></a>
+<a class="discordButton" href="https://discord.gg/pwGeBaGc2F" target="_blank" rel="noopener noreferrer" aria-label="Join the shneeev Discord server" title="Join the shneeev Discord"><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M19.54 5.34A16.65 16.65 0 0 0 15.44 4l-.5 1.02a15.36 15.36 0 0 0-5.87 0L8.56 4a16.7 16.7 0 0 0-4.11 1.35C1.85 9.17 1.14 12.9 1.5 16.58a16.8 16.8 0 0 0 5.03 2.54l1.23-1.68a10.8 10.8 0 0 1-1.93-.92l.47-.36c3.72 1.72 7.76 1.72 11.44 0l.47.36c-.62.37-1.27.68-1.94.92l1.23 1.68a16.7 16.7 0 0 0 5.03-2.54c.43-4.27-.73-7.97-2.99-11.24ZM8.84 14.34c-1.12 0-2.04-1.04-2.04-2.32s.9-2.32 2.04-2.32c1.15 0 2.06 1.05 2.04 2.32 0 1.28-.9 2.32-2.04 2.32Zm6.33 0c-1.12 0-2.04-1.04-2.04-2.32s.9-2.32 2.04-2.32c1.15 0 2.06 1.05 2.04 2.32 0 1.28-.9 2.32-2.04 2.32Z"/></svg><span>Discord</span></a>
 <a class="youtubeButton" href="https://youtube.com/@shneeev" target="_blank" rel="noopener noreferrer">YouTube</a>
 </div>
 </nav>
@@ -193,7 +193,7 @@ function renderReviewPage(video, data, productName, reviewPath) {
 <dialog class="searchDialog" aria-labelledby="search-dialog-title">
 <button class="searchDialogClose" type="button" aria-label="Close search results">&times;</button>
 <div class="searchDialogPortrait">
-<img src="../../assets/profile-480.webp" alt="SHNEEEV" width="480" height="720" loading="lazy">
+<img src="../../assets/profile-480.webp" alt="shneeev" width="480" height="720" loading="lazy">
 </div>
 <div class="searchDialogContent">
 <p class="searchDialogLabel">NOT REVIEWED YET</p>
@@ -215,7 +215,7 @@ function renderReviewPage(video, data, productName, reviewPath) {
 My testing notes, the full video, what comes in the box, and whether I’d buy it.
 </p>
 <div class="reviewByline">
-<span>Reviewed by SHNEEEV</span>
+<span>Reviewed by shneeev</span>
 <time datetime="${machineDate}">${displayDate}</time>
 <span>${escapeHtml(video.duration)} video</span>
 </div>
@@ -225,11 +225,11 @@ My testing notes, the full video, what comes in the box, and whether I’d buy i
 </div>
 </div>
 <a class="reviewHeroMedia" href="${escapeAttribute(video.url)}" target="_blank" rel="noopener noreferrer" aria-label="Watch the ${escapeAttribute(productName)} review on YouTube">
-<img src="${thumbnail}" alt="${escapeAttribute(productName)} featured in the SHNEEEV review" width="1280" height="720" fetchpriority="high">
+<img src="${thumbnail}" alt="${escapeAttribute(productName)} featured in the shneeev review" width="1280" height="720" fetchpriority="high">
 </a>
 </section>
 <section class="reviewQuickFacts" aria-label="${escapeAttribute(productName)} review facts">
-<article><span>SHNEEEV Scale</span><strong>${verdict}</strong></article>
+<article><span>shneeev Scale</span><strong>${verdict}</strong></article>
 <article><span>Category</span><strong>${escapeHtml(category)}</strong></article>
 <article><span>Published</span><strong>${displayDate}</strong></article>
 <article><span>Runtime</span><strong>${escapeHtml(video.duration)}</strong></article>
@@ -238,7 +238,7 @@ My testing notes, the full video, what comes in the box, and whether I’d buy i
 <article class="reviewMain">
 <h2>${escapeHtml(data.shortVerdict)}</h2>
 <div class="reviewCallout">
-<span>SHNEEEV Scale</span>
+<span>shneeev Scale</span>
 <strong class="reviewScaleResult">${verdict}</strong>
 </div>
 <div id="video-review" class="reviewVideo">
@@ -248,7 +248,7 @@ My testing notes, the full video, what comes in the box, and whether I’d buy i
 </div>
 <div class="reviewVideoFrame">
 <iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}"
-title="${escapeAttribute(productName)} review by SHNEEEV" loading="lazy"
+title="${escapeAttribute(productName)} review by shneeev" loading="lazy"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 allowfullscreen></iframe>
 </div>
@@ -275,7 +275,7 @@ Product information:
 </section>
 </main>
 <footer>
-<div class="footerLeft"><h3>SHNEEEV</h3></div>
+<div class="footerLeft"><h3>shneeev</h3></div>
 <div class="footerRight">
 <a href="../../">Home</a><a href="../../#setup">Setup</a>
 <a href="../../#reviews">Reviews</a><a href="../../#contact">Contact</a>
