@@ -1,5 +1,15 @@
 [
   {
+    "title": "SteelSeries Sensei Pro Mini | $180 FOR WHAT?",
+    "url": "https://www.youtube.com/watch?v=zyDYB-IEIJs",
+    "thumbnail": "https://i.ytimg.com/vi/zyDYB-IEIJs/maxresdefault.jpg",
+    "published": "2026-10-26T13:09:06Z",
+    "duration": "13:12",
+    "reviewPath": "reviews/steelseries-sensei-pro-mini/",
+    "verdict": "fail",
+    "contentType": "review"
+  },
+  {
     "title": "Elite5 Noctis | They Cloned The PD170",
     "url": "https://www.youtube.com/watch?v=u00qlengE18",
     "thumbnail": "https://i.ytimg.com/vi/u00qlengE18/maxresdefault.jpg",
@@ -18,12 +28,5 @@
     "reviewPath": "reviews/finalmouse-slx/",
     "verdict": "fail",
     "contentType": "review"
-  },
-  {
-    "title": "I tried the WALLHACK MOUSE",
-    "url": "https://www.youtube.com/watch?v=dVuJrAtQOoc",
-    "thumbnail": "https://i.ytimg.com/vi/dVuJrAtQOoc/maxresdefault.jpg",
-    "published": "2026-09-26T11:03:36Z",
-    "duration": "10:40"
   }
 ]
