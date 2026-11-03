@@ -419,7 +419,7 @@ function createReviewCard(video, index) {
                 <img src="${escapeHtml(thumbnailUrl)}" alt="" loading="${index === 0 ? "eager" : "lazy"}">
                 <div class="thumbnailShade"></div>
                 <div class="badgeRow">
-                    ${isNew(video.published) ? '<span class="newBadge">NEW</span>' : "<span></span>"}
+                    ${isNew(video.published) ? '<span class="newBadge">NEW</span>' : "<i aria-hidden="true"></i>"}
                     ${video.duration ? `<span class="durationBadge">${escapeHtml(video.duration)}</span>` : ""}
                 </div>
             </div>
