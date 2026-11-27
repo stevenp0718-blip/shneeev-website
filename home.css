@@ -36,9 +36,9 @@ footer .l{display:flex;gap:22px;flex-wrap:wrap;font-weight:700;align-content:fle
 /* calmer, less templated */
 h1{font-size:clamp(44px,6.6vw,92px)}.sh h2,.ab h2,.nl h2,.biz h2{letter-spacing:-.02em}
 .sh span,.ph .m,.ph .cap{display:none}.ph .fr{padding:10px}
-.ph,.pc,.pp,.sh span,h4{transform:none!important}.pc:hover{transform:translateY(-3px)!important}
+h4{transform:none!important}.pc:hover{transform:rotate(0) translateY(-3px)!important}
 .pc,.ph .fr,.pp,.btn,.bar nav a,.sf{box-shadow:none!important}.btn:hover,.bar nav a:hover{transform:none;opacity:.85}
 .pc{border-width:2px}.pc:hover{box-shadow:none;border-color:#e8e8e3}
-.vs{transform:none;font-size:15px;border-width:2px}
+.vs{transform:rotate(4deg);font-size:15px;border-width:2px}
 h4{background:none;color:var(--ink);padding:0 0 4px;border-bottom:2px solid var(--ink);font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
 .chip{border-bottom:0;padding-bottom:0}.chip:hover{text-decoration:underline}.gr p{gap:5px}

@@ -107,7 +107,5 @@ html body .effectsToggle{display:none!important}
 html body .reviewSearchIcon{transform:none!important;top:auto!important;left:auto!important;right:auto!important;height:auto!important;align-self:stretch;min-width:40px;font-size:18px!important;line-height:1}
 html body .vpass{color:var(--zp)!important}html body .vfail{color:var(--zf)!important}
 /* calmer */
-html body .reviewHeroMedia,html body .searchResultCard:nth-child(odd),html body .searchResultCard:nth-child(even){transform:none!important}
-html body .searchResultCard:hover{transform:translateY(-3px)!important}
+html body .searchResultCard:hover{transform:rotate(0) translateY(-3px)!important}
 html body .reviewHeroMedia,html body .reviewQuickFacts article,html body .reviewCallout,html body .reviewVideoFrame,html body .reviewSpecs dl,html body .reviewSideCard,html body .rankedItem,html body .searchResultCard,html body .reviewActions a,html body .reviewBuyLink,html body .searchHeroForm button,html body header nav ul a,html body .navActions a,html body .reviewSearch{box-shadow:none!important}
-html body .searchVerdict{transform:none}
