@@ -33,3 +33,4 @@ footer .l{display:flex;gap:22px;flex-wrap:wrap;font-weight:700;align-content:fle
 @media (max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}.gr{grid-template-columns:repeat(2,1fr)}.hero,.ab,.nl{grid-template-columns:1fr}.ph .m{right:-10px}.bar .w{flex-wrap:wrap}.sf{order:3;flex:1 1 100%;margin:0}}
 @media (max-width:560px){.w{width:calc(100% - 32px)}.grid,.gr{grid-template-columns:1fr}.bar nav{flex-wrap:wrap}.bar nav a{padding:4px 10px}.btn+.btn{margin:14px 0 0}.hero p,.ab p{font-size:18px}.b{font-size:24px}.b img{width:36px;height:36px}.ph .m{width:90px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+.bar,section,footer{border-color:#3a3a3a}.bar nav a,.sf,.btn.o{border-color:#3a3a3a}.pc,.ph .fr,.pp{border-color:#3a3a3a}.th{border-color:#3a3a3a}.newsletterForm input{border-color:#3a3a3a}
