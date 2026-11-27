@@ -1,11 +1,2 @@
-.discordCard{width:min(1180px,calc(100% - 48px));margin:0 auto;padding:10px 0 40px}
-.dcard{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px 36px}
-.dcard h3{font-size:clamp(24px,3vw,34px);line-height:1.1;letter-spacing:-.02em;margin-bottom:10px;color:var(--text)}
-.dcard p{max-width:34em;margin-bottom:14px;color:var(--muted)}
-.dstat{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;font-weight:600;font-size:16px;color:var(--text)!important}
-.dstat[hidden]{display:none}
-.dstat .on{display:inline-flex;align-items:center;gap:8px}
-.dstat .dot{width:10px;height:10px;border-radius:50%;background:#43d17d;display:inline-block}
-.discordBtn{display:inline-block;white-space:nowrap;background:var(--text);color:#050505;border-radius:999px;padding:13px 26px;font-weight:700;text-decoration:none}
-.discordBtn:hover{background:#fff}
-@media (max-width:760px){.dcard{grid-template-columns:1fr;padding:24px}}
+.discordCard{width:min(1180px,calc(100% - 48px));margin:0 auto;padding:10px 0 40px;display:flex;justify-content:center}
+.discordFrame{width:100%;max-width:420px;height:500px;border:1px solid var(--border);border-radius:var(--radius);background:#2b2d31;display:block}
