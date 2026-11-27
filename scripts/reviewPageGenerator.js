@@ -151,7 +151,6 @@ function renderReviewPage(video, data, productName, reviewPath) {
 <link rel="preload" as="image" href="${thumbnail}">
 <link rel="stylesheet" href="../../style.css?v=20260912-editorial">
 <link rel="stylesheet" href="../../publication.css?v=20260925-plain-type">
-<link rel="stylesheet" href="../../pages.css?v=20261126-4">
 <link rel="icon" href="../../mascot-glow-favicon.png" type="image/png">
 <link rel="canonical" href="https://shneeev.com/${reviewPath}">
 <meta name="theme-color" content="#080808">
@@ -286,7 +285,6 @@ Product information:
 </div>
 </footer>
 <script src="../../script.js?v=20260807-search-page-2"></script>
-<script src="../../pages.js?v=1"></script>
 </body>
 </html>
 `;
