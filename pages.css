@@ -3,7 +3,7 @@
 @font-face{font-family:Inter;font-weight:400;src:url(/fonts/Inter-Regular.otf);font-display:swap}
 @font-face{font-family:Inter;font-weight:600;src:url(/fonts/Inter-SemiBold.otf);font-display:swap}
 @font-face{font-family:Inter;font-weight:700;src:url(/fonts/Inter-Bold.otf);font-display:swap}
-:root{--zb:#0b0b0b;--zi:#b9b9b4;--zc:#141414;--zl:#3a3a3a;--zs:#2f2f2f;--zp:#43d17d;--zf:#ff5a3c}
+:root{--zb:#0b0b0b;--zi:#b9b9b4;--zc:#141414;--zl:#b9b9b4;--zs:#2f2f2f;--zp:#43d17d;--zf:#ff5a3c}
 html body,html body *{font-family:Inter,system-ui,sans-serif!important;font-weight:400!important;letter-spacing:normal!important}
 html body{background:var(--zb)!important;color:var(--zi)!important;font-size:17px;line-height:1.6}
 html body strong,html body b,html body dt,html body label,html body button,html body .primary,html body .secondary{font-weight:700!important}
@@ -106,3 +106,8 @@ html body .effectsToggle{display:none!important}
 @media(max-width:600px){html body .reviewPage,html body .searchPage,html body .rankedPage,html body header nav{width:calc(100% - 32px)!important}html body .searchResultsGrid{grid-template-columns:1fr!important}html body .reviewSpecs dl>div{grid-template-columns:1fr;gap:2px}html body .rankedItem{grid-template-columns:1fr}html body .brand h3{font-size:24px!important}html body header nav ul{flex-wrap:wrap}html body .searchHeroForm>div{flex-direction:column}}
 html body .reviewSearchIcon{transform:none!important;top:auto!important;left:auto!important;right:auto!important;height:auto!important;align-self:stretch;min-width:40px;font-size:18px!important;line-height:1}
 html body .vpass{color:var(--zp)!important}html body .vfail{color:var(--zf)!important}
+/* calmer */
+html body .reviewHeroMedia,html body .searchResultCard:nth-child(odd),html body .searchResultCard:nth-child(even){transform:none!important}
+html body .searchResultCard:hover{transform:translateY(-3px)!important}
+html body .reviewHeroMedia,html body .reviewQuickFacts article,html body .reviewCallout,html body .reviewVideoFrame,html body .reviewSpecs dl,html body .reviewSideCard,html body .rankedItem,html body .searchResultCard,html body .reviewActions a,html body .reviewBuyLink,html body .searchHeroForm button,html body header nav ul a,html body .navActions a,html body .reviewSearch{box-shadow:none!important}
+html body .searchVerdict{transform:none}
