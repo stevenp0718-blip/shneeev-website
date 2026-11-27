@@ -115,6 +115,7 @@ ${link}
 <link rel="stylesheet" href="../../style.css?v=20260912-editorial">
 <link rel="stylesheet" href="../list.css?v=20260808-1">
 <link rel="stylesheet" href="../../publication.css?v=20260925-plain-type">
+<link rel="stylesheet" href="../../pages.css?v=20261126-1">
 <link rel="icon" href="../../mascot-glow-favicon.png" type="image/png">
 <link rel="canonical" href="https://shneeev.com/${pagePath}">
 <meta name="theme-color" content="#080808">
