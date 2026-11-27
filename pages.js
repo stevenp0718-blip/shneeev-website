@@ -1,0 +1,1 @@
+document.querySelectorAll(".reviewScaleResult,.reviewQuickFacts article:first-child strong").forEach(e=>{const t=e.textContent.trim().toUpperCase();if(t==="PASS")e.classList.add("vpass");else if(t==="FAIL")e.classList.add("vfail");});
